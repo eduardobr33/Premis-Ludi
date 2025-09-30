@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
 
         if (isAproaching) transform.localScale = Vector3.MoveTowards(transform.localScale, maxScale, growSpeed * Time.deltaTime);
         
-        if (transform.localScale.x >= maxScale.x)
+        if (transform.localScale.x >= maxScale.x && damageCoroutine == null)
         {
             isAproaching = false;
             damageCoroutine = StartCoroutine(DamageOverTime());

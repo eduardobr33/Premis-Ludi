@@ -11,8 +11,7 @@ public class GameManager : MonoBehaviour
     public int playerHealth = 5;
     public int difficulty = 1;
 
-    private Enemy currentEnemy;
-    private string inputBuffer = "";
+    public Enemy currentEnemy { get; private set; }
 
     private void Awake()
     {

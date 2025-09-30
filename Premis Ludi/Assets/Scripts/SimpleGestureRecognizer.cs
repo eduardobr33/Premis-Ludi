@@ -144,6 +144,27 @@ public class SimpleGestureRecognizer : MonoBehaviour
         Result gestureResult = PointCloudRecognizer.Classify(candidate, trainingSet.ToArray());
         
         Debug.Log($"GESTO RECONOCIDO: {gestureResult.GestureClass} (Confianza: {gestureResult.Score:F2})");
+
+        int recognizedNumber;
+        if (int.TryParse(gestureResult.GestureClass, out recognizedNumber))
+        {
+            if (GameManager.Instance != null && GameManager.Instance.currentEnemy != null)
+            {
+                if (recognizedNumber == GameManager.Instance.currentEnemy.correctAnswer)
+                {
+                    Debug.Log("¡Número correcto! El enemigo recibe daño.");
+                    GameManager.Instance.currentEnemy.TakeDamage();
+                }
+                else
+                {
+                    Debug.Log($"Número incorrecto. Dibujaste {recognizedNumber}, se esperaba {GameManager.Instance.currentEnemy.correctAnswer}");
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"El gesto reconocido ({gestureResult.GestureClass}) no es un número válido");
+        }
         
         canDraw = false;
     }
