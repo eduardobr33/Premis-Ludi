@@ -16,7 +16,9 @@ public class SimpleGestureRecognizer : MonoBehaviour
     private bool isDrawing = false;
     private bool canDraw = true;
     private Vector3 mousePosition;
+    private float timeSinceLastDraw = 0f;
     
+    private List<LineRenderer> gestureLines = new List<LineRenderer>();
     private LineRenderer currentLineRenderer;
     private int vertexCount = 0;
     
@@ -42,11 +44,7 @@ public class SimpleGestureRecognizer : MonoBehaviour
             {
                 trainingSet.Add(GestureIO.ReadGestureFromFile(filePath));
             }
-            Debug.Log($"Cargados {filePaths.Length} gestos desde memoria persistente");
         }
-        
-        Debug.Log($"TOTAL: {trainingSet.Count} gestos cargados para reconocimiento");
-        Debug.Log($"Ruta de memoria persistente: {Application.persistentDataPath}");
     }
 
     void Update()
@@ -54,6 +52,16 @@ public class SimpleGestureRecognizer : MonoBehaviour
         if (!canDraw) return;
 
         HandleInput();
+        
+        if (!isDrawing && gestureLines.Count > 0)
+        {
+            timeSinceLastDraw += Time.deltaTime;
+            
+            if (timeSinceLastDraw >= recognitionDelay)
+            {
+                RecognizeGesture();
+            }
+        }
     }
 
     void HandleInput()
@@ -76,15 +84,16 @@ public class SimpleGestureRecognizer : MonoBehaviour
 
     void StartDrawing()
     {
-        if (recognitionCoroutine != null)
+        if (!isDrawing && gestureLines.Count == 0)
         {
-            StopCoroutine(recognitionCoroutine);
+            points.Clear();
+            strokeId = -1;
         }
 
-        points.Clear();
-        strokeId = 0;
+        strokeId++;
         isDrawing = true;
         vertexCount = 0;
+        timeSinceLastDraw = 0f;
         
         mousePosition = Input.mousePosition;
         
@@ -92,11 +101,8 @@ public class SimpleGestureRecognizer : MonoBehaviour
         {
             Transform gestureObj = Instantiate(gestureOnScreenPrefab);
             currentLineRenderer = gestureObj.GetComponent<LineRenderer>();
+            gestureLines.Add(currentLineRenderer);
         }
-        
-        Debug.Log("Comenzando a dibujar gesto...");
-        
-        recognitionCoroutine = StartCoroutine(RecognizeAfterDelay());
     }
 
     void ContinueDrawing()
@@ -116,29 +122,15 @@ public class SimpleGestureRecognizer : MonoBehaviour
     void StopDrawing()
     {
         isDrawing = false;
-        Debug.Log($"Gesto terminado con {points.Count} puntos");
-    }
-
-    IEnumerator RecognizeAfterDelay()
-    {
-        yield return new WaitForSeconds(recognitionDelay);
-        
-        if (points.Count > 0)
-        {
-            RecognizeGesture();
-        }
-        
-        yield return new WaitForSeconds(1f);
-        ResetForNewGesture();
+        currentLineRenderer = null;
+        timeSinceLastDraw = 0f;
     }
 
     void RecognizeGesture()
     {
-        if (points.Count == 0)
-        {
-            Debug.Log("No hay puntos para reconocer");
-            return;
-        }
+        if (points.Count == 0) return;
+        
+        canDraw = false;
         
         Gesture candidate = new Gesture(points.ToArray());
         Result gestureResult = PointCloudRecognizer.Classify(candidate, trainingSet.ToArray());
@@ -154,6 +146,9 @@ public class SimpleGestureRecognizer : MonoBehaviour
                 {
                     Debug.Log("¡Número correcto! El enemigo recibe daño.");
                     GameManager.Instance.currentEnemy.TakeDamage();
+                    
+                    StartCoroutine(CleanupAfterCorrectAnswer());
+                    return;
                 }
                 else
                 {
@@ -166,24 +161,39 @@ public class SimpleGestureRecognizer : MonoBehaviour
             Debug.LogWarning($"El gesto reconocido ({gestureResult.GestureClass}) no es un número válido");
         }
         
-        canDraw = false;
+        StartCoroutine(CleanupAfterIncorrectAnswer());
+    }
+
+    IEnumerator CleanupAfterIncorrectAnswer()
+    {
+        yield return new WaitForSeconds(1f);
+        ResetForNewGesture();
+    }
+
+    IEnumerator CleanupAfterCorrectAnswer()
+    {
+        yield return null;
+        ResetForNewGesture();
     }
 
     void ResetForNewGesture()
     {
-        if (currentLineRenderer != null)
+        foreach (LineRenderer line in gestureLines)
         {
-            Destroy(currentLineRenderer.gameObject);
-            currentLineRenderer = null;
+            if (line != null)
+            {
+                Destroy(line.gameObject);
+            }
         }
+        gestureLines.Clear();
         
+        currentLineRenderer = null;
         points.Clear();
         strokeId = -1;
         isDrawing = false;
         canDraw = true;
         vertexCount = 0;
-        
-        Debug.Log("Listo para nuevo gesto. Haz clic y dibuja.");
+        timeSinceLastDraw = 0f;
     }
 
     void OnDrawGizmosSelected()

@@ -58,6 +58,7 @@ public class Enemy : MonoBehaviour
     private void Kill()
     {
         isActive = false;
+        GameManager.Instance.EnemyDefeated(); // --> Esto se tendrá q cambiar según el lvl :p
 
         //Here goes the death animation
         Destroy(gameObject);

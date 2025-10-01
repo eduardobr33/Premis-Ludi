@@ -1,0 +1,416 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+using PDollarGestureRecognizer;
+
+public class SplitZoneGestureRecognizer : MonoBehaviour
+{
+    [Header("Configuration")]
+    public Transform gestureOnScreenPrefab;
+    public float recognitionDelay = 2.0f;
+    public bool showZoneDivider = true;
+    
+    [Header("Zone Colors")]
+    public Color leftZoneColor = Color.red;
+    public Color rightZoneColor = Color.blue;
+    public Color dividerColor = new Color(1f, 1f, 1f, 0.3f);
+    public float lineWidth = 0.1f;
+
+    private List<Gesture> trainingSet = new List<Gesture>();
+    
+    private DigitZone leftZone;
+    private DigitZone rightZone;
+    private GameObject dividerLine;
+    
+    private bool isDrawing = false;
+    private bool canDraw = true;
+    private float timeSinceLastDraw = 0f;
+    private DigitZone currentZone = null;
+    
+    private Coroutine recognitionTimer;
+    private float screenMidpoint;
+
+    private class DigitZone
+    {
+        public string zoneName;
+        public Color zoneColor;
+        public List<StrokeData> strokes;
+        public float minX;
+        public float maxX;
+        
+        public DigitZone(string name, Color color, float min, float max)
+        {
+            zoneName = name;
+            zoneColor = color;
+            minX = min;
+            maxX = max;
+            strokes = new List<StrokeData>();
+        }
+        
+        public bool ContainsPosition(Vector3 screenPos)
+        {
+            return screenPos.x >= minX && screenPos.x <= maxX;
+        }
+        
+        public void AddStroke(List<Point> points, LineRenderer visual, int strokeId)
+        {
+            strokes.Add(new StrokeData(points, visual, strokeId));
+        }
+        
+        public List<Point> GetAllPoints()
+        {
+            List<Point> allPoints = new List<Point>();
+            for (int i = 0; i < strokes.Count; i++)
+            {
+                foreach (Point p in strokes[i].points)
+                {
+                    allPoints.Add(new Point(p.X, p.Y, i));
+                }
+            }
+            return allPoints;
+        }
+        
+        public void Clear()
+        {
+            foreach (StrokeData stroke in strokes)
+            {
+                if (stroke.visual != null)
+                {
+                    Object.Destroy(stroke.visual.gameObject);
+                }
+            }
+            strokes.Clear();
+        }
+    }
+
+    private class StrokeData
+    {
+        public List<Point> points;
+        public LineRenderer visual;
+        public int strokeId;
+        
+        public StrokeData(List<Point> pts, LineRenderer lr, int id)
+        {
+            points = new List<Point>(pts);
+            visual = lr;
+            strokeId = id;
+        }
+    }
+
+    private List<Point> currentStrokePoints = new List<Point>();
+    private LineRenderer currentLine;
+    private int currentVertexCount = 0;
+
+    void Start()
+    {
+        LoadGestures();
+        SetupZones();
+        CreateDivider();
+    }
+
+    void LoadGestures()
+    {
+        TextAsset[] misNumeros = Resources.LoadAll<TextAsset>("GestureSet/MisNumeros/");
+        foreach (TextAsset numeroXml in misNumeros)
+        {
+            trainingSet.Add(GestureIO.ReadGestureFromXML(numeroXml.text));
+        }
+        
+        if (System.IO.Directory.Exists(Application.persistentDataPath))
+        {
+            string[] filePaths = System.IO.Directory.GetFiles(Application.persistentDataPath, "*.xml");
+            foreach (string filePath in filePaths)
+            {
+                trainingSet.Add(GestureIO.ReadGestureFromFile(filePath));
+            }
+        }
+    }
+
+    void SetupZones()
+    {
+        screenMidpoint = Screen.width / 2f;
+        
+        leftZone = new DigitZone("IZQUIERDA", leftZoneColor, 0, screenMidpoint);
+        rightZone = new DigitZone("DERECHA", rightZoneColor, screenMidpoint, Screen.width);
+    }
+
+    void CreateDivider()
+    {
+        if (!showZoneDivider) return;
+
+        dividerLine = new GameObject("ZoneDivider");
+        LineRenderer lr = dividerLine.AddComponent<LineRenderer>();
+        
+        lr.material = new Material(Shader.Find("Sprites/Default"));
+        lr.startColor = dividerColor;
+        lr.endColor = dividerColor;
+        lr.startWidth = 0.05f;
+        lr.endWidth = 0.05f;
+        lr.positionCount = 2;
+        
+        Vector3 topPos = Camera.main.ScreenToWorldPoint(new Vector3(screenMidpoint, Screen.height, 10));
+        Vector3 bottomPos = Camera.main.ScreenToWorldPoint(new Vector3(screenMidpoint, 0, 10));
+        
+        lr.SetPosition(0, bottomPos);
+        lr.SetPosition(1, topPos);
+        
+        lr.sortingOrder = -1;
+    }
+
+    void Update()
+    {
+        if (!canDraw) return;
+
+        HandleInput();
+        
+        if (!isDrawing && (leftZone.strokes.Count > 0 || rightZone.strokes.Count > 0))
+        {
+            timeSinceLastDraw += Time.deltaTime;
+            
+            if (timeSinceLastDraw >= recognitionDelay)
+            {
+                PerformRecognition();
+            }
+        }
+    }
+
+    void HandleInput()
+    {
+        bool inputDown = Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began);
+        bool inputHeld = Input.GetMouseButton(0) || (Input.touchCount > 0);
+        bool inputUp = Input.GetMouseButtonUp(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended);
+        
+        Vector3 inputPosition = Input.mousePosition;
+        if (Input.touchCount > 0)
+        {
+            inputPosition = Input.GetTouch(0).position;
+        }
+
+        if (inputDown)
+        {
+            StartNewStroke(inputPosition);
+        }
+        
+        if (inputHeld && isDrawing)
+        {
+            AddPoint(inputPosition);
+        }
+        
+        if (inputUp && isDrawing)
+        {
+            FinishStroke();
+        }
+    }
+
+    void StartNewStroke(Vector3 screenPos)
+    {
+        if (recognitionTimer != null)
+        {
+            StopCoroutine(recognitionTimer);
+            recognitionTimer = null;
+        }
+        
+        if (leftZone.ContainsPosition(screenPos))
+        {
+            currentZone = leftZone;
+        }
+        else if (rightZone.ContainsPosition(screenPos))
+        {
+            currentZone = rightZone;
+        }
+        else
+        {
+            currentZone = null;
+            return;
+        }
+        
+        isDrawing = true;
+        currentStrokePoints.Clear();
+        currentVertexCount = 0;
+        timeSinceLastDraw = 0f;
+        
+        CreateNewLineRenderer();
+    }
+
+    void CreateNewLineRenderer()
+    {
+        if (gestureOnScreenPrefab == null || currentZone == null) return;
+
+        Transform obj = Instantiate(gestureOnScreenPrefab);
+        currentLine = obj.GetComponent<LineRenderer>();
+        
+        if (currentLine != null)
+        {
+            currentLine.startWidth = lineWidth;
+            currentLine.endWidth = lineWidth;
+            currentLine.startColor = currentZone.zoneColor;
+            currentLine.endColor = currentZone.zoneColor;
+        }
+    }
+
+    void AddPoint(Vector3 screenPos)
+    {
+        if (currentZone == null) return;
+
+        currentStrokePoints.Add(new Point(screenPos.x, -screenPos.y, 0));
+        
+        if (currentLine != null)
+        {
+            currentLine.positionCount = ++currentVertexCount;
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, 10));
+            currentLine.SetPosition(currentVertexCount - 1, worldPos);
+        }
+    }
+
+    void FinishStroke()
+    {
+        isDrawing = false;
+        
+        if (currentZone == null || currentStrokePoints.Count < 3)
+        {
+            if (currentLine != null)
+            {
+                Destroy(currentLine.gameObject);
+            }
+            currentZone = null;
+            return;
+        }
+        
+        int strokeId = currentZone.strokes.Count;
+        currentZone.AddStroke(currentStrokePoints, currentLine, strokeId);
+        
+        currentStrokePoints = new List<Point>();
+        currentLine = null;
+        currentZone = null;
+        timeSinceLastDraw = 0f;
+    }
+
+    void PerformRecognition()
+    {
+        canDraw = false;
+        
+        StringBuilder result = new StringBuilder();
+        
+        if (leftZone.strokes.Count > 0)
+        {
+            List<Point> leftPoints = leftZone.GetAllPoints();
+            Gesture leftGesture = new Gesture(leftPoints.ToArray());
+            Result leftResult = PointCloudRecognizer.Classify(leftGesture, trainingSet.ToArray());
+            
+            result.Append(leftResult.GestureClass);
+        }
+        
+        if (rightZone.strokes.Count > 0)
+        {
+            List<Point> rightPoints = rightZone.GetAllPoints();
+            Gesture rightGesture = new Gesture(rightPoints.ToArray());
+            Result rightResult = PointCloudRecognizer.Classify(rightGesture, trainingSet.ToArray());
+            
+            result.Append(rightResult.GestureClass);
+        }
+        
+        string finalNumber = result.ToString();
+        
+        if (finalNumber.Length > 0)
+        {
+            Debug.Log($"NÚMERO RECONOCIDO: {finalNumber}");
+            
+            int recognizedNumber;
+            if (int.TryParse(finalNumber, out recognizedNumber))
+            {
+                if (GameManager.Instance != null && GameManager.Instance.currentEnemy != null)
+                {
+                    if (recognizedNumber == GameManager.Instance.currentEnemy.correctAnswer)
+                    {
+                        Debug.Log("¡Número correcto! El enemigo recibe daño.");
+                        GameManager.Instance.currentEnemy.TakeDamage();
+                        
+                        StartCoroutine(CleanupAfterCorrectAnswer());
+                        return;
+                    }
+                    else
+                    {
+                        Debug.Log($"Número incorrecto. Dibujaste {recognizedNumber}, se esperaba {GameManager.Instance.currentEnemy.correctAnswer}");
+                    }
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"El número reconocido ({finalNumber}) no es válido");
+            }
+        }
+        
+        StartCoroutine(CleanupAfterDelay());
+    }
+
+    IEnumerator CleanupAfterCorrectAnswer()
+    {
+        yield return null;
+        ResetSystem();
+    }
+
+    IEnumerator CleanupAfterDelay()
+    {
+        yield return new WaitForSeconds(2.5f);
+        ResetSystem();
+    }
+
+    void ResetSystem()
+    {
+        leftZone.Clear();
+        rightZone.Clear();
+        
+        if (currentLine != null)
+        {
+            Destroy(currentLine.gameObject);
+            currentLine = null;
+        }
+        
+        currentStrokePoints.Clear();
+        currentZone = null;
+        
+        isDrawing = false;
+        canDraw = true;
+        timeSinceLastDraw = 0f;
+        currentVertexCount = 0;
+        
+        if (recognitionTimer != null)
+        {
+            StopCoroutine(recognitionTimer);
+            recognitionTimer = null;
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (dividerLine != null)
+        {
+            Destroy(dividerLine);
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        if (Camera.main == null) return;
+        
+        float midpoint = Screen.width / 2f;
+        
+        Gizmos.color = new Color(1f, 0f, 0f, 0.2f);
+        Vector3 leftCenter = Camera.main.ScreenToWorldPoint(new Vector3(midpoint / 2f, Screen.height / 2f, 10));
+        Vector3 leftSize = Camera.main.ScreenToWorldPoint(new Vector3(midpoint, Screen.height, 10)) - 
+                          Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 10));
+        Gizmos.DrawCube(leftCenter, leftSize);
+        
+        Gizmos.color = new Color(0f, 0f, 1f, 0.2f);
+        Vector3 rightCenter = Camera.main.ScreenToWorldPoint(new Vector3(midpoint + midpoint / 2f, Screen.height / 2f, 10));
+        Vector3 rightSize = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 10)) - 
+                           Camera.main.ScreenToWorldPoint(new Vector3(midpoint, 0, 10));
+        Gizmos.DrawCube(rightCenter, rightSize);
+        
+        Gizmos.color = Color.white;
+        Vector3 top = Camera.main.ScreenToWorldPoint(new Vector3(midpoint, Screen.height, 10));
+        Vector3 bottom = Camera.main.ScreenToWorldPoint(new Vector3(midpoint, 0, 10));
+        Gizmos.DrawLine(bottom, top);
+    }
+}
