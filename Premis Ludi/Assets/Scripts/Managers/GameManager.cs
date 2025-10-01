@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,32 +13,66 @@ public class GameManager : MonoBehaviour
     public int playerHealth = 5;
     public int difficulty = 1;
 
+    [Header("Level Timer")]
+    public float levelTime = 30f;
+
+    [Header("Scoring")]
+    public int score = 0;
+    public int enemyPoints = 10;
+    public int multiplier = 1;
+    public int maxMultiplier = 5;
+
+    [Header("UI")]
+    public TextMeshProUGUI timerText;
+    public TextMeshProUGUI scoreText;
+
     [Header("Gesture Recognizers")]
     public SimpleGestureRecognizer simpleRecognizer;
     public SplitZoneGestureRecognizer splitZoneRecognizer;
 
+    [HideInInspector]
     public Enemy currentEnemy { get; private set; }
+
+    private float timer;
 
     private void Awake()
     {
-        Instance = this;
-        
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+
         // Inicialmente desactivar ambos
         if (simpleRecognizer != null)
             simpleRecognizer.gameObject.SetActive(false);
-        
+
         if (splitZoneRecognizer != null)
             splitZoneRecognizer.gameObject.SetActive(false);
     }
 
-    void Start()
+    private void Start()
     {
+        timer = levelTime;
         SpawnEnemy();
     }
 
-    void Update()
+    private void Update()
     {
-        //HandleInput();
+        HandleTimer();
+    }
+
+    private void HandleTimer()
+    {
+        if (playerHealth <= 0) return;
+
+        timer -= Time.deltaTime;
+        timerText.text = $"{Mathf.CeilToInt(timer)}";
+
+        if (timer <= 0f) WinGame();
     }
 
     public void SpawnEnemy()
@@ -53,12 +89,12 @@ public class GameManager : MonoBehaviour
     private void SetupGestureRecognizer(string operation, int correctAnswer)
     {
         bool isSingleDigit = correctAnswer >= 0 && correctAnswer <= 9;
-        
+
         if (isSingleDigit)
         {
             simpleRecognizer.gameObject.SetActive(true);
             Debug.Log($"✓ SimpleGestureRecognizer ACTIVADO (respuesta: {correctAnswer} - 1 dígito)");
-        
+
             splitZoneRecognizer.gameObject.SetActive(false);
             Debug.Log("  SplitZoneGestureRecognizer desactivado");
         }
@@ -70,23 +106,41 @@ public class GameManager : MonoBehaviour
             simpleRecognizer.gameObject.SetActive(false);
             Debug.Log("  SimpleGestureRecognizer desactivado");
         }
-        
+
     }
 
     public void PlayerTakeDamage()
     {
         playerHealth--;
+        multiplier = 1;
         Debug.Log("Player health: " + playerHealth);
+
+        if (playerHealth <= 0) LoseGame();
     }
 
     public void EnemyDefeated()
     {
-        currentEnemy = null;
-        
+        // Score UI
+        score += enemyPoints * multiplier;
+        if (multiplier < maxMultiplier) multiplier++;
+        scoreText.text = $"{score}";
+
         // Desactivar ambos reconocedores temporalmente
         // simpleRecognizer?.gameObject.SetActive(false);
         // splitZoneRecognizer?.gameObject.SetActive(false);
-        
+
+        currentEnemy = null;
+
         Invoke(nameof(SpawnEnemy), 1f); // --> Esto se tendrá q cambiar según el lvl :p + dificulty
+    }
+
+    public void WinGame()
+    {
+        SceneManager.LoadScene("WinScene");
+    }
+
+    public void LoseGame()
+    {
+        SceneManager.LoadScene("LoseScene");
     }
 }
