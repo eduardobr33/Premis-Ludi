@@ -1,6 +1,10 @@
 using UnityEngine;
 using TMPro;
+
+#if UNITY_EDITOR
 using UnityEditor.Build.Content;
+#endif
+
 using System.Collections;
 
 public class Enemy : MonoBehaviour

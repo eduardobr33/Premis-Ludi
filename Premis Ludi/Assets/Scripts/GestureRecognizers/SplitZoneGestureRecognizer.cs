@@ -178,14 +178,10 @@ public class SplitZoneGestureRecognizer : MonoBehaviour
     void HandleInput()
     {
         bool inputDown = Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began);
-        bool inputHeld = Input.GetMouseButton(0) || (Input.touchCount > 0);
+        bool inputHeld = Input.GetMouseButton(0) || (Input.touchCount > 0 && (Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetTouch(0).phase == TouchPhase.Stationary));
         bool inputUp = Input.GetMouseButtonUp(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended);
         
-        Vector3 inputPosition = Input.mousePosition;
-        if (Input.touchCount > 0)
-        {
-            inputPosition = Input.GetTouch(0).position;
-        }
+        Vector3 inputPosition = GetInputPosition();
 
         if (inputDown)
         {
@@ -201,6 +197,15 @@ public class SplitZoneGestureRecognizer : MonoBehaviour
         {
             FinishStroke();
         }
+    }
+
+    Vector3 GetInputPosition()
+    {
+        if (Input.touchCount > 0)
+        {
+            return Input.GetTouch(0).position;
+        }
+        return Input.mousePosition;
     }
 
     void StartNewStroke(Vector3 screenPos)

@@ -66,17 +66,21 @@ public class SimpleGestureRecognizer : MonoBehaviour
 
     void HandleInput()
     {
-        if (Input.GetMouseButtonDown(0))
+        bool inputDown = Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began);
+        bool inputHeld = Input.GetMouseButton(0) || (Input.touchCount > 0 && (Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetTouch(0).phase == TouchPhase.Stationary));
+        bool inputUp = Input.GetMouseButtonUp(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended);
+        
+        if (inputDown)
         {
             StartDrawing();
         }
         
-        if (Input.GetMouseButton(0) && isDrawing)
+        if (inputHeld && isDrawing)
         {
             ContinueDrawing();
         }
         
-        if (Input.GetMouseButtonUp(0) && isDrawing)
+        if (inputUp && isDrawing)
         {
             StopDrawing();
         }
@@ -95,7 +99,7 @@ public class SimpleGestureRecognizer : MonoBehaviour
         vertexCount = 0;
         timeSinceLastDraw = 0f;
         
-        mousePosition = Input.mousePosition;
+        mousePosition = GetInputPosition();
         
         if (gestureOnScreenPrefab != null)
         {
@@ -107,7 +111,7 @@ public class SimpleGestureRecognizer : MonoBehaviour
 
     void ContinueDrawing()
     {
-        mousePosition = Input.mousePosition;
+        mousePosition = GetInputPosition();
         
         points.Add(new Point(mousePosition.x, -mousePosition.y, strokeId));
         
@@ -124,6 +128,15 @@ public class SimpleGestureRecognizer : MonoBehaviour
         isDrawing = false;
         currentLineRenderer = null;
         timeSinceLastDraw = 0f;
+    }
+
+    Vector3 GetInputPosition()
+    {
+        if (Input.touchCount > 0)
+        {
+            return Input.GetTouch(0).position;
+        }
+        return Input.mousePosition;
     }
 
     void RecognizeGesture()
