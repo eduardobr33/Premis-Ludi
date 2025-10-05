@@ -26,12 +26,15 @@ public class Enemy : MonoBehaviour
     private static float minScale = 0.3f;
     private Coroutine damageCoroutine;
 
+    private bool isPaused = false;
+
+
     void Update()
     {
         if (!isActive) return;
 
-        if (isAproaching) transform.localScale = Vector3.MoveTowards(transform.localScale, maxScale, enemySpeed * Time.deltaTime);
-        
+        if (isAproaching && !isPaused) transform.localScale = Vector3.MoveTowards(transform.localScale, maxScale, enemySpeed * Time.deltaTime);
+
         if (transform.localScale.x >= maxScale.x && damageCoroutine == null)
         {
             isAproaching = false;
@@ -101,5 +104,14 @@ public class Enemy : MonoBehaviour
 
         //Here goes the death animation
         Destroy(gameObject);
+    }
+
+    public void PauseScaling()
+    {
+        isPaused = true;
+    }
+    public void ResumeScaling()
+    {
+        isPaused = false;
     }
 }

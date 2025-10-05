@@ -159,6 +159,10 @@ public class SimpleGestureRecognizer : MonoBehaviour
                 {
                     Debug.Log("¡Número correcto! El enemigo recibe daño.");
                     GameManager.Instance.currentEnemy.TakeDamage();
+                    if (GameManager.Instance.tutorialActive)
+                    {
+                        TutorialManager.Instance.HideTutorial();
+                    }
                     
                     StartCoroutine(CleanupAfterCorrectAnswer());
                     return;

@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEditor;
 using UnityEngine.SceneManagement;
+using UnityEditor.ShaderGraph.Serialization;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,6 +27,11 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI scoreText;
 
+    [Header("Tutorial")]
+    private bool isTutorialScene = false;
+    public bool tutorialActive = false;
+    private bool tutorialShown = false;
+
     [Header("Gesture Recognizers")]
     public SimpleGestureRecognizer simpleRecognizer;
     public SplitZoneGestureRecognizer splitZoneRecognizer;
@@ -46,12 +52,16 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        isTutorialScene = SceneManager.GetActiveScene().name == "TutorialScene";
+
         // Inicialmente desactivar ambos
         if (simpleRecognizer != null)
             simpleRecognizer.gameObject.SetActive(false);
 
         if (splitZoneRecognizer != null)
             splitZoneRecognizer.gameObject.SetActive(false);
+
+        tutorialShown = false;
     }
 
     private void Start()
@@ -62,7 +72,18 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        HandleTimer();
+        if (!tutorialActive)
+        {
+            HandleTimer();
+
+            if (isTutorialScene && !tutorialShown && currentEnemy != null)
+            {
+                if (currentEnemy.transform.localScale.x > 0.5f && !TutorialManager.Instance.completed)
+                {
+                    ShowTutorial();
+                }
+            }
+        }
     }
 
     private void HandleTimer()
@@ -142,5 +163,26 @@ public class GameManager : MonoBehaviour
     public void LoseGame()
     {
         SceneManager.LoadScene("LoseScene");
+    }
+
+    //Tutorial Manager
+    private void ShowTutorial()
+    {
+        tutorialShown = true;
+        tutorialActive = true;
+        if (TutorialManager.Instance != null)
+            TutorialManager.Instance.ShowTutorial();
+
+        if (currentEnemy != null)
+            currentEnemy.PauseScaling();
+    }
+
+    public void ResumeAfterTutorial()
+    {
+        tutorialActive = false;
+        tutorialShown = false;
+        TutorialManager.Instance.completed = false;
+        if (currentEnemy != null)
+            currentEnemy.ResumeScaling();
     }
 }
