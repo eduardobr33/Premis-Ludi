@@ -343,7 +343,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: 7723652632321733531, guid: 92f74926fdc5f624196dc61c55ed097f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -366,9 +366,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343233dd66eba2946ad4467baaac8db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textOp: {fileID: 8292785090428661393}
-  growSpeed: 0.5
   maxScale: {x: 2, y: 2, z: 2}
+  enemySpeed: 0.1
+  attackSpeed: 1
+  health: 3
+  nextOperationDelay: 0.5
+  textOp: {fileID: 8292785090428661393}
+  spriteRenderer: {fileID: 7175731774493723231}
   correctAnswer: 0
 --- !u!1 &8958852825760504269
 GameObject:

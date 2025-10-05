@@ -669,7 +669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7084270682967007752, guid: 8ee3148f9da611b46aa0f57583cb5843, type: 3}
   spawnPoint: {fileID: 755967248}
-  playerHealth: 5
+  playerHealth: 100
   difficulty: 1
   levelTime: 30
   score: 0

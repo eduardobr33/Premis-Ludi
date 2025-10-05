@@ -9,25 +9,28 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
-    public TextMeshPro textOp;
-    public static Vector3 maxScale = new Vector3(2f, 2f, 2f);
-    public float enemySpeed = 5f;
+    [Header("Enemy Stats")]
+    public Vector3 maxScale = new Vector3(2f, 2f, 2f);
+    public float enemySpeed = 1f;
     public float attackSpeed = 1f;
+    public int health = 1;
+    public float nextOperationDelay = 0.5f;
 
-    public int correctAnswer;
+    [Header("Referecnes")]
+    public TextMeshPro textOp;
+    public SpriteRenderer spriteRenderer;
 
+    public int correctAnswer; // For the habilities
     private bool isActive = true;
     private bool isAproaching = true;
     private static float minScale = 0.3f;
-    private float growSpeed = (maxScale.x - minScale) / 5f;
-    private int health = 1;
     private Coroutine damageCoroutine;
 
     void Update()
     {
         if (!isActive) return;
 
-        if (isAproaching) transform.localScale = Vector3.MoveTowards(transform.localScale, maxScale, growSpeed * Time.deltaTime);
+        if (isAproaching) transform.localScale = Vector3.MoveTowards(transform.localScale, maxScale, enemySpeed * Time.deltaTime);
         
         if (transform.localScale.x >= maxScale.x && damageCoroutine == null)
         {
@@ -36,11 +39,19 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Setup(string operation, int answer)
+    public void Setup(string operation, int answer, bool newEnemy)
     {
         textOp.text = operation;
         correctAnswer = answer;
-        transform.localScale = Vector3.one * minScale;
+        if (newEnemy) transform.localScale = Vector3.one * minScale;
+    }
+
+    private void GenerateNewOperation()
+    {
+        var (operation, result) = MathGenerator.GenerateOperation(GameManager.Instance.difficulty);
+        Setup(operation, result, false);
+
+        GameManager.Instance.SetupGestureRecognizer(operation, result);
     }
 
     private IEnumerator DamageOverTime()
@@ -54,9 +65,33 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage()
     {
+        StartCoroutine(FlashDamage());
+
         health -= 1;
 
-        if (health <= 0) Kill();
+        if (health > 0)
+        {
+            Invoke(nameof(GenerateNewOperation), nextOperationDelay);
+        }
+        else
+        {
+            Kill();   
+        }
+    }
+
+    private IEnumerator FlashDamage()
+    {
+        if (spriteRenderer == null) yield break;
+
+        Color originalColor = spriteRenderer.color;
+        spriteRenderer.color = Color.red;
+
+        transform.localScale = new Vector3(transform.localScale.x - 0.3f, transform.localScale.y - 0.3f, transform.localScale.z - 0.3f);
+        isAproaching = true;
+
+        yield return new WaitForSeconds(0.2f);
+
+        spriteRenderer.color = originalColor;
     }
 
     private void Kill()

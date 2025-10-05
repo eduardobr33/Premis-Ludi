@@ -81,12 +81,12 @@ public class GameManager : MonoBehaviour
 
         GameObject enemyObj = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
         currentEnemy = enemyObj.GetComponent<Enemy>();
-        currentEnemy.Setup(operation, result);
+        currentEnemy.Setup(operation, result, true);
 
         SetupGestureRecognizer(operation, result);
     }
 
-    private void SetupGestureRecognizer(string operation, int correctAnswer)
+    public void SetupGestureRecognizer(string operation, int correctAnswer)
     {
         bool isSingleDigit = correctAnswer >= 0 && correctAnswer <= 9;
 
