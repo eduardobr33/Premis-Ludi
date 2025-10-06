@@ -9,6 +9,7 @@ public class LevelSelection : MonoBehaviour
     [SerializeField] private bool unlocked = false;
     [SerializeField] private int levelNumber;
     [SerializeField] private int[] nextLevels;
+    [SerializeField] private LevelData levelData;
     
     public Image unlockImage;
     public GameObject[] stars;
@@ -20,7 +21,7 @@ public class LevelSelection : MonoBehaviour
 
     private void Start()
     {
-        PlayerPrefs.DeleteAll(); // uncomment para resetear progreso
+        // PlayerPrefs.DeleteAll(); // uncomment para resetear progreso
         
         if (levelNumber == 1)
         {
@@ -94,68 +95,19 @@ public class LevelSelection : MonoBehaviour
     {
         if (!unlocked) return;
         
-        if (!hasBeenPlayed)
+        if (levelData != null)
         {
-            hasBeenPlayed = true;
-            PlayerPrefs.SetInt("Level_" + levelNumber + "_Played", 1);
-        }
-        
-        bool hasWon = Random.Range(0f, 1f) > 0.5f;
-        
-        if (hasWon)
-        {
-            int starsEarned = 0;
-            
-            for (int i = 0; i < 3; i++)
+            if (LevelManager.Instance != null)
             {
-                if (Random.Range(0f, 1f) < 0.33f)
-                {
-                    starsEarned++;
-                }
+                LevelManager.Instance.LoadLevel(levelData);
             }
             
-            if (starsEarned == 0) starsEarned = 1;
-            
-            if (starsEarned > currentStars)
-            {
-                currentStars = starsEarned;
-                PlayerPrefs.SetInt("Level_" + levelNumber + "_Stars", currentStars);
-            }
-            
-            if (nextLevels != null && nextLevels.Length > 0)
-            {
-                foreach (int nextLevel in nextLevels)
-                {
-                    if (nextLevel > 0)
-                    {
-                        PlayerPrefs.SetInt("Level_" + nextLevel + "_Unlocked", 1);
-                    }
-                }
-                
-                LevelSelection[] allLevels = FindObjectsOfType<LevelSelection>();
-                foreach (LevelSelection level in allLevels)
-                {
-                    foreach (int nextLevel in nextLevels)
-                    {
-                        if (level.levelNumber == nextLevel)
-                        {
-                            level.unlocked = true;
-                            level.UpdateLevelUI();
-                        }
-                    }
-                }
-            }
+            SceneManager.LoadScene("GameplayScene");
         }
         else
         {
-            if (currentStars == 0)
-            {
-                PlayerPrefs.SetInt("Level_" + levelNumber + "_Stars", 0);
-            }
+            Debug.LogWarning($"No hay LevelData asignado para el nivel {levelNumber}");
         }
-        
-        PlayerPrefs.Save();
-        UpdateLevelUI();
     }
 
     public void PressSelection(string _LevelName)

@@ -369,7 +369,7 @@ MonoBehaviour:
   maxScale: {x: 2, y: 2, z: 2}
   enemySpeed: 0.1
   attackSpeed: 1
-  health: 3
+  health: 1
   nextOperationDelay: 0.5
   textOp: {fileID: 8292785090428661393}
   spriteRenderer: {fileID: 7175731774493723231}

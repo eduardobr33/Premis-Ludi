@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     public Enemy currentEnemy { get; private set; }
 
     private float timer;
+    private LevelData currentLevelData;
 
     private void Awake()
     {
@@ -62,6 +63,21 @@ public class GameManager : MonoBehaviour
             splitZoneRecognizer.gameObject.SetActive(false);
 
         tutorialShown = false;
+        
+        LoadLevelConfiguration();
+    }
+
+    private void LoadLevelConfiguration()
+    {
+        if (LevelManager.Instance != null && LevelManager.Instance.currentLevelData != null)
+        {
+            currentLevelData = LevelManager.Instance.currentLevelData;
+            
+            difficulty = currentLevelData.difficulty;
+            
+            Debug.Log($"Nivel cargado: {currentLevelData.levelName}");
+            Debug.Log($"Dificultad: {currentLevelData.difficulty}");
+        }
     }
 
     private void Start()
@@ -102,6 +118,12 @@ public class GameManager : MonoBehaviour
 
         GameObject enemyObj = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
         currentEnemy = enemyObj.GetComponent<Enemy>();
+        
+        if (currentLevelData != null)
+        {
+            currentEnemy.health = currentLevelData.enemyHealth;
+        }
+        
         currentEnemy.Setup(operation, result, true);
 
         SetupGestureRecognizer(operation, result);
@@ -157,7 +179,45 @@ public class GameManager : MonoBehaviour
 
     public void WinGame()
     {
+        if (currentLevelData != null)
+        {
+            Debug.Log("¡Has ganado el nivel!");
+            int stars = CalculateStars();
+            SaveLevelProgress(stars);
+        }
+        
         SceneManager.LoadScene("WinScene");
+    }
+
+    private int CalculateStars()
+    {
+        float healthPercentage = (float)playerHealth / 5f;
+        
+        if (healthPercentage >= 0.8f) return 3;
+        if (healthPercentage >= 0.4f) return 2;
+        return 1;
+    }
+
+    private void SaveLevelProgress(int stars)
+    {
+        int levelNum = currentLevelData.levelNumber;
+        
+        PlayerPrefs.SetInt("Level_" + levelNum + "_Played", 1);
+        
+        int currentStars = PlayerPrefs.GetInt("Level_" + levelNum + "_Stars", 0);
+        if (stars > currentStars)
+        {
+            PlayerPrefs.SetInt("Level_" + levelNum + "_Stars", stars);
+        }
+        
+        // Desbloquear el siguiente nivel
+        int nextLevel = levelNum + 1;
+        PlayerPrefs.SetInt("Level_" + nextLevel + "_Unlocked", 1);
+        
+        PlayerPrefs.Save();
+        
+        Debug.Log($"Nivel {levelNum} completado con {stars} estrellas");
+        Debug.Log($"Nivel {nextLevel} desbloqueado!");
     }
 
     public void LoseGame()
