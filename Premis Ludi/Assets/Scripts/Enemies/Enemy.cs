@@ -61,25 +61,20 @@ public class Enemy : MonoBehaviour
     {
         while (isActive)
         {
-            GameManager.Instance.PlayerTakeDamage();
+            Player.Instance.TakeDamage();
             yield return new WaitForSeconds(attackSpeed);
         }
     }
 
-    public void TakeDamage()
+    public void TakeDamage(bool instaKill)
     {
         StartCoroutine(FlashDamage());
 
-        health -= 1;
+        if (instaKill) health -= 99;
+        else health -= 1;
 
-        if (health > 0)
-        {
-            Invoke(nameof(GenerateNewOperation), nextOperationDelay);
-        }
-        else
-        {
-            Kill();   
-        }
+        if (health > 0) Invoke(nameof(GenerateNewOperation), nextOperationDelay);
+        else Kill(instaKill);
     }
 
     private IEnumerator FlashDamage()
@@ -97,10 +92,10 @@ public class Enemy : MonoBehaviour
         spriteRenderer.color = originalColor;
     }
 
-    private void Kill()
+    private void Kill(bool instaKill)
     {
         isActive = false;
-        GameManager.Instance.EnemyDefeated(); // --> Esto se tendrá q cambiar según el lvl :p
+        GameManager.Instance.EnemyDefeated(instaKill); // --> Esto se tendrá q cambiar según el lvl :p
 
         //Here goes the death animation
         Destroy(gameObject);

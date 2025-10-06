@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     [Header("Gameplay")]
     public GameObject enemyPrefab;
     public Transform spawnPoint;
-    public int playerHealth = 5;
     public int difficulty = 1;
 
     [Header("Level Timer")]
@@ -38,6 +37,8 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public Enemy currentEnemy { get; private set; }
+    [HideInInspector]
+    public int playerHealth;
 
     private float timer;
     private LevelData currentLevelData;
@@ -152,21 +153,22 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void PlayerTakeDamage()
-    {
-        playerHealth--;
-        multiplier = 1;
-        Debug.Log("Player health: " + playerHealth);
-
-        if (playerHealth <= 0) LoseGame();
-    }
-
-    public void EnemyDefeated()
+    public void EnemyDefeated(bool instaKill)
     {
         // Score UI
-        score += enemyPoints * multiplier;
-        if (multiplier < maxMultiplier) multiplier++;
-        scoreText.text = $"{score}";
+        if (!instaKill)
+        {
+            score += enemyPoints * multiplier;
+            if (multiplier < maxMultiplier) multiplier++;
+
+            if (Player.Instance.doublePointsActive)
+            {
+                score *= 2;
+                Player.Instance.doublePointsActive = false;
+            }
+
+            scoreText.text = $"{score}";   
+        }
 
         // Desactivar ambos reconocedores temporalmente
         // simpleRecognizer?.gameObject.SetActive(false);
