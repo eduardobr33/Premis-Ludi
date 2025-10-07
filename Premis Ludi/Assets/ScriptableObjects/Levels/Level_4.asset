@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6066f741f4d41e47aa626d37bc16fc7, type: 3}
-  m_Name: Level_1
+  m_Name: Level_4
   m_EditorClassIdentifier: 
-  levelName: 'Level 1: Sumas I'
-  levelNumber: 1
-  difficulty: 1
+  levelName: 'Level 2: Restas II'
+  levelNumber: 4
+  difficulty: 4
   allowedOperations:
-  - add
-  numberRange: {x: 1, y: 5}
+  - sub
+  numberRange: {x: 1, y: 10}
   maxSteps: 1
   enemyHealth: 1
   levelTime: 30

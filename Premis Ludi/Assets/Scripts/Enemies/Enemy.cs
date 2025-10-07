@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     public TextMeshPro textOp;
     public SpriteRenderer spriteRenderer;
 
-    public int correctAnswer; // For the habilities
+    public int correctAnswer; // For the abilities
     private bool isActive = true;
     private bool isAproaching = true;
     private static float minScale = 0.3f;
@@ -45,13 +45,15 @@ public class Enemy : MonoBehaviour
     public void Setup(string operation, int answer, bool newEnemy)
     {
         textOp.text = operation;
+        Debug.Log("Operation: " + textOp.text);
         correctAnswer = answer;
+        Debug.Log("Answer: " + correctAnswer);
         if (newEnemy) transform.localScale = Vector3.one * minScale;
     }
 
     private void GenerateNewOperation()
     {
-        var (operation, result) = MathGenerator.GenerateOperation(GameManager.Instance.difficulty);
+        var (operation, result) = MathGenerator.GenerateOperation(GameManager.Instance.currentLevelData);
         Setup(operation, result, false);
 
         GameManager.Instance.SetupGestureRecognizer(operation, result);

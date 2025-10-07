@@ -1,36 +1,55 @@
 using UnityEngine;
+using System;
 
-public class MathGenerator : MonoBehaviour
+public static class MathGenerator
 {
-    public static (string, int) GenerateOperation(int difficulty)
+    public static (string operation, int result) GenerateOperation(LevelData levelData)
     {
-        int a, b, result;
-        string op;
+        if (levelData == null) return ("0+0", 0);
 
-        switch (difficulty)
+        int steps = UnityEngine.Random.Range(1, levelData.maxSteps + 1);
+
+        int currentValue = UnityEngine.Random.Range(levelData.numberRange.x, levelData.numberRange.y + 1);
+        string expression = currentValue.ToString();
+
+        for (int i = 0; i < steps; i++)
         {
-            case 1:
-                a = Random.Range(1, 6);
-                b = Random.Range(1, 6);
-                result = a + b;
-                op = $"{a} + {b}";
-                break;
+            string op = levelData.allowedOperations[UnityEngine.Random.Range(0, levelData.allowedOperations.Count)];
+            int num = UnityEngine.Random.Range(levelData.numberRange.x, levelData.numberRange.y + 1);
 
-            case 2:
-                a = Random.Range(1, 11);
-                b = Random.Range(1, a);     // To avoid negative numbers b can't be bigger than a
-                result = a - b;
-                op = $"{a} - {b}";
-                break;
+            switch (op)
+            {
+                case "add":
+                    expression += " + " + num;
+                    currentValue += num;
+                    break;
 
-            default:
-                a = Random.Range(1, 10);
-                b = Random.Range(1, 10);
-                result = a * b;
-                op = $"{a} x {b}";
-                break;
+                case "sub":
+                    // Avoid negative numbers
+                    if (num > currentValue)
+                        num = UnityEngine.Random.Range(0, currentValue + 1);
+
+                    expression += " - " + num;
+                    currentValue -= num;
+                    break;
+
+                case "mul":
+                    expression += " x " + num;
+                    currentValue *= num;
+                    break;
+
+                case "div":
+                    // Avoid non-integrer or 0 divisions
+                    if (num != 0 && currentValue % num == 0)
+                    {
+                        expression += " ÷ " + num;
+                        currentValue /= num;
+                    }
+                    break;
+            }
         }
 
-        return (op, result);
+        return (expression, currentValue);
     }
+
 }

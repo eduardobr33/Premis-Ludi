@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6066f741f4d41e47aa626d37bc16fc7, type: 3}
   m_Name: Level_2
   m_EditorClassIdentifier: 
+  levelName: 'Level 2: Sumas II'
   levelNumber: 2
-  levelName: Lvl2
   difficulty: 2
+  allowedOperations:
+  - add
+  numberRange: {x: 1, y: 10}
+  maxSteps: 1
   enemyHealth: 1
+  levelTime: 30
+  pointsMultiplier: 1

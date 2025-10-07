@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     [Header("Gameplay")]
     public GameObject enemyPrefab;
     public Transform spawnPoint;
-    public int difficulty = 1;
 
     [Header("Level Timer")]
     public float levelTime = 30f;
@@ -39,10 +38,11 @@ public class GameManager : MonoBehaviour
     public Enemy currentEnemy { get; private set; }
     [HideInInspector]
     public int playerHealth;
+    [HideInInspector]
+    public LevelData currentLevelData;
 
     private float timer;
     private float timeScale = 1f;
-    private LevelData currentLevelData;
 
     private void Awake()
     {
@@ -74,8 +74,6 @@ public class GameManager : MonoBehaviour
         if (LevelManager.Instance != null && LevelManager.Instance.currentLevelData != null)
         {
             currentLevelData = LevelManager.Instance.currentLevelData;
-
-            difficulty = currentLevelData.difficulty;
 
             Debug.Log($"Nivel cargado: {currentLevelData.levelName}");
             Debug.Log($"Dificultad: {currentLevelData.difficulty}");
@@ -116,7 +114,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        var (operation, result) = MathGenerator.GenerateOperation(difficulty);
+        var (operation, result) = MathGenerator.GenerateOperation(currentLevelData);
 
         GameObject enemyObj = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
         currentEnemy = enemyObj.GetComponent<Enemy>();

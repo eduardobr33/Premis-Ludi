@@ -571,7 +571,7 @@ MonoBehaviour:
   unlocked: 0
   levelNumber: 5
   nextLevels: 
-  levelData: {fileID: 0}
+  levelData: {fileID: 11400000, guid: cc7502f84a5eb2144a8986c59c108377, type: 2}
   unlockImage: {fileID: 1045443297}
   stars:
   - {fileID: 144720644}
@@ -1216,7 +1216,7 @@ MonoBehaviour:
   unlocked: 0
   levelNumber: 6
   nextLevels: 
-  levelData: {fileID: 0}
+  levelData: {fileID: 11400000, guid: 3f82a57da0672684d9a311ba4b134dc1, type: 2}
   unlockImage: {fileID: 1399352632}
   stars:
   - {fileID: 1420033853}
@@ -1924,7 +1924,7 @@ MonoBehaviour:
   unlocked: 0
   levelNumber: 4
   nextLevels: 05000000
-  levelData: {fileID: 0}
+  levelData: {fileID: 11400000, guid: 3b804b49900dc394786596d9e9219f5c, type: 2}
   unlockImage: {fileID: 438474907}
   stars:
   - {fileID: 828391129}
@@ -2159,7 +2159,7 @@ MonoBehaviour:
   unlocked: 0
   levelNumber: 3
   nextLevels: 0400000006000000
-  levelData: {fileID: 0}
+  levelData: {fileID: 11400000, guid: ae7234c40fca2ef4cad5e538d7d3ceff, type: 2}
   unlockImage: {fileID: 1448852850}
   stars:
   - {fileID: 941487396}
