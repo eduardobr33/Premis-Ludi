@@ -21,20 +21,19 @@ public class LevelSelection : MonoBehaviour
 
     private void Start()
     {
-        // PlayerPrefs.DeleteAll(); // uncomment para resetear progreso
+        // SaveSystem.Instance.ResetAllProgress(); // Para resetear progreso
         
         if (levelNumber == 1)
         {
             unlocked = true;
-            PlayerPrefs.SetInt("Level_" + levelNumber + "_Unlocked", 1);
         }
         else
         {
-            unlocked = PlayerPrefs.GetInt("Level_" + levelNumber + "_Unlocked", 0) == 1;
+            unlocked = SaveSystem.Instance.IsLevelUnlocked(levelNumber);
         }
 
-        currentStars = PlayerPrefs.GetInt("Level_" + levelNumber + "_Stars", 0);
-        hasBeenPlayed = PlayerPrefs.HasKey("Level_" + levelNumber + "_Played");
+        currentStars = SaveSystem.Instance.GetLevelStars(levelNumber);
+        hasBeenPlayed = SaveSystem.Instance.HasLevelBeenPlayed(levelNumber);
         
         UpdateLevelUI();
     }

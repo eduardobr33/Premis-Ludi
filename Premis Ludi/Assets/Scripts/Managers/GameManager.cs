@@ -204,19 +204,11 @@ public class GameManager : MonoBehaviour
     {
         int levelNum = currentLevelData.levelNumber;
         
-        PlayerPrefs.SetInt("Level_" + levelNum + "_Played", 1);
+        SaveSystem.Instance.MarkLevelAsPlayed(levelNum);
+        SaveSystem.Instance.SetLevelStars(levelNum, stars);
         
-        int currentStars = PlayerPrefs.GetInt("Level_" + levelNum + "_Stars", 0);
-        if (stars > currentStars)
-        {
-            PlayerPrefs.SetInt("Level_" + levelNum + "_Stars", stars);
-        }
-        
-        // Desbloquear el siguiente nivel
         int nextLevel = levelNum + 1;
-        PlayerPrefs.SetInt("Level_" + nextLevel + "_Unlocked", 1);
-        
-        PlayerPrefs.Save();
+        SaveSystem.Instance.UnlockLevel(nextLevel);
         
         Debug.Log($"Nivel {levelNum} completado con {stars} estrellas");
         Debug.Log($"Nivel {nextLevel} desbloqueado!");
