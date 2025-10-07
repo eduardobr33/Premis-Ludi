@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     public int playerHealth;
 
     private float timer;
+    private float timeScale = 1f;
     private LevelData currentLevelData;
 
     private void Awake()
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour
             splitZoneRecognizer.gameObject.SetActive(false);
 
         tutorialShown = false;
-        
+
         LoadLevelConfiguration();
     }
 
@@ -73,9 +74,9 @@ public class GameManager : MonoBehaviour
         if (LevelManager.Instance != null && LevelManager.Instance.currentLevelData != null)
         {
             currentLevelData = LevelManager.Instance.currentLevelData;
-            
+
             difficulty = currentLevelData.difficulty;
-            
+
             Debug.Log($"Nivel cargado: {currentLevelData.levelName}");
             Debug.Log($"Dificultad: {currentLevelData.difficulty}");
         }
@@ -107,7 +108,7 @@ public class GameManager : MonoBehaviour
     {
         if (playerHealth <= 0) return;
 
-        timer -= Time.deltaTime;
+        timer -= Time.deltaTime * timeScale;
         timerText.text = $"{Mathf.CeilToInt(timer)}";
 
         if (timer <= 0f) WinGame();
@@ -119,12 +120,12 @@ public class GameManager : MonoBehaviour
 
         GameObject enemyObj = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
         currentEnemy = enemyObj.GetComponent<Enemy>();
-        
+
         if (currentLevelData != null)
         {
             currentEnemy.health = currentLevelData.enemyHealth;
         }
-        
+
         currentEnemy.Setup(operation, result, true);
 
         SetupGestureRecognizer(operation, result);
@@ -167,7 +168,7 @@ public class GameManager : MonoBehaviour
                 Player.Instance.doublePointsActive = false;
             }
 
-            scoreText.text = $"{score}";   
+            scoreText.text = $"{score}";
         }
 
         // Desactivar ambos reconocedores temporalmente
@@ -187,14 +188,14 @@ public class GameManager : MonoBehaviour
             int stars = CalculateStars();
             SaveLevelProgress(stars);
         }
-        
+
         SceneManager.LoadScene("WinScene");
     }
 
     private int CalculateStars()
     {
         float healthPercentage = (float)playerHealth / 5f;
-        
+
         if (healthPercentage >= 0.8f) return 3;
         if (healthPercentage >= 0.4f) return 2;
         return 1;
@@ -203,13 +204,13 @@ public class GameManager : MonoBehaviour
     private void SaveLevelProgress(int stars)
     {
         int levelNum = currentLevelData.levelNumber;
-        
+
         SaveSystem.Instance.MarkLevelAsPlayed(levelNum);
         SaveSystem.Instance.SetLevelStars(levelNum, stars);
-        
+
         int nextLevel = levelNum + 1;
         SaveSystem.Instance.UnlockLevel(nextLevel);
-        
+
         Debug.Log($"Nivel {levelNum} completado con {stars} estrellas");
         Debug.Log($"Nivel {nextLevel} desbloqueado!");
     }
@@ -238,5 +239,10 @@ public class GameManager : MonoBehaviour
         TutorialManager.Instance.completed = false;
         if (currentEnemy != null)
             currentEnemy.ResumeScaling();
+    }
+
+    public void SetTimeScale(float scale)
+    {
+        timeScale = scale;
     }
 }

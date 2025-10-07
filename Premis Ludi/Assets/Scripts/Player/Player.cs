@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class Player : MonoBehaviour
     public bool skipUsed = false;
     public bool doublePointsUsed = false;
     public bool doublePointsActive = false;
+    public bool slowMotionUsed = false;
+    public float slowMotionTime = 5f;
+
+    [Header("UI")]
+    public GameObject multiplicationTablesPanel;
 
     private void Awake()
     {
@@ -63,13 +69,48 @@ public class Player : MonoBehaviour
         Debug.Log("Doble puntos activado para el siguiente enemigo.");
     }
 
-    // public void ToggleMultiplicationTables()
-    // {
-    //     if (multiplicationTablesPanel == null) return;
+    public void SlowMotion()
+    {
+        if (slowMotionUsed) return;
 
-    //     bool newState = !multiplicationTablesPanel.activeSelf;
-    //     multiplicationTablesPanel.SetActive(newState);
+        slowMotionUsed = true;
+        Debug.Log("Slow Motion activado: tiempo reducido a la mitad durante 5s.");
 
-    //     Debug.Log($"Panel de tablas {(newState ? "mostrado" : "oculto")}.");
-    // }
+        StartCoroutine(SlowMotionCoroutine());
+    }
+
+    public void ToggleMultiplicationTables()
+    {
+        if (multiplicationTablesPanel == null) return;
+
+        bool newState = !multiplicationTablesPanel.activeSelf;
+        multiplicationTablesPanel.SetActive(newState);
+
+        Debug.Log($"Panel de tablas {(newState ? "mostrado" : "oculto")}.");
+    }
+
+    private IEnumerator SlowMotionCoroutine()
+    {
+        // Global time slowed
+        GameManager.Instance.SetTimeScale(0.5f);
+
+        // Enemy speed slowed
+        if (GameManager.Instance.currentEnemy != null)
+        {
+            GameManager.Instance.currentEnemy.enemySpeed *= 0.2f;
+            GameManager.Instance.currentEnemy.attackSpeed *= 0.2f;
+        }
+
+        yield return new WaitForSeconds(slowMotionTime);
+
+        GameManager.Instance.SetTimeScale(1f);
+
+        if (GameManager.Instance.currentEnemy != null)
+        {
+            GameManager.Instance.currentEnemy.enemySpeed *= 5f;
+            GameManager.Instance.currentEnemy.attackSpeed *= 5f;
+        }
+
+        Debug.Log("Slow Motion finalizado. Velocidades restauradas.");
+    }
 }
