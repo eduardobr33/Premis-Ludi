@@ -21,10 +21,6 @@ public class GameManager : MonoBehaviour
     public int multiplier = 1;
     public int maxMultiplier = 5;
 
-    [Header("UI")]
-    public TextMeshProUGUI timerText;
-    public TextMeshProUGUI scoreText;
-
     [Header("Tutorial")]
     private bool isTutorialScene = false;
     public bool tutorialActive = false;
@@ -107,7 +103,8 @@ public class GameManager : MonoBehaviour
         if (playerHealth <= 0) return;
 
         timer -= Time.deltaTime * timeScale;
-        timerText.text = $"{Mathf.CeilToInt(timer)}";
+
+        if (UIManager.Instance != null) UIManager.Instance.UpdateTimer(timer);
 
         if (timer <= 0f) WinGame();
     }
@@ -157,7 +154,8 @@ public class GameManager : MonoBehaviour
         // Score UI
         if (!instaKill)
         {
-            score += enemyPoints * multiplier;
+            int pointsEarned = enemyPoints * multiplier;
+
             if (multiplier < maxMultiplier) multiplier++;
 
             if (Player.Instance.doublePointsActive)
@@ -166,7 +164,18 @@ public class GameManager : MonoBehaviour
                 Player.Instance.doublePointsActive = false;
             }
 
-            scoreText.text = $"{score}";
+            if (UIManager.Instance != null && currentEnemy != null)
+            {
+                UIManager.Instance.ShowPointPopup(pointsEarned, currentEnemy.transform.position, () =>
+                {
+                    score += pointsEarned;
+                    UIManager.Instance.UpdateScore(score);
+                });
+            }
+            else
+            {
+                score += pointsEarned;
+            }
         }
 
         // Desactivar ambos reconocedores temporalmente

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2350945530170404375
+--- !u!1 &4494641305210386870
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6532489832133991126}
-  - component: {fileID: 7410649602393196951}
+  - component: {fileID: 464477877671122324}
+  - component: {fileID: 513935372003218788}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: UIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6532489832133991126
+--- !u!4 &464477877671122324
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2350945530170404375}
+  m_GameObject: {fileID: 4494641305210386870}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,31 +32,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7410649602393196951
+--- !u!114 &513935372003218788
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2350945530170404375}
+  m_GameObject: {fileID: 4494641305210386870}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c5f00859128a0b4894680e2690e8652, type: 3}
+  m_Script: {fileID: 11500000, guid: 99158131bf5bc874090dfb544a437c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 7084270682967007752, guid: 8ee3148f9da611b46aa0f57583cb5843, type: 3}
-  spawnPoint: {fileID: 6532489832133991126}
-  levelTime: 30
-  score: 0
-  enemyPoints: 10
-  multiplier: 1
-  maxMultiplier: 5
   timerText: {fileID: 0}
   scoreText: {fileID: 0}
-  scoreTarget: {fileID: 0}
   pointPopupPrefab: {fileID: 5188111665676888739, guid: a932ccc189f421343b6b944fd84d4660, type: 3}
-  tutorialActive: 0
-  simpleRecognizer: {fileID: 0}
-  splitZoneRecognizer: {fileID: 0}
-  playerHealth: 100
-  currentLevelData: {fileID: 0}
+  scoreTarget: {fileID: 0}
+  multiplicationTablesPanel: {fileID: 7061717769724829933, guid: 2b47505339dafb34b8007835745a57dc, type: 3}
