@@ -1081,7 +1081,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6532489832133991126, guid: 08460defe02da5242b0b1e4aee491395, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 6532489832133991126, guid: 08460defe02da5242b0b1e4aee491395, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1123,6 +1123,14 @@ PrefabInstance:
       propertyPath: timerText
       value: 
       objectReference: {fileID: 746941339}
+    - target: {fileID: 7410649602393196951, guid: 08460defe02da5242b0b1e4aee491395, type: 3}
+      propertyPath: crabPrefab
+      value: 
+      objectReference: {fileID: 4107062868510021698, guid: 9885fa6da0acb444e8b94d41e3b55087, type: 3}
+    - target: {fileID: 7410649602393196951, guid: 08460defe02da5242b0b1e4aee491395, type: 3}
+      propertyPath: ogrePrefab
+      value: 
+      objectReference: {fileID: 7084270682967007752, guid: 8ee3148f9da611b46aa0f57583cb5843, type: 3}
     - target: {fileID: 7410649602393196951, guid: 08460defe02da5242b0b1e4aee491395, type: 3}
       propertyPath: scoreTarget
       value: 

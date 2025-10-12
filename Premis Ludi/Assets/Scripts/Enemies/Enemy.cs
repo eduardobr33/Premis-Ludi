@@ -1,11 +1,9 @@
 using UnityEngine;
 using TMPro;
-
+using System.Collections;
 #if UNITY_EDITOR
 using UnityEditor.Build.Content;
 #endif
-
-using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
@@ -28,12 +26,29 @@ public class Enemy : MonoBehaviour
 
     private bool isPaused = false;
 
+    public enum EnemyType { Ogre, Crab }
+    public EnemyType enemyType = EnemyType.Ogre;
+    private Vector3 startPos;
 
-    void Update()
+    private void Start()
+    {
+        startPos = transform.position;
+    }
+
+    private void Update()
     {
         if (!isActive) return;
 
-        if (isAproaching && !isPaused) transform.localScale = Vector3.MoveTowards(transform.localScale, maxScale, enemySpeed * Time.deltaTime);
+        if (isAproaching && !isPaused)
+        {
+            transform.localScale = Vector3.MoveTowards(transform.localScale, maxScale, enemySpeed * Time.deltaTime);
+
+            if(enemyType == EnemyType.Crab)
+            {
+                float horizontalOffset = Mathf.Sin(Time.time * 5f) * 1f;
+                transform.position = new Vector3(transform.position.x + horizontalOffset, transform.position.y, transform.position.z);
+            }   
+        }
 
         if (transform.localScale.x >= maxScale.x && damageCoroutine == null)
         {
