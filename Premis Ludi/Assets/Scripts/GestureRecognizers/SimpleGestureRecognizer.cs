@@ -105,6 +105,13 @@ public class SimpleGestureRecognizer : MonoBehaviour
         {
             Transform gestureObj = Instantiate(gestureOnScreenPrefab);
             currentLineRenderer = gestureObj.GetComponent<LineRenderer>();
+            
+            if (currentLineRenderer != null)
+            {
+                currentLineRenderer.sortingOrder = 32767;
+                currentLineRenderer.sortingLayerName = "Default";
+            }
+            
             gestureLines.Add(currentLineRenderer);
         }
     }

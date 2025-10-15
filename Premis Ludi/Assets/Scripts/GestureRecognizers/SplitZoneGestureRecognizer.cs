@@ -155,7 +155,8 @@ public class SplitZoneGestureRecognizer : MonoBehaviour
         lr.SetPosition(0, bottomPos);
         lr.SetPosition(1, topPos);
         
-        lr.sortingOrder = -1;
+        lr.sortingOrder = 32766;
+        lr.sortingLayerName = "Default";
     }
 
     void Update()
@@ -251,6 +252,8 @@ public class SplitZoneGestureRecognizer : MonoBehaviour
             currentLine.endWidth = lineWidth;
             currentLine.startColor = currentZone.zoneColor;
             currentLine.endColor = currentZone.zoneColor;
+            currentLine.sortingOrder = 32767;
+            currentLine.sortingLayerName = "Default";
         }
     }
 
