@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEditor.Tilemaps;
+
 #if UNITY_EDITOR
 using UnityEditor.Build.Content;
 #endif
@@ -17,6 +19,7 @@ public class Enemy : MonoBehaviour
     [Header("Referecnes")]
     public TextMeshPro textOp;
     public SpriteRenderer spriteRenderer;
+    public Vector3 startPos;
 
     public int correctAnswer; // For the abilities
     private bool isActive = true;
@@ -28,11 +31,16 @@ public class Enemy : MonoBehaviour
 
     public enum EnemyType { Ogre, Crab }
     public EnemyType enemyType = EnemyType.Ogre;
-    private Vector3 startPos;
+
+    private float animationSpeed = 1f;
+    private Animator animator;
+    private float startTime;
+    private bool facingRight = true;
 
     private void Start()
     {
-        startPos = transform.position;
+        animator = GetComponentInChildren<Animator>();
+        startTime = Time.time;
     }
 
     private void Update()
@@ -43,11 +51,16 @@ public class Enemy : MonoBehaviour
         {
             transform.localScale = Vector3.MoveTowards(transform.localScale, maxScale, enemySpeed * Time.deltaTime);
 
-            if(enemyType == EnemyType.Crab)
+            if (enemyType == EnemyType.Crab)
             {
-                float horizontalOffset = Mathf.Sin(Time.time * 5f) * 1f;
-                transform.position = new Vector3(transform.position.x + horizontalOffset, transform.position.y, transform.position.z);
-            }   
+                //float elapsed = Time.time - startTime;
+                //float horizontalOffset = Mathf.Sin(elapsed * 2f * Mathf.PI / 1f) * 0.5f;
+
+                //transform.position = new Vector3(startPos.x + horizontalOffset, transform.position.y, transform.position.z);
+
+                // if (horizontalOffset > 0 && !facingRight) Flip(true);
+                // else if (horizontalOffset < 0 && facingRight) Flip(false);
+            }
         }
 
         if (transform.localScale.x >= maxScale.x && damageCoroutine == null)
@@ -55,6 +68,14 @@ public class Enemy : MonoBehaviour
             isAproaching = false;
             damageCoroutine = StartCoroutine(DamageOverTime());
         }
+    }
+    
+    private void Flip(bool toRight)
+    {
+        facingRight = toRight;
+        Vector3 localScale = transform.localScale;
+        localScale.x = Mathf.Abs(localScale.x) * (toRight ? 1 : -1);
+        transform.localScale = localScale;
     }
 
     public void Setup(string operation, int answer, bool newEnemy)

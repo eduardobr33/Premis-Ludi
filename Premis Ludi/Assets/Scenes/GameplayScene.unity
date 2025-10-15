@@ -2246,7 +2246,7 @@ PrefabInstance:
     - target: {fileID: 7410649602393196951, guid: 08460defe02da5242b0b1e4aee491395, type: 3}
       propertyPath: crabPrefab
       value: 
-      objectReference: {fileID: 4107062868510021698, guid: 9885fa6da0acb444e8b94d41e3b55087, type: 3}
+      objectReference: {fileID: 208603447032899682, guid: 9885fa6da0acb444e8b94d41e3b55087, type: 3}
     - target: {fileID: 7410649602393196951, guid: 08460defe02da5242b0b1e4aee491395, type: 3}
       propertyPath: ogrePrefab
       value: 
