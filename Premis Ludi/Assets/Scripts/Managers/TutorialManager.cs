@@ -32,6 +32,7 @@ public class TutorialManager : MonoBehaviour
     private int tutorialStep = 0;
     private GameObject currentNumberHelper;
     private string currentMessage = "";
+    private System.Action currentOnComplete;
 
     private void Awake()
     {
@@ -105,6 +106,7 @@ public class TutorialManager : MonoBehaviour
         isShowingDialogue = true;
         dialogueComplete = false;
         currentMessage = message;
+        currentOnComplete = onComplete;
         
         if (GameManager.Instance != null)
         {
@@ -148,6 +150,12 @@ public class TutorialManager : MonoBehaviour
 
         isShowingDialogue = false;
         dialogueComplete = false;
+        currentOnComplete = null;
+        
+        if (dialogueText != null)
+        {
+            dialogueText.text = "";
+        }
         
         if (GameManager.Instance != null)
         {
@@ -198,6 +206,12 @@ public class TutorialManager : MonoBehaviour
         }
         
         dialogueComplete = true;
+        
+        if (currentOnComplete != null)
+        {
+            currentOnComplete.Invoke();
+            currentOnComplete = null;
+        }
     }
 
     private void ShowNumberHelper(int number)
