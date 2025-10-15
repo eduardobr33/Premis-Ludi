@@ -92,6 +92,8 @@ public class SaveSystem : MonoBehaviour
 
     public bool IsLevelUnlocked(int levelNumber)
     {
+        if (levelNumber == 0) return true;
+        
         int index = levelNumber - 1;
         if (index >= 0 && index < saveData.levels.Length)
         {
@@ -112,6 +114,8 @@ public class SaveSystem : MonoBehaviour
 
     public bool HasLevelBeenPlayed(int levelNumber)
     {
+        if (levelNumber == 0) return false;
+        
         int index = levelNumber - 1;
         if (index >= 0 && index < saveData.levels.Length)
         {
@@ -132,6 +136,8 @@ public class SaveSystem : MonoBehaviour
 
     public int GetLevelStars(int levelNumber)
     {
+        if (levelNumber == 0) return 0;
+        
         int index = levelNumber - 1;
         if (index >= 0 && index < saveData.levels.Length)
         {

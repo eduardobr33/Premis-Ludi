@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     private bool isTutorialScene = false;
     public bool tutorialActive = false;
     private bool tutorialShown = false;
+    private int tutorialEnemyIndex = 0;
+    public Canvas tutorialCanvas;
 
     [Header("Gesture Recognizers")]
     public SimpleGestureRecognizer simpleRecognizer;
@@ -80,6 +82,32 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         timer = levelTime;
+        
+        if (tutorialCanvas != null)
+        {
+            bool isTutorial = currentLevelData != null && currentLevelData.isTutorial;
+            tutorialCanvas.gameObject.SetActive(isTutorial);
+        }
+        
+        if (currentLevelData != null && currentLevelData.isTutorial)
+        {
+            if (TutorialManager.Instance != null)
+            {
+                TutorialManager.Instance.StartTutorial();
+            }
+            else
+            {
+                SpawnEnemy();
+            }
+        }
+        else
+        {
+            SpawnEnemy();
+        }
+    }
+    
+    public void OnWelcomeComplete()
+    {
         SpawnEnemy();
     }
 
@@ -88,14 +116,6 @@ public class GameManager : MonoBehaviour
         if (!tutorialActive)
         {
             HandleTimer();
-
-            if (isTutorialScene && !tutorialShown && currentEnemy != null)
-            {
-                if (currentEnemy.transform.localScale.x > 0.5f && !TutorialManager.Instance.completed)
-                {
-                    ShowTutorial();
-                }
-            }
         }
     }
 
@@ -112,7 +132,20 @@ public class GameManager : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        var (operation, result) = MathGenerator.GenerateOperation(currentLevelData);
+        string operation;
+        int result;
+        
+        if (currentLevelData != null && currentLevelData.isTutorial && 
+            currentLevelData.tutorialAnswers != null && 
+            tutorialEnemyIndex < currentLevelData.tutorialAnswers.Length)
+        {
+            result = currentLevelData.tutorialAnswers[tutorialEnemyIndex];
+            operation = GenerateSimpleTutorialOperation(result);
+        }
+        else
+        {
+            (operation, result) = MathGenerator.GenerateOperation(currentLevelData);
+        }
 
         GameObject chosenPrefab = (Random.value > 0.5f) ? ogrePrefab : crabPrefab;
 
@@ -127,6 +160,30 @@ public class GameManager : MonoBehaviour
         currentEnemy.Setup(operation, result, true);
 
         SetupGestureRecognizer(operation, result);
+        
+        if (currentLevelData != null && currentLevelData.isTutorial && tutorialEnemyIndex == 0)
+        {
+            if (TutorialManager.Instance != null)
+            {
+                Invoke(nameof(ShowFirstEnemyTutorial), 0.5f);
+            }
+        }
+    }
+    
+    private string GenerateSimpleTutorialOperation(int result)
+    {
+        result = Mathf.Clamp(result, 2, 9);
+        int num1 = Random.Range(1, result);
+        int num2 = result - num1;
+        return $"{num1} + {num2}";
+    }
+    
+    private void ShowFirstEnemyTutorial()
+    {
+        if (currentEnemy != null && TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.ShowFirstEnemyInstructions(currentEnemy.correctAnswer);
+        }
     }
 
     public void SetupGestureRecognizer(string operation, int correctAnswer)
@@ -136,25 +193,30 @@ public class GameManager : MonoBehaviour
         if (isSingleDigit)
         {
             simpleRecognizer.gameObject.SetActive(true);
-            Debug.Log($"✓ SimpleGestureRecognizer ACTIVADO (respuesta: {correctAnswer} - 1 dígito)");
-
             splitZoneRecognizer.gameObject.SetActive(false);
-            Debug.Log("  SplitZoneGestureRecognizer desactivado");
         }
         else
         {
             splitZoneRecognizer.gameObject.SetActive(true);
-            Debug.Log($"✓ SplitZoneGestureRecognizer ACTIVADO (respuesta: {correctAnswer} - 2+ dígitos)");
-
             simpleRecognizer.gameObject.SetActive(false);
-            Debug.Log("  SimpleGestureRecognizer desactivado");
         }
-
     }
 
     public void EnemyDefeated(bool instaKill)
     {
-        // Score UI
+        if (currentLevelData != null && currentLevelData.isTutorial && tutorialEnemyIndex == 0)
+        {
+            if (TutorialManager.Instance != null)
+            {
+                TutorialManager.Instance.ShowCongratulations();
+            }
+        }
+        
+        if (currentLevelData != null && currentLevelData.isTutorial)
+        {
+            tutorialEnemyIndex++;
+        }
+        
         if (!instaKill)
         {
             int pointsEarned = enemyPoints * multiplier;
@@ -214,6 +276,13 @@ public class GameManager : MonoBehaviour
     private void SaveLevelProgress(int stars)
     {
         int levelNum = currentLevelData.levelNumber;
+        
+        if (levelNum == 0)
+        {
+            Debug.Log("Tutorial completado. Desbloqueando Nivel 1...");
+            SaveSystem.Instance.UnlockLevel(1);
+            return;
+        }
 
         SaveSystem.Instance.MarkLevelAsPlayed(levelNum);
         SaveSystem.Instance.SetLevelStars(levelNum, stars);
@@ -228,27 +297,6 @@ public class GameManager : MonoBehaviour
     public void LoseGame()
     {
         SceneManager.LoadScene("LoseScene");
-    }
-
-    //Tutorial Manager
-    private void ShowTutorial()
-    {
-        tutorialShown = true;
-        tutorialActive = true;
-        if (TutorialManager.Instance != null)
-            TutorialManager.Instance.ShowTutorial();
-
-        if (currentEnemy != null)
-            currentEnemy.PauseScaling();
-    }
-
-    public void ResumeAfterTutorial()
-    {
-        tutorialActive = false;
-        tutorialShown = false;
-        TutorialManager.Instance.completed = false;
-        if (currentEnemy != null)
-            currentEnemy.ResumeScaling();
     }
 
     public void SetTimeScale(float scale)
