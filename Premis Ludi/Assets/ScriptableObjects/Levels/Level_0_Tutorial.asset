@@ -24,3 +24,5 @@ MonoBehaviour:
   pointsMultiplier: 1
   isTutorial: 1
   tutorialAnswers: 020000000500000004000000
+  levelsToUnlock: 01000000
+  powerupReward: 0

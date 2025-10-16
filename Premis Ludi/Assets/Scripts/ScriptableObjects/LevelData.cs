@@ -21,4 +21,10 @@ public class LevelData : ScriptableObject
     [Header("Tutorial Settings")]
     public bool isTutorial = false;
     public int[] tutorialAnswers;
+    
+    [Header("Level Unlocking")]
+    public int[] levelsToUnlock; // Niveles que se desbloquean al completar este
+    
+    [Header("Rewards")]
+    public PowerupType powerupReward = PowerupType.None;
 }

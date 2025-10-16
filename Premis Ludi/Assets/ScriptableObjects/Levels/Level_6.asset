@@ -23,3 +23,6 @@ MonoBehaviour:
   enemyHealth: 2
   levelTime: 30
   pointsMultiplier: 1
+  isTutorial: 0
+  tutorialAnswers: 
+  powerupReward: 1

@@ -8,7 +8,6 @@ public class LevelSelection : MonoBehaviour
 {
     [SerializeField] private bool unlocked = false;
     [SerializeField] private int levelNumber;
-    [SerializeField] private int[] nextLevels;
     [SerializeField] private LevelData levelData;
     
     public Image unlockImage;
@@ -22,6 +21,12 @@ public class LevelSelection : MonoBehaviour
     private void Start()
     {
         // SaveSystem.Instance.ResetAllProgress(); // Para resetear progreso
+        
+        if (SaveSystem.Instance == null)
+        {
+            Debug.LogError("SaveSystem.Instance es null en LevelSelection!");
+            return;
+        }
         
         if (levelNumber == 1)
         {
@@ -94,19 +99,22 @@ public class LevelSelection : MonoBehaviour
     {
         if (!unlocked) return;
         
-        if (levelData != null)
+        if (levelData == null)
         {
-            if (LevelManager.Instance != null)
-            {
-                LevelManager.Instance.LoadLevel(levelData);
-            }
-            
-            SceneManager.LoadScene("GameplayScene");
+            Debug.LogWarning($"No hay LevelData asignado para el nivel {levelNumber}");
+            return;
+        }
+        
+        if (LevelManager.Instance != null)
+        {
+            LevelManager.Instance.LoadLevel(levelData);
         }
         else
         {
-            Debug.LogWarning($"No hay LevelData asignado para el nivel {levelNumber}");
+            Debug.LogWarning("LevelManager.Instance es null!");
         }
+        
+        SceneManager.LoadScene("GameplayScene");
     }
 
     public void PressSelection(string _LevelName)

@@ -284,5 +284,6 @@ MonoBehaviour:
   nextOperationDelay: 0.5
   textOp: {fileID: 8292785090428661393}
   spriteRenderer: {fileID: 7175731774493723231}
+  startPos: {x: 0, y: 0, z: 0}
   correctAnswer: 0
   enemyType: 0

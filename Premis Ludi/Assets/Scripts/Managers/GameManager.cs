@@ -279,7 +279,6 @@ public class GameManager : MonoBehaviour
         
         if (levelNum == 0)
         {
-            Debug.Log("Tutorial completado. Desbloqueando Nivel 1...");
             SaveSystem.Instance.UnlockLevel(1);
             return;
         }
@@ -287,11 +286,25 @@ public class GameManager : MonoBehaviour
         SaveSystem.Instance.MarkLevelAsPlayed(levelNum);
         SaveSystem.Instance.SetLevelStars(levelNum, stars);
 
-        int nextLevel = levelNum + 1;
-        SaveSystem.Instance.UnlockLevel(nextLevel);
+        // Desbloquear niveles configurados en LevelData
+        if (currentLevelData.levelsToUnlock != null && currentLevelData.levelsToUnlock.Length > 0)
+        {
+            foreach (int levelToUnlock in currentLevelData.levelsToUnlock)
+            {
+                SaveSystem.Instance.UnlockLevel(levelToUnlock);
+            }
+        }
+        else
+        {
+            // Si no hay configuración específica, desbloquear el siguiente
+            int nextLevel = levelNum + 1;
+            SaveSystem.Instance.UnlockLevel(nextLevel);
+        }
 
-        Debug.Log($"Nivel {levelNum} completado con {stars} estrellas");
-        Debug.Log($"Nivel {nextLevel} desbloqueado!");
+        if (currentLevelData.powerupReward != PowerupType.None)
+        {
+            SaveSystem.Instance.UnlockPowerup(currentLevelData.powerupReward);
+        }
     }
 
     public void LoseGame()

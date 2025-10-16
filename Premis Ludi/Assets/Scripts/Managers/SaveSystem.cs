@@ -1,11 +1,13 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public class GameSaveData
 {
     public LevelProgress[] levels = new LevelProgress[10];
+    public List<int> unlockedPowerups = new List<int>();
     
     public GameSaveData()
     {
@@ -59,7 +61,16 @@ public class SaveSystem : MonoBehaviour
             {
                 string json = File.ReadAllText(saveFilePath);
                 saveData = JsonUtility.FromJson<GameSaveData>(json);
-                // Debug.Log("Partida cargada desde: " + saveFilePath);
+                
+                // Validar que saveData no sea null después de deserializar
+                if (saveData == null)
+                {
+                    Debug.LogWarning("saveData es null después de deserializar, creando nueva instancia");
+                    saveData = new GameSaveData();
+                    saveData.levels[0].unlocked = true;
+                }
+                
+                Debug.Log("Partida cargada desde: " + saveFilePath);
             }
             catch (Exception e)
             {
@@ -70,6 +81,7 @@ public class SaveSystem : MonoBehaviour
         }
         else
         {
+            Debug.Log("No existe archivo de guardado, creando nuevo");
             saveData = new GameSaveData();
             saveData.levels[0].unlocked = true;
             SaveGame();
@@ -93,6 +105,7 @@ public class SaveSystem : MonoBehaviour
     public bool IsLevelUnlocked(int levelNumber)
     {
         if (levelNumber == 0) return true;
+        if (saveData == null) return false;
         
         int index = levelNumber - 1;
         if (index >= 0 && index < saveData.levels.Length)
@@ -104,6 +117,8 @@ public class SaveSystem : MonoBehaviour
 
     public void UnlockLevel(int levelNumber)
     {
+        if (saveData == null) return;
+        
         int index = levelNumber - 1;
         if (index >= 0 && index < saveData.levels.Length)
         {
@@ -115,6 +130,7 @@ public class SaveSystem : MonoBehaviour
     public bool HasLevelBeenPlayed(int levelNumber)
     {
         if (levelNumber == 0) return false;
+        if (saveData == null) return false;
         
         int index = levelNumber - 1;
         if (index >= 0 && index < saveData.levels.Length)
@@ -126,6 +142,8 @@ public class SaveSystem : MonoBehaviour
 
     public void MarkLevelAsPlayed(int levelNumber)
     {
+        if (saveData == null) return;
+        
         int index = levelNumber - 1;
         if (index >= 0 && index < saveData.levels.Length)
         {
@@ -137,6 +155,7 @@ public class SaveSystem : MonoBehaviour
     public int GetLevelStars(int levelNumber)
     {
         if (levelNumber == 0) return 0;
+        if (saveData == null) return 0;
         
         int index = levelNumber - 1;
         if (index >= 0 && index < saveData.levels.Length)
@@ -148,6 +167,8 @@ public class SaveSystem : MonoBehaviour
 
     public void SetLevelStars(int levelNumber, int stars)
     {
+        if (saveData == null) return;
+        
         int index = levelNumber - 1;
         if (index >= 0 && index < saveData.levels.Length)
         {
@@ -165,5 +186,32 @@ public class SaveSystem : MonoBehaviour
         saveData.levels[0].unlocked = true;
         SaveGame();
         Debug.Log("Progreso reseteado");
+    }
+    
+    public void UnlockPowerup(PowerupType powerupType)
+    {
+        int powerupId = (int)powerupType;
+        if (powerupId != 0 && !saveData.unlockedPowerups.Contains(powerupId))
+        {
+            saveData.unlockedPowerups.Add(powerupId);
+            SaveGame();
+            Debug.Log($"Powerup desbloqueado: {powerupType}");
+        }
+    }
+    
+    public bool IsPowerupUnlocked(PowerupType powerupType)
+    {
+        int powerupId = (int)powerupType;
+        return saveData.unlockedPowerups.Contains(powerupId);
+    }
+    
+    public List<PowerupType> GetUnlockedPowerups()
+    {
+        List<PowerupType> powerups = new List<PowerupType>();
+        foreach (int id in saveData.unlockedPowerups)
+        {
+            powerups.Add((PowerupType)id);
+        }
+        return powerups;
     }
 }
