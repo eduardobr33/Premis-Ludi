@@ -22,6 +22,7 @@ MonoBehaviour:
   enemyHealth: 1
   levelTime: 30
   pointsMultiplier: 1
+  hasBoss: 1
   isTutorial: 0
   tutorialAnswers: 
   levelsToUnlock: 0400000006000000

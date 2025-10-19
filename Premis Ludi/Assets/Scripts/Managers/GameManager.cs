@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [Header("Gameplay")]
     public GameObject crabPrefab;
     public GameObject bushPrefab;
+    public GameObject bossPrefab;
     public Transform spawnPoint;
 
     [Header("Level Timer")]
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     private float timer;
     private float timeScale = 1f;
+    private bool bossSpawned = false;
 
     private void Awake()
     {
@@ -127,7 +129,18 @@ public class GameManager : MonoBehaviour
 
         if (UIManager.Instance != null) UIManager.Instance.UpdateTimer(timer);
 
-        if (timer <= 0f) WinGame();
+        if (timer <= 0f)
+        {
+            if (currentLevelData != null && currentLevelData.hasBoss && !bossSpawned)
+            {
+                SpawnBoss();
+                bossSpawned = true;
+            }
+            else if (!currentLevelData.hasBoss)
+            {
+                WinGame();
+            }
+        }
     }
 
     public void SpawnEnemy()
@@ -204,6 +217,7 @@ public class GameManager : MonoBehaviour
 
     public void EnemyDefeated(bool instaKill)
     {
+        // For the tutorial
         if (currentLevelData != null && currentLevelData.isTutorial && tutorialEnemyIndex == 0)
         {
             if (TutorialManager.Instance != null)
@@ -211,12 +225,18 @@ public class GameManager : MonoBehaviour
                 TutorialManager.Instance.ShowCongratulations();
             }
         }
-        
+
         if (currentLevelData != null && currentLevelData.isTutorial)
         {
             tutorialEnemyIndex++;
         }
-        
+
+        // Level with boss
+        if (currentLevelData != null && currentLevelData.hasBoss && currentEnemy.enemyType == Enemy.EnemyType.Boss)
+        {
+            WinGame();
+        }
+
         if (!instaKill)
         {
             int pointsEarned = enemyPoints * multiplier;
@@ -250,6 +270,30 @@ public class GameManager : MonoBehaviour
         currentEnemy = null;
 
         Invoke(nameof(SpawnEnemy), 1f); // --> Esto se tendrá q cambiar según el lvl :p + dificulty
+    }
+    
+    private void SpawnBoss()
+    {
+        if (currentEnemy != null)
+        {
+            Destroy(currentEnemy.gameObject);
+            currentEnemy = null;
+        }
+
+        if (bossPrefab != null)
+        {
+            GameObject bossObj = Instantiate(bossPrefab, spawnPoint.position, Quaternion.identity);
+            currentEnemy = bossObj.GetComponent<Enemy>();
+
+            if (UIManager.Instance != null)
+            {
+                //UIManager.Instance.BossUI();
+            }
+        }
+        else
+        {
+            Debug.Log("El nivel tiene hasBoss = true, pero no se ha asignado nada al bossPrefab");
+        }
     }
 
     public void WinGame()

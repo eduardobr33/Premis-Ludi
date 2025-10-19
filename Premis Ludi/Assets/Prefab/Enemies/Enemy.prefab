@@ -287,3 +287,5 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   correctAnswer: 0
   enemyType: 0
+  attackAnimaDuration: 2
+  idleAnimDuration: 1

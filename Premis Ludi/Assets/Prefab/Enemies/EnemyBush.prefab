@@ -87,7 +87,7 @@ Transform:
   m_GameObject: {fileID: 1400659034108167990}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7086685, w: 0.7055417}
-  m_LocalPosition: {x: 0.1296725, y: 2.02, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2578,5 +2578,5 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   correctAnswer: 0
   enemyType: 1
-  attackAnimaDuration: 2
+  attackAnimaDuration: 0.66
   idleAnimDuration: 1

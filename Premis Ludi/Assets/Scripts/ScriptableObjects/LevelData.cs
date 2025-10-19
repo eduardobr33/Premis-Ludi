@@ -17,6 +17,7 @@ public class LevelData : ScriptableObject
     public int enemyHealth = 1;
     public float levelTime = 30f;
     public float pointsMultiplier = 1f;
+    public bool hasBoss = false;
     
     [Header("Tutorial Settings")]
     public bool isTutorial = false;

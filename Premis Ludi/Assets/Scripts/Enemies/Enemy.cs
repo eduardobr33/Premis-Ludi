@@ -29,8 +29,8 @@ public class Enemy : MonoBehaviour
 
     private bool isPaused = false;
 
-    public enum EnemyType { Ogre, Crab }
-    public EnemyType enemyType = EnemyType.Ogre;
+    public enum EnemyType { Crab, Bush, Boss }
+    public EnemyType enemyType = EnemyType.Bush;
 
     private float animationSpeed = 1f;
     private Animator animator;
