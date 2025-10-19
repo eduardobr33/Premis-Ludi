@@ -281,13 +281,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343233dd66eba2946ad4467baaac8db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxScale: {x: 2, y: 2, z: 2}
+  maxScale: {x: 1, y: 1, z: 1}
   enemySpeed: 0.1
   attackSpeed: 1
   health: 1
   nextOperationDelay: 0.5
   textOp: {fileID: 8838959906083198090}
   spriteRenderer: {fileID: 7175731774493723231, guid: 8ee3148f9da611b46aa0f57583cb5843, type: 3}
+  startPos: {x: 0, y: 0, z: 0}
   correctAnswer: 0
   enemyType: 1
 --- !u!4 &8441429597615291858 stripped

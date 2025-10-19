@@ -10,7 +10,7 @@ using UnityEditor.Build.Content;
 public class Enemy : MonoBehaviour
 {
     [Header("Enemy Stats")]
-    public Vector3 maxScale = new Vector3(2f, 2f, 2f);
+    public Vector3 maxScale = new Vector3(1f, 1f, 1f);
     public float enemySpeed = 1f;
     public float attackSpeed = 1f;
     public int health = 1;
@@ -37,6 +37,10 @@ public class Enemy : MonoBehaviour
     private float startTime;
     private bool facingRight = true;
 
+    [Header("Animation")]
+    public float attackAnimaDuration = 2;
+    public float idleAnimDuration = 1;
+
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -61,6 +65,8 @@ public class Enemy : MonoBehaviour
                 // if (horizontalOffset > 0 && !facingRight) Flip(true);
                 // else if (horizontalOffset < 0 && facingRight) Flip(false);
             }
+
+            //animator.SetTrigger("Walking");
         }
 
         if (transform.localScale.x >= maxScale.x && damageCoroutine == null)
@@ -99,8 +105,13 @@ public class Enemy : MonoBehaviour
     {
         while (isActive)
         {
-            Player.Instance.TakeDamage();
-            yield return new WaitForSeconds(attackSpeed);
+            animator.ResetTrigger("Idle");
+            animator.SetTrigger("Attack");
+            yield return new WaitForSeconds(attackAnimaDuration);
+
+            animator.ResetTrigger("Attack");
+            animator.SetTrigger("Idle");
+            yield return new WaitForSeconds(idleAnimDuration);
         }
     }
 
@@ -139,10 +150,16 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void DealDamage()
+    {
+        if (isActive) Player.Instance.TakeDamage();
+    }
+
     public void PauseScaling()
     {
         isPaused = true;
     }
+
     public void ResumeScaling()
     {
         isPaused = false;

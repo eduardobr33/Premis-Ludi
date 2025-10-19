@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
         GameManager.Instance.playerHealth = currentHealth;
         GameManager.Instance.multiplier = 1;
 
-        Debug.Log("Player health: {currentHealth}");
+        Debug.Log("Player health: " + currentHealth);
 
         if (currentHealth <= 0)
         {

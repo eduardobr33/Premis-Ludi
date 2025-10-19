@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Gameplay")]
     public GameObject crabPrefab;
-    public GameObject ogrePrefab;
+    public GameObject bushPrefab;
     public Transform spawnPoint;
 
     [Header("Level Timer")]
@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
             (operation, result) = MathGenerator.GenerateOperation(currentLevelData);
         }
 
-        GameObject chosenPrefab = (Random.value > 0.5f) ? ogrePrefab : crabPrefab;
+        GameObject chosenPrefab = (Random.value > 0.5f) ? bushPrefab : crabPrefab;
 
         GameObject enemyObj = Instantiate(chosenPrefab, spawnPoint.position, Quaternion.identity);
         currentEnemy = enemyObj.GetComponent<Enemy>();

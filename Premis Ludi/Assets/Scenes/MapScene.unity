@@ -570,7 +570,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlocked: 0
   levelNumber: 5
-  nextLevels: 
   levelData: {fileID: 11400000, guid: cc7502f84a5eb2144a8986c59c108377, type: 2}
   unlockImage: {fileID: 1045443297}
   stars:
@@ -955,7 +954,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlocked: 0
   levelNumber: 2
-  nextLevels: 03000000
   levelData: {fileID: 11400000, guid: 363c376c15fc1ac42a80e8f76f7016fe, type: 2}
   unlockImage: {fileID: 182513076}
   stars:
@@ -1290,7 +1288,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlocked: 1
   levelNumber: 0
-  nextLevels: 01000000
   levelData: {fileID: 11400000, guid: d85a79f73d4901a40ab8d5101c7bce32, type: 2}
   unlockImage: {fileID: 1927261720}
   stars:
@@ -1450,7 +1447,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlocked: 0
   levelNumber: 6
-  nextLevels: 
   levelData: {fileID: 11400000, guid: 3f82a57da0672684d9a311ba4b134dc1, type: 2}
   unlockImage: {fileID: 1399352632}
   stars:
@@ -2158,7 +2154,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlocked: 0
   levelNumber: 4
-  nextLevels: 05000000
   levelData: {fileID: 11400000, guid: 3b804b49900dc394786596d9e9219f5c, type: 2}
   unlockImage: {fileID: 438474907}
   stars:
@@ -2393,7 +2388,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlocked: 0
   levelNumber: 3
-  nextLevels: 0400000006000000
   levelData: {fileID: 11400000, guid: ae7234c40fca2ef4cad5e538d7d3ceff, type: 2}
   unlockImage: {fileID: 1448852850}
   stars:
@@ -3290,7 +3284,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlocked: 1
   levelNumber: 1
-  nextLevels: 02000000
   levelData: {fileID: 11400000, guid: 37bf197455fd00f49bf8a67c2dcd40c4, type: 2}
   unlockImage: {fileID: 569225449}
   stars:
