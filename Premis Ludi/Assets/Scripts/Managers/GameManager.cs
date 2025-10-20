@@ -26,6 +26,12 @@ public class GameManager : MonoBehaviour
     [Header("Chibi Animation Settings")]
     public float squashStretchAmount = 0.1f;
 
+    [Header("Countdown Display")]
+    public TextMeshProUGUI countdownText;
+    public float countdownStartSize = 200f;
+    public float countdownEndSize = 50f;
+    public float countdownDuration = 0.8f;
+
     [Header("Scoring")]
     public int score = 0;
     public int enemyPoints = 10;
@@ -53,6 +59,7 @@ public class GameManager : MonoBehaviour
     private float timer;
     private float timeScale = 1f;
     private bool bossSpawned = false;
+    private int lastDisplayedSecond = -1;
 
     private void Awake()
     {
@@ -133,6 +140,34 @@ public class GameManager : MonoBehaviour
             .SetEase(Ease.InOutQuad);
     }
     
+    private void ShowCountdown(int number)
+    {
+        if (countdownText == null) return;
+        
+        countdownText.text = number.ToString();
+        countdownText.fontSize = countdownStartSize;
+        countdownText.alpha = 0.6f;
+        
+        countdownText.transform.localScale = Vector3.one;
+        countdownText.transform.DOScale(Vector3.one * (countdownEndSize / countdownStartSize), countdownDuration);
+        
+        countdownText.DOFade(0f, countdownDuration);
+    }
+    
+    private void ShowTimeEndMessage()
+    {
+        if (countdownText == null) return;
+        
+        countdownText.text = "Fin del joc!";
+        countdownText.fontSize = countdownStartSize;
+        countdownText.alpha = 1f;
+        
+        countdownText.transform.localScale = Vector3.one;
+        
+        countdownText.transform.DOScale(Vector3.one * (countdownEndSize / countdownStartSize), 1.2f);
+        countdownText.DOFade(0f, 1.2f);
+    }
+    
     public void OnWelcomeComplete()
     {
         SpawnEnemy();
@@ -155,7 +190,6 @@ public class GameManager : MonoBehaviour
         float progressRatio = 1f - (timer / levelTime);
         progressRatio = Mathf.Clamp01(progressRatio);
 
-
         Vector3 startPos = timerStartPosition.localPosition;
         Vector3 endPos = timerEndPosition.localPosition;
         
@@ -164,18 +198,33 @@ public class GameManager : MonoBehaviour
         Vector3 currentPos = chibiTimer.localPosition;
         chibiTimer.localPosition = new Vector3(newXPosition, currentPos.y, currentPos.z);
 
+        int currentSecond = Mathf.CeilToInt(timer);
+        if (currentSecond >= 0 && currentSecond <= 5 && currentSecond != lastDisplayedSecond)
+        {
+            if (currentSecond == 0)
+            {
+                ShowCountdown(0);
+                ShowTimeEndMessage();
+            }
+            else
+            {
+                ShowCountdown(currentSecond);
+            }
+            lastDisplayedSecond = currentSecond;
+        }
+
         if (UIManager.Instance != null) UIManager.Instance.UpdateTimer(timer);
 
         if (timer <= 0f)
         {
             if (currentLevelData != null && currentLevelData.hasBoss && !bossSpawned)
             {
-                SpawnBoss();
+                Invoke(nameof(SpawnBoss), 1.5f);
                 bossSpawned = true;
             }
             else if (!currentLevelData.hasBoss)
             {
-                WinGame();
+                Invoke(nameof(WinGame), 1.5f);
             }
         }
     }
