@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     public float attackSpeed = 1f;
     public int health = 1;
     public float nextOperationDelay = 0.5f;
+    public float growDuration = 16f;
 
     [Header("Referecnes")]
     public TextMeshPro textOp;
@@ -24,7 +25,7 @@ public class Enemy : MonoBehaviour
     public int correctAnswer; // For the abilities
     private bool isActive = true;
     private bool isAproaching = true;
-    private static float minScale = 0.3f;
+    private Vector3 minScale = new Vector3(0.3f, 0.3f, 0.3f);
     private Coroutine damageCoroutine;
 
     private bool isPaused = false;
@@ -45,6 +46,8 @@ public class Enemy : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         startTime = Time.time;
+
+        AdjustScale();
     }
 
     private void Update()
@@ -53,7 +56,9 @@ public class Enemy : MonoBehaviour
 
         if (isAproaching && !isPaused)
         {
-            transform.localScale = Vector3.MoveTowards(transform.localScale, maxScale, enemySpeed * Time.deltaTime);
+            float t = Mathf.Clamp01((Time.time - startTime) / growDuration);
+            float smoothT = 1f - Mathf.Exp(-1f * t);
+            transform.localScale = Vector3.Lerp(minScale, maxScale, Mathf.Clamp01(smoothT));
 
             if (enemyType == EnemyType.Crab)
             {
@@ -67,12 +72,12 @@ public class Enemy : MonoBehaviour
             }
 
             //animator.SetTrigger("Walking");
-        }
 
-        if (transform.localScale.x >= maxScale.x && damageCoroutine == null)
-        {
-            isAproaching = false;
-            damageCoroutine = StartCoroutine(DamageOverTime());
+            if (t >= 1f && damageCoroutine == null)
+            {
+                isAproaching = false;
+                damageCoroutine = StartCoroutine(DamageOverTime());
+            }
         }
     }
     
@@ -90,7 +95,7 @@ public class Enemy : MonoBehaviour
         Debug.Log("Operation: " + textOp.text);
         correctAnswer = answer;
         Debug.Log("Answer: " + correctAnswer);
-        if (newEnemy) transform.localScale = Vector3.one * minScale;
+        if (newEnemy) transform.localScale = minScale;
     }
 
     private void GenerateNewOperation()
@@ -163,5 +168,39 @@ public class Enemy : MonoBehaviour
     public void ResumeScaling()
     {
         isPaused = false;
+    }
+
+    private void AdjustScale()
+    {
+        float worldHeight = Camera.main.orthographicSize * 2f;
+        float worldWidth = worldHeight * Camera.main.aspect;
+
+        // Percentage of screen
+        float maxRelativeHeight = 0.1f;     // 10% high
+        float maxRelativeWidth = 0.08f;     // 8% width
+
+        float targetMaxHeight = worldHeight * maxRelativeHeight;
+
+        SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
+        if (sr == null || sr.sprite == null) return;
+
+        float spriteHeight = sr.sprite.bounds.size.y;
+        float spriteWidth = sr.sprite.bounds.size.x;
+
+        // Maximum scale by height and width
+        float maxScaleByHeight = targetMaxHeight / spriteHeight;
+        float maxScaleByWidth = worldWidth * maxRelativeWidth / spriteWidth;
+        float maxScaleFactor = Mathf.Min(maxScaleByHeight, maxScaleByWidth);
+
+        // Nevel would be bigger than 1 (its high enough by default)
+        maxScaleFactor = Mathf.Min(maxScaleFactor, 1f);
+
+        // Minimum scale is always 1% of maximum
+        float minScaleFactor = maxScaleFactor * 0.01f;
+
+        maxScale = Vector3.one * maxScaleFactor;
+        minScale = Vector3.one * minScaleFactor;
+
+        Debug.Log($"Enemy Scale: max={maxScale}, min={minScale}");
     }
 }
