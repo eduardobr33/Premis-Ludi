@@ -3,6 +3,7 @@ using TMPro;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 using UnityEditor.ShaderGraph.Serialization;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class GameManager : MonoBehaviour
     public Transform chibiTimer;
     public Transform timerStartPosition;
     public Transform timerEndPosition;
+
+    [Header("Chibi Animation Settings")]
+    public float squashStretchAmount = 0.1f;
 
     [Header("Scoring")]
     public int score = 0;
@@ -90,9 +94,11 @@ public class GameManager : MonoBehaviour
     {
         timer = levelTime;
         
-
-        chibiTimer.localPosition = timerStartPosition.localPosition;
-        
+        if (chibiTimer != null)
+        {
+            chibiTimer.localPosition = timerStartPosition.localPosition;
+            InitializeChibiAnimations();
+        }
         
         if (tutorialCanvas != null)
         {
@@ -117,6 +123,16 @@ public class GameManager : MonoBehaviour
         }
     }
     
+    private void InitializeChibiAnimations()
+    {
+        if (chibiTimer == null) return;
+        
+        chibiTimer.DOScaleY(1f - squashStretchAmount, 0.5f)
+            .From()
+            .SetLoops(-1, LoopType.Yoyo)
+            .SetEase(Ease.InOutQuad);
+    }
+    
     public void OnWelcomeComplete()
     {
         SpawnEnemy();
@@ -139,8 +155,14 @@ public class GameManager : MonoBehaviour
         float progressRatio = 1f - (timer / levelTime);
         progressRatio = Mathf.Clamp01(progressRatio);
 
-        Vector3 newPosition = Vector3.Lerp(timerStartPosition.localPosition, timerEndPosition.localPosition, progressRatio);
-        chibiTimer.localPosition = newPosition;
+
+        Vector3 startPos = timerStartPosition.localPosition;
+        Vector3 endPos = timerEndPosition.localPosition;
+        
+        float newXPosition = Mathf.Lerp(startPos.x, endPos.x, progressRatio);
+        
+        Vector3 currentPos = chibiTimer.localPosition;
+        chibiTimer.localPosition = new Vector3(newXPosition, currentPos.y, currentPos.z);
 
         if (UIManager.Instance != null) UIManager.Instance.UpdateTimer(timer);
 
