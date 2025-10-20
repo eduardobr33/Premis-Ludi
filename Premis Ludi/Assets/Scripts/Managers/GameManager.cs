@@ -17,6 +17,11 @@ public class GameManager : MonoBehaviour
     [Header("Level Timer")]
     public float levelTime = 30f;
 
+    [Header("Chibi Timer")]
+    public Transform chibiTimer;
+    public Transform timerStartPosition;
+    public Transform timerEndPosition;
+
     [Header("Scoring")]
     public int score = 0;
     public int enemyPoints = 10;
@@ -85,6 +90,10 @@ public class GameManager : MonoBehaviour
     {
         timer = levelTime;
         
+
+        chibiTimer.localPosition = timerStartPosition.localPosition;
+        
+        
         if (tutorialCanvas != null)
         {
             bool isTutorial = currentLevelData != null && currentLevelData.isTutorial;
@@ -126,6 +135,12 @@ public class GameManager : MonoBehaviour
         if (playerHealth <= 0) return;
 
         timer -= Time.deltaTime * timeScale;
+
+        float progressRatio = 1f - (timer / levelTime);
+        progressRatio = Mathf.Clamp01(progressRatio);
+
+        Vector3 newPosition = Vector3.Lerp(timerStartPosition.localPosition, timerEndPosition.localPosition, progressRatio);
+        chibiTimer.localPosition = newPosition;
 
         if (UIManager.Instance != null) UIManager.Instance.UpdateTimer(timer);
 
