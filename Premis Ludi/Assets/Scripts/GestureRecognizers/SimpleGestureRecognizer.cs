@@ -2,9 +2,14 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using PDollarGestureRecognizer;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class SimpleGestureRecognizer : MonoBehaviour
 {
+    [Header("Canvas Panel")]
+    public RectTransform drawingPanel;
+    
     [Header("Configuration")]
     public Transform gestureOnScreenPrefab;
     public float recognitionDelay = 3f;
@@ -47,6 +52,28 @@ public class SimpleGestureRecognizer : MonoBehaviour
         }
     }
 
+    bool IsPositionInDrawingArea(Vector3 screenPos)
+    {
+        if (drawingPanel == null)
+            return false;
+
+        GraphicRaycaster raycaster = drawingPanel.GetComponentInParent<GraphicRaycaster>();
+        if (raycaster == null)
+            return false;
+
+        PointerEventData pointerData = new PointerEventData(EventSystem.current) { position = screenPos };
+        List<RaycastResult> results = new List<RaycastResult>();
+        raycaster.Raycast(pointerData, results);
+
+        foreach (RaycastResult result in results)
+        {
+            if (result.gameObject == drawingPanel.gameObject || result.gameObject.transform.IsChildOf(drawingPanel))
+                return true;
+        }
+
+        return false;
+    }
+
     void Update()
     {
         if (!canDraw) return;
@@ -70,20 +97,23 @@ public class SimpleGestureRecognizer : MonoBehaviour
         bool inputHeld = Input.GetMouseButton(0) || (Input.touchCount > 0 && (Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetTouch(0).phase == TouchPhase.Stationary));
         bool inputUp = Input.GetMouseButtonUp(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended);
         
-        if (inputDown)
+        Vector3 inputPosition = GetInputPosition();
+
+        if (!IsPositionInDrawingArea(inputPosition))
         {
-            StartDrawing();
+            if (inputUp && isDrawing)
+                StopDrawing();
+            return;
         }
+        
+        if (inputDown)
+            StartDrawing();
         
         if (inputHeld && isDrawing)
-        {
             ContinueDrawing();
-        }
         
         if (inputUp && isDrawing)
-        {
             StopDrawing();
-        }
     }
 
     void StartDrawing()
@@ -98,36 +128,24 @@ public class SimpleGestureRecognizer : MonoBehaviour
         isDrawing = true;
         vertexCount = 0;
         timeSinceLastDraw = 0f;
-        
         mousePosition = GetInputPosition();
         
-        if (gestureOnScreenPrefab != null)
-        {
-            Transform gestureObj = Instantiate(gestureOnScreenPrefab);
-            currentLineRenderer = gestureObj.GetComponent<LineRenderer>();
-            
-            if (currentLineRenderer != null)
-            {
-                currentLineRenderer.sortingOrder = 32767;
-                currentLineRenderer.sortingLayerName = "Default";
-            }
-            
-            gestureLines.Add(currentLineRenderer);
-        }
+        Transform gestureObj = Instantiate(gestureOnScreenPrefab);
+        currentLineRenderer = gestureObj.GetComponent<LineRenderer>();
+        
+        currentLineRenderer.sortingOrder = 32767;
+        currentLineRenderer.sortingLayerName = "Default";
+        gestureLines.Add(currentLineRenderer);
     }
 
     void ContinueDrawing()
     {
         mousePosition = GetInputPosition();
-        
         points.Add(new Point(mousePosition.x, -mousePosition.y, strokeId));
         
-        if (currentLineRenderer != null)
-        {
-            currentLineRenderer.positionCount = ++vertexCount;
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 10));
-            currentLineRenderer.SetPosition(vertexCount - 1, worldPos);
-        }
+        currentLineRenderer.positionCount = ++vertexCount;
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 10));
+        currentLineRenderer.SetPosition(vertexCount - 1, worldPos);
     }
 
     void StopDrawing()
@@ -201,9 +219,7 @@ public class SimpleGestureRecognizer : MonoBehaviour
         foreach (LineRenderer line in gestureLines)
         {
             if (line != null)
-            {
                 Destroy(line.gameObject);
-            }
         }
         gestureLines.Clear();
         

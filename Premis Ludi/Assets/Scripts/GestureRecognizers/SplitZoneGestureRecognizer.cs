@@ -3,9 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using PDollarGestureRecognizer;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class SplitZoneGestureRecognizer : MonoBehaviour
 {
+    [Header("Canvas Panel")]
+    public RectTransform drawingPanel;
+    
     [Header("Configuration")]
     public Transform gestureOnScreenPrefab;
     public float recognitionDelay = 2.0f;
@@ -130,18 +135,17 @@ public class SplitZoneGestureRecognizer : MonoBehaviour
     void SetupZones()
     {
         screenMidpoint = Screen.width / 2f;
-        
         leftZone = new DigitZone("IZQUIERDA", leftZoneColor, 0, screenMidpoint);
         rightZone = new DigitZone("DERECHA", rightZoneColor, screenMidpoint, Screen.width);
     }
 
     void CreateDivider()
     {
-        if (!showZoneDivider) return;
+        if (!showZoneDivider) 
+            return;
 
         dividerLine = new GameObject("ZoneDivider");
         LineRenderer lr = dividerLine.AddComponent<LineRenderer>();
-        
         lr.material = new Material(Shader.Find("Sprites/Default"));
         lr.startColor = dividerColor;
         lr.endColor = dividerColor;
@@ -154,9 +158,30 @@ public class SplitZoneGestureRecognizer : MonoBehaviour
         
         lr.SetPosition(0, bottomPos);
         lr.SetPosition(1, topPos);
-        
         lr.sortingOrder = 32766;
         lr.sortingLayerName = "Default";
+    }
+
+    bool IsPositionInDrawingArea(Vector3 screenPos)
+    {
+        if (drawingPanel == null)
+            return false;
+
+        GraphicRaycaster raycaster = drawingPanel.GetComponentInParent<GraphicRaycaster>();
+        if (raycaster == null)
+            return false;
+
+        PointerEventData pointerData = new PointerEventData(EventSystem.current) { position = screenPos };
+        List<RaycastResult> results = new List<RaycastResult>();
+        raycaster.Raycast(pointerData, results);
+
+        foreach (RaycastResult result in results)
+        {
+            if (result.gameObject == drawingPanel.gameObject || result.gameObject.transform.IsChildOf(drawingPanel))
+                return true;
+        }
+
+        return false;
     }
 
     void Update()
@@ -183,6 +208,16 @@ public class SplitZoneGestureRecognizer : MonoBehaviour
         bool inputUp = Input.GetMouseButtonUp(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended);
         
         Vector3 inputPosition = GetInputPosition();
+
+        // Verificar si el input está en la zona de exclusión
+        if (!IsPositionInDrawingArea(inputPosition))
+        {
+            if (inputUp && isDrawing)
+            {
+                FinishStroke();
+            }
+            return;
+        }
 
         if (inputDown)
         {
@@ -241,34 +276,30 @@ public class SplitZoneGestureRecognizer : MonoBehaviour
 
     void CreateNewLineRenderer()
     {
-        if (gestureOnScreenPrefab == null || currentZone == null) return;
+        if (gestureOnScreenPrefab == null || currentZone == null) 
+            return;
 
         Transform obj = Instantiate(gestureOnScreenPrefab);
         currentLine = obj.GetComponent<LineRenderer>();
         
-        if (currentLine != null)
-        {
-            currentLine.startWidth = lineWidth;
-            currentLine.endWidth = lineWidth;
-            currentLine.startColor = currentZone.zoneColor;
-            currentLine.endColor = currentZone.zoneColor;
-            currentLine.sortingOrder = 32767;
-            currentLine.sortingLayerName = "Default";
-        }
+        currentLine.startWidth = lineWidth;
+        currentLine.endWidth = lineWidth;
+        currentLine.startColor = currentZone.zoneColor;
+        currentLine.endColor = currentZone.zoneColor;
+        currentLine.sortingOrder = 32767;
+        currentLine.sortingLayerName = "Default";
     }
 
     void AddPoint(Vector3 screenPos)
     {
-        if (currentZone == null) return;
+        if (currentZone == null) 
+            return;
 
         currentStrokePoints.Add(new Point(screenPos.x, -screenPos.y, 0));
         
-        if (currentLine != null)
-        {
-            currentLine.positionCount = ++currentVertexCount;
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, 10));
-            currentLine.SetPosition(currentVertexCount - 1, worldPos);
-        }
+        currentLine.positionCount = ++currentVertexCount;
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, 10));
+        currentLine.SetPosition(currentVertexCount - 1, worldPos);
     }
 
     void FinishStroke()
@@ -278,9 +309,7 @@ public class SplitZoneGestureRecognizer : MonoBehaviour
         if (currentZone == null || currentStrokePoints.Count < 3)
         {
             if (currentLine != null)
-            {
                 Destroy(currentLine.gameObject);
-            }
             currentZone = null;
             return;
         }
@@ -370,14 +399,10 @@ public class SplitZoneGestureRecognizer : MonoBehaviour
         rightZone.Clear();
         
         if (currentLine != null)
-        {
             Destroy(currentLine.gameObject);
-            currentLine = null;
-        }
         
         currentStrokePoints.Clear();
         currentZone = null;
-        
         isDrawing = false;
         canDraw = true;
         timeSinceLastDraw = 0f;
@@ -393,9 +418,7 @@ public class SplitZoneGestureRecognizer : MonoBehaviour
     void OnDestroy()
     {
         if (dividerLine != null)
-        {
             Destroy(dividerLine);
-        }
     }
 
     void OnDrawGizmos()
