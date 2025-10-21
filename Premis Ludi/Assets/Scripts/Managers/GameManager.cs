@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
 
     private float timer;
     private float timeScale = 1f;
+    private bool gameWon = false;
     private bool bossSpawned = false;
     private int lastDisplayedSecond = -1;
 
@@ -82,6 +83,7 @@ public class GameManager : MonoBehaviour
             splitZoneRecognizer.gameObject.SetActive(false);
 
         tutorialShown = false;
+        gameWon = false;
 
         LoadLevelConfiguration();
     }
@@ -393,11 +395,28 @@ public class GameManager : MonoBehaviour
 
     public void WinGame()
     {
+        if (gameWon)
+            return;
+        
+        gameWon = true;
+        
         if (currentLevelData != null)
         {
-            Debug.Log("¡Has ganado el nivel!");
             int stars = CalculateStars();
+            
+            bool hasPowerupReward = currentLevelData.powerupReward != PowerupType.None && 
+                                   !SaveSystem.Instance.IsPowerupUnlocked(currentLevelData.powerupReward);
+            
             SaveLevelProgress(stars);
+            
+            if (hasPowerupReward && PowerupUnlockScreen.Instance != null)
+            {
+                PowerupUnlockScreen.Instance.ShowPowerupUnlock(currentLevelData.powerupReward, () =>
+                {
+                    SceneManager.LoadScene("WinScene");
+                });
+                return;
+            }
         }
 
         SceneManager.LoadScene("WinScene");
@@ -440,7 +459,8 @@ public class GameManager : MonoBehaviour
             SaveSystem.Instance.UnlockLevel(nextLevel);
         }
 
-        if (currentLevelData.powerupReward != PowerupType.None)
+        if (currentLevelData.powerupReward != PowerupType.None && 
+            !SaveSystem.Instance.IsPowerupUnlocked(currentLevelData.powerupReward))
         {
             SaveSystem.Instance.UnlockPowerup(currentLevelData.powerupReward);
         }
