@@ -27,4 +27,4 @@ MonoBehaviour:
   isTutorial: 0
   tutorialAnswers: 
   levelsToUnlock: 0b000000
-  powerupReward: 1
+  powerupReward: 0
