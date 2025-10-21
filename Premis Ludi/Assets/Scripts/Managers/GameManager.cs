@@ -233,9 +233,9 @@ public class GameManager : MonoBehaviour
     {
         string operation;
         int result;
-        
-        if (currentLevelData != null && currentLevelData.isTutorial && 
-            currentLevelData.tutorialAnswers != null && 
+
+        if (currentLevelData != null && currentLevelData.isTutorial &&
+            currentLevelData.tutorialAnswers != null &&
             tutorialEnemyIndex < currentLevelData.tutorialAnswers.Length)
         {
             result = currentLevelData.tutorialAnswers[tutorialEnemyIndex];
@@ -259,13 +259,46 @@ public class GameManager : MonoBehaviour
         currentEnemy.Setup(operation, result, true);
 
         SetupGestureRecognizer(operation, result);
-        
+
         if (currentLevelData != null && currentLevelData.isTutorial && tutorialEnemyIndex == 0)
         {
             if (TutorialManager.Instance != null)
             {
                 Invoke(nameof(ShowFirstEnemyTutorial), 0.5f);
             }
+        }
+    }
+    
+    private void SpawnBoss()
+    {
+        if (currentEnemy != null)
+        {
+            Destroy(currentEnemy.gameObject);
+            currentEnemy = null;
+        }
+
+        if (bossPrefab != null)
+        {
+            GameObject bossObj = Instantiate(bossPrefab, spawnPoint.position, Quaternion.identity);
+            currentEnemy = bossObj.GetComponent<Enemy>();
+
+            string operation;
+            int result;
+            (operation, result) = MathGenerator.GenerateOperation(currentLevelData);
+
+            currentEnemy.health = currentLevelData.enemyHealth * 3;
+            currentEnemy.Setup(operation, result, true);
+
+            SetupGestureRecognizer(operation, result);
+
+            if (UIManager.Instance != null)
+            {
+                //UIManager.Instance.BossUI();
+            }
+        }
+        else
+        {
+            Debug.Log("El nivel tiene hasBoss = true, pero no se ha asignado nada al bossPrefab");
         }
     }
     
@@ -356,30 +389,6 @@ public class GameManager : MonoBehaviour
         currentEnemy = null;
 
         Invoke(nameof(SpawnEnemy), 1f); // --> Esto se tendrá q cambiar según el lvl :p + dificulty
-    }
-    
-    private void SpawnBoss()
-    {
-        if (currentEnemy != null)
-        {
-            Destroy(currentEnemy.gameObject);
-            currentEnemy = null;
-        }
-
-        if (bossPrefab != null)
-        {
-            GameObject bossObj = Instantiate(bossPrefab, spawnPoint.position, Quaternion.identity);
-            currentEnemy = bossObj.GetComponent<Enemy>();
-
-            if (UIManager.Instance != null)
-            {
-                //UIManager.Instance.BossUI();
-            }
-        }
-        else
-        {
-            Debug.Log("El nivel tiene hasBoss = true, pero no se ha asignado nada al bossPrefab");
-        }
     }
 
     public void WinGame()

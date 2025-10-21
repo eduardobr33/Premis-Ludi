@@ -1,0 +1,1859 @@
+fileFormatVersion: 2
+guid: aa70c8f318778d741bf549f48a95a0ff
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6882295738497755996
+    second: Timer_Assets_0
+  - first:
+      213: -1659428064412939055
+    second: Timer_Assets_1
+  - first:
+      213: 7235049976726067606
+    second: Timer_Assets_2
+  - first:
+      213: 295492662569342452
+    second: Timer_Assets_3
+  - first:
+      213: 5822034339909300382
+    second: Timer_Assets_4
+  - first:
+      213: 7308764225435706736
+    second: Timer_Assets_5
+  - first:
+      213: 6536260065974714254
+    second: Timer_Assets_6
+  - first:
+      213: 2974229329989942754
+    second: Timer_Assets_7
+  - first:
+      213: 1645042273350659639
+    second: Timer_Assets_8
+  - first:
+      213: 8462119013333505954
+    second: Timer_Assets_9
+  - first:
+      213: -7392834090592730302
+    second: Timer_Assets_10
+  - first:
+      213: 7030600752040339425
+    second: Timer_Assets_11
+  - first:
+      213: 3542093070946156297
+    second: Timer_Assets_12
+  - first:
+      213: -4168837606833035775
+    second: Timer_Assets_13
+  - first:
+      213: 7932899251362684788
+    second: Timer_Assets_14
+  - first:
+      213: 5173506801020687891
+    second: Timer_Assets_15
+  - first:
+      213: -7937879415085371844
+    second: Timer_Assets_16
+  - first:
+      213: -553849711355237017
+    second: Timer_Assets_17
+  - first:
+      213: -6624866469992331348
+    second: Timer_Assets_18
+  - first:
+      213: 3027545702428171360
+    second: Timer_Assets_19
+  - first:
+      213: -2041801216270615199
+    second: Timer_Assets_20
+  - first:
+      213: 6035009990116099593
+    second: Timer_Assets_21
+  - first:
+      213: 3517913359563819707
+    second: Timer_Assets_22
+  - first:
+      213: -2155673129453368976
+    second: Timer_Assets_23
+  - first:
+      213: 6408239964910076457
+    second: Timer_Assets_24
+  - first:
+      213: -4722759566951103170
+    second: Timer_Assets_25
+  - first:
+      213: -5174656302058842920
+    second: Timer_Assets_26
+  - first:
+      213: 6724019789206236493
+    second: Timer_Assets_27
+  - first:
+      213: 819781778953153832
+    second: Timer_Assets_28
+  - first:
+      213: 2248832516434737227
+    second: Timer_Assets_29
+  - first:
+      213: -9218275690555108644
+    second: Timer_Assets_30
+  - first:
+      213: 3877734544342422221
+    second: Timer_Assets_31
+  - first:
+      213: -2681835493729540543
+    second: Timer_Assets_32
+  - first:
+      213: -3043096761701837115
+    second: Timer_Assets_33
+  - first:
+      213: -730025560018567048
+    second: Timer_Assets_34
+  - first:
+      213: 8848608889720158902
+    second: Timer_Assets_35
+  - first:
+      213: 390268986785581786
+    second: Timer_Assets_36
+  - first:
+      213: -4739465444584784593
+    second: Timer_Assets_37
+  - first:
+      213: -8054509571688834946
+    second: Timer_Assets_38
+  - first:
+      213: -2514166005043924887
+    second: Timer_Assets_39
+  - first:
+      213: 4835922435011019189
+    second: Timer_Assets_40
+  - first:
+      213: 7907781595534065283
+    second: Timer_Assets_41
+  - first:
+      213: 6370470034313772223
+    second: Timer_Assets_42
+  - first:
+      213: -951031298574931173
+    second: Timer_Assets_43
+  - first:
+      213: 7040315172167906415
+    second: Timer_Assets_44
+  - first:
+      213: -5978020924664558774
+    second: Timer_Assets_45
+  - first:
+      213: -2980368792800279807
+    second: Timer_Assets_46
+  - first:
+      213: 2023751704308974650
+    second: Timer_Assets_47
+  - first:
+      213: 3378901298529052990
+    second: Timer_Assets_48
+  - first:
+      213: -751829741876779000
+    second: Timer_Assets_49
+  - first:
+      213: 6471262723683053662
+    second: Timer_Assets_50
+  - first:
+      213: 4756051389493130022
+    second: Timer_Assets_51
+  - first:
+      213: -2050967556550226240
+    second: Timer_Assets_52
+  - first:
+      213: -6835540515902700396
+    second: Timer_Assets_53
+  - first:
+      213: 3262048194821444114
+    second: Timer_Assets_54
+  - first:
+      213: -3442752494794181499
+    second: Timer_Assets_55
+  - first:
+      213: 6372646525937685900
+    second: Timer_Assets_56
+  - first:
+      213: 7955708187185034356
+    second: Timer_Assets_57
+  - first:
+      213: 8685435564709803026
+    second: Timer_Assets_58
+  - first:
+      213: 8208659074227248377
+    second: Timer_Assets_59
+  - first:
+      213: -5520068792037258850
+    second: Timer_Assets_60
+  - first:
+      213: 3374148332636815613
+    second: Timer_Assets_61
+  - first:
+      213: 1337588712661829489
+    second: Timer_Assets_62
+  - first:
+      213: -6335073789895520046
+    second: Timer_Assets_63
+  - first:
+      213: -3279582605942014253
+    second: Timer_Assets_64
+  - first:
+      213: -2808536515876326624
+    second: Timer_Assets_65
+  - first:
+      213: 8904333957593670099
+    second: Timer_Assets_66
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Timer_Assets_0
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 1099
+        width: 112
+        height: 184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5be75c9283d28f50800000000000000
+      internalID: 6882295738497755996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_1
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 1098
+        width: 97
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dc4a5aa7f688f8e0800000000000000
+      internalID: -1659428064412939055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_2
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 1095
+        width: 73
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69994f2fe9f086460800000000000000
+      internalID: 7235049976726067606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_3
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 1186
+        width: 37
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f51e22d20dc91400800000000000000
+      internalID: 295492662569342452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_4
+      rect:
+        serializedVersion: 2
+        x: 1763
+        y: 1169
+        width: 36
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e907b6cb2650cc050800000000000000
+      internalID: 5822034339909300382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_5
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 1121
+        width: 34
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 075ad2ce652fd6560800000000000000
+      internalID: 7308764225435706736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_6
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 1121
+        width: 35
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8f7eff36e575ba50800000000000000
+      internalID: 6536260065974714254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_7
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 1134
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ed399641d5964920800000000000000
+      internalID: 2974229329989942754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_8
+      rect:
+        serializedVersion: 2
+        x: 1163
+        y: 1136
+        width: 29
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73e21975b3d54d610800000000000000
+      internalID: 1645042273350659639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_9
+      rect:
+        serializedVersion: 2
+        x: 1241
+        y: 1135
+        width: 26
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a792dc886c7f6570800000000000000
+      internalID: 8462119013333505954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_10
+      rect:
+        serializedVersion: 2
+        x: 1549
+        y: 1146
+        width: 36
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24382d24090676990800000000000000
+      internalID: -7392834090592730302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_11
+      rect:
+        serializedVersion: 2
+        x: 1567
+        y: 1127
+        width: 39
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e765fe5226b19160800000000000000
+      internalID: 7030600752040339425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_12
+      rect:
+        serializedVersion: 2
+        x: 1642
+        y: 1124
+        width: 26
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90f3e1791ea082130800000000000000
+      internalID: 3542093070946156297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_13
+      rect:
+        serializedVersion: 2
+        x: 1664
+        y: 1138
+        width: 19
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1066d66b8405526c0800000000000000
+      internalID: -4168837606833035775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_14
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 1141
+        width: 21
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47f5f6cb6d1571e60800000000000000
+      internalID: 7932899251362684788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_15
+      rect:
+        serializedVersion: 2
+        x: 1709
+        y: 1140
+        width: 20
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 316d7ed660dfbc740800000000000000
+      internalID: 5173506801020687891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_16
+      rect:
+        serializedVersion: 2
+        x: 1758
+        y: 1128
+        width: 46
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3e63f98abcf6d190800000000000000
+      internalID: -7937879415085371844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_17
+      rect:
+        serializedVersion: 2
+        x: 1764
+        y: 1150
+        width: 39
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76de7b73f945058f0800000000000000
+      internalID: -553849711355237017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_18
+      rect:
+        serializedVersion: 2
+        x: 1834
+        y: 1104
+        width: 60
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca706bbab0fbf04a0800000000000000
+      internalID: -6624866469992331348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_19
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 1120
+        width: 32
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06cdd7696c0040a20800000000000000
+      internalID: 3027545702428171360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_20
+      rect:
+        serializedVersion: 2
+        x: 1092
+        y: 1099
+        width: 46
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16dba3a9c901aa3e0800000000000000
+      internalID: -2041801216270615199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_21
+      rect:
+        serializedVersion: 2
+        x: 1177
+        y: 1098
+        width: 29
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 906cdc47c99a0c350800000000000000
+      internalID: 6035009990116099593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_22
+      rect:
+        serializedVersion: 2
+        x: 1209
+        y: 1123
+        width: 30
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bba0763df8322d030800000000000000
+      internalID: 3517913359563819707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_23
+      rect:
+        serializedVersion: 2
+        x: 1249
+        y: 1095
+        width: 41
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 079c313c5b28512e0800000000000000
+      internalID: -2155673129453368976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_24
+      rect:
+        serializedVersion: 2
+        x: 1295
+        y: 1104
+        width: 45
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9224de7bb44aee850800000000000000
+      internalID: 6408239964910076457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_25
+      rect:
+        serializedVersion: 2
+        x: 1378
+        y: 1104
+        width: 38
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e354d443233657eb0800000000000000
+      internalID: -4722759566951103170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_26
+      rect:
+        serializedVersion: 2
+        x: 1434
+        y: 1105
+        width: 39
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d4db01828def28b0800000000000000
+      internalID: -5174656302058842920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_27
+      rect:
+        serializedVersion: 2
+        x: 1575
+        y: 1101
+        width: 46
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4da5567f54805d50800000000000000
+      internalID: 6724019789206236493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_28
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 1102
+        width: 49
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82d27df3f23706b00800000000000000
+      internalID: 819781778953153832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_29
+      rect:
+        serializedVersion: 2
+        x: 1957
+        y: 1111
+        width: 43
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b48b0754245753f10800000000000000
+      internalID: 2248832516434737227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_30
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 427
+        width: 2432
+        height: 595
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd218d6991b121080800000000000000
+      internalID: -9218275690555108644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_31
+      rect:
+        serializedVersion: 2
+        x: 1349
+        y: 331
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc29ac0e50b70d530800000000000000
+      internalID: 3877734544342422221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_32
+      rect:
+        serializedVersion: 2
+        x: 1398
+        y: 364
+        width: 48
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1466732d3d438cad0800000000000000
+      internalID: -2681835493729540543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_33
+      rect:
+        serializedVersion: 2
+        x: 1458
+        y: 365
+        width: 49
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c6de954e9fb4c5d0800000000000000
+      internalID: -3043096761701837115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_34
+      rect:
+        serializedVersion: 2
+        x: 1514
+        y: 333
+        width: 45
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 870432afe9d6ed5f0800000000000000
+      internalID: -730025560018567048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_35
+      rect:
+        serializedVersion: 2
+        x: 1312
+        y: 277
+        width: 33
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ba322c37e29cca70800000000000000
+      internalID: 8848608889720158902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_36
+      rect:
+        serializedVersion: 2
+        x: 1562
+        y: 300
+        width: 38
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adac43463938a6500800000000000000
+      internalID: 390268986785581786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_37
+      rect:
+        serializedVersion: 2
+        x: 1604
+        y: 267
+        width: 45
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2df846f9490a3eb0800000000000000
+      internalID: -4739465444584784593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_38
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 231
+        width: 45
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e78d08b1832a83090800000000000000
+      internalID: -8054509571688834946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_39
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 264
+        width: 57
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9607efac653eb1dd0800000000000000
+      internalID: -2514166005043924887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_40
+      rect:
+        serializedVersion: 2
+        x: 933
+        y: 258
+        width: 53
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b18c2435d5ac1340800000000000000
+      internalID: 4835922435011019189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_41
+      rect:
+        serializedVersion: 2
+        x: 1274
+        y: 233
+        width: 34
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38efd23c6751ebd60800000000000000
+      internalID: 7907781595534065283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_42
+      rect:
+        serializedVersion: 2
+        x: 1654
+        y: 234
+        width: 41
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbcfa877eb4786850800000000000000
+      internalID: 6370470034313772223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_43
+      rect:
+        serializedVersion: 2
+        x: 2038
+        y: 241
+        width: 44
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1ba92e92124dc2f0800000000000000
+      internalID: -951031298574931173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_44
+      rect:
+        serializedVersion: 2
+        x: 2101
+        y: 265
+        width: 52
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f647cdf095934b160800000000000000
+      internalID: 7040315172167906415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_45
+      rect:
+        serializedVersion: 2
+        x: 2162
+        y: 244
+        width: 48
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4b448554adc90da0800000000000000
+      internalID: -5978020924664558774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_46
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 224
+        width: 48
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 103ca75af5a93a6d0800000000000000
+      internalID: -2980368792800279807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_47
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 231
+        width: 50
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a348de8e37fc51c10800000000000000
+      internalID: 2023751704308974650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_48
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 208
+        width: 59
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e392eed24d444ee20800000000000000
+      internalID: 3378901298529052990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_49
+      rect:
+        serializedVersion: 2
+        x: 757
+        y: 186
+        width: 41
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8086cd745d6f095f0800000000000000
+      internalID: -751829741876779000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_50
+      rect:
+        serializedVersion: 2
+        x: 1002
+        y: 227
+        width: 48
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e50fa55392b8ec950800000000000000
+      internalID: 6471262723683053662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_51
+      rect:
+        serializedVersion: 2
+        x: 1229
+        y: 203
+        width: 36
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 623bd344a83e00240800000000000000
+      internalID: 4756051389493130022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_52
+      rect:
+        serializedVersion: 2
+        x: 1700
+        y: 205
+        width: 46
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ce09f1bfdf7983e0800000000000000
+      internalID: -2050967556550226240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_53
+      rect:
+        serializedVersion: 2
+        x: 1984
+        y: 217
+        width: 46
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49444d5fd184321a0800000000000000
+      internalID: -6835540515902700396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_54
+      rect:
+        serializedVersion: 2
+        x: 2216
+        y: 217
+        width: 46
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2125984dc8f154d20800000000000000
+      internalID: 3262048194821444114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_55
+      rect:
+        serializedVersion: 2
+        x: 2263
+        y: 198
+        width: 46
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 584f332b8d2e830d0800000000000000
+      internalID: -3442752494794181499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_56
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 201
+        width: 35
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8594a96040307850800000000000000
+      internalID: 6372646525937685900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_57
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 177
+        width: 49
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 474b4d1f17a586e60800000000000000
+      internalID: 7955708187185034356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_58
+      rect:
+        serializedVersion: 2
+        x: 1059
+        y: 197
+        width: 39
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2147212f0add88870800000000000000
+      internalID: 8685435564709803026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_59
+      rect:
+        serializedVersion: 2
+        x: 1106
+        y: 184
+        width: 44
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fc1a99cfe30be170800000000000000
+      internalID: 8208659074227248377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_60
+      rect:
+        serializedVersion: 2
+        x: 1168
+        y: 185
+        width: 45
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9946e22ea6c463b0800000000000000
+      internalID: -5520068792037258850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_61
+      rect:
+        serializedVersion: 2
+        x: 1754
+        y: 184
+        width: 46
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df04b42180263de20800000000000000
+      internalID: 3374148332636815613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_62
+      rect:
+        serializedVersion: 2
+        x: 1870
+        y: 182
+        width: 46
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 177c7c9e8d1109210800000000000000
+      internalID: 1337588712661829489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_63
+      rect:
+        serializedVersion: 2
+        x: 1926
+        y: 197
+        width: 48
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d0d367e3fb4518a0800000000000000
+      internalID: -6335073789895520046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_64
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 154
+        width: 40
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3deb641fef49c72d0800000000000000
+      internalID: -3279582605942014253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_65
+      rect:
+        serializedVersion: 2
+        x: 1810
+        y: 180
+        width: 50
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0237a784be21609d0800000000000000
+      internalID: -2808536515876326624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Timer_Assets_66
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 150
+        width: 51
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d1a1d7ae8c829b70800000000000000
+      internalID: 8904333957593670099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Timer_Assets_0: 6882295738497755996
+      Timer_Assets_1: -1659428064412939055
+      Timer_Assets_10: -7392834090592730302
+      Timer_Assets_11: 7030600752040339425
+      Timer_Assets_12: 3542093070946156297
+      Timer_Assets_13: -4168837606833035775
+      Timer_Assets_14: 7932899251362684788
+      Timer_Assets_15: 5173506801020687891
+      Timer_Assets_16: -7937879415085371844
+      Timer_Assets_17: -553849711355237017
+      Timer_Assets_18: -6624866469992331348
+      Timer_Assets_19: 3027545702428171360
+      Timer_Assets_2: 7235049976726067606
+      Timer_Assets_20: -2041801216270615199
+      Timer_Assets_21: 6035009990116099593
+      Timer_Assets_22: 3517913359563819707
+      Timer_Assets_23: -2155673129453368976
+      Timer_Assets_24: 6408239964910076457
+      Timer_Assets_25: -4722759566951103170
+      Timer_Assets_26: -5174656302058842920
+      Timer_Assets_27: 6724019789206236493
+      Timer_Assets_28: 819781778953153832
+      Timer_Assets_29: 2248832516434737227
+      Timer_Assets_3: 295492662569342452
+      Timer_Assets_30: -9218275690555108644
+      Timer_Assets_31: 3877734544342422221
+      Timer_Assets_32: -2681835493729540543
+      Timer_Assets_33: -3043096761701837115
+      Timer_Assets_34: -730025560018567048
+      Timer_Assets_35: 8848608889720158902
+      Timer_Assets_36: 390268986785581786
+      Timer_Assets_37: -4739465444584784593
+      Timer_Assets_38: -8054509571688834946
+      Timer_Assets_39: -2514166005043924887
+      Timer_Assets_4: 5822034339909300382
+      Timer_Assets_40: 4835922435011019189
+      Timer_Assets_41: 7907781595534065283
+      Timer_Assets_42: 6370470034313772223
+      Timer_Assets_43: -951031298574931173
+      Timer_Assets_44: 7040315172167906415
+      Timer_Assets_45: -5978020924664558774
+      Timer_Assets_46: -2980368792800279807
+      Timer_Assets_47: 2023751704308974650
+      Timer_Assets_48: 3378901298529052990
+      Timer_Assets_49: -751829741876779000
+      Timer_Assets_5: 7308764225435706736
+      Timer_Assets_50: 6471262723683053662
+      Timer_Assets_51: 4756051389493130022
+      Timer_Assets_52: -2050967556550226240
+      Timer_Assets_53: -6835540515902700396
+      Timer_Assets_54: 3262048194821444114
+      Timer_Assets_55: -3442752494794181499
+      Timer_Assets_56: 6372646525937685900
+      Timer_Assets_57: 7955708187185034356
+      Timer_Assets_58: 8685435564709803026
+      Timer_Assets_59: 8208659074227248377
+      Timer_Assets_6: 6536260065974714254
+      Timer_Assets_60: -5520068792037258850
+      Timer_Assets_61: 3374148332636815613
+      Timer_Assets_62: 1337588712661829489
+      Timer_Assets_63: -6335073789895520046
+      Timer_Assets_64: -3279582605942014253
+      Timer_Assets_65: -2808536515876326624
+      Timer_Assets_66: 8904333957593670099
+      Timer_Assets_7: 2974229329989942754
+      Timer_Assets_8: 1645042273350659639
+      Timer_Assets_9: 8462119013333505954
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -176,16 +176,14 @@ public class Enemy : MonoBehaviour
         float worldWidth = worldHeight * Camera.main.aspect;
 
         // Percentage of screen
-        float maxRelativeHeight = 0.1f;     // 10% high
-        float maxRelativeWidth = 0.08f;     // 8% width
+        float maxRelativeHeight = 0.2f;     // 10% high
+        float maxRelativeWidth = 0.1f;     // 8% width
 
         float targetMaxHeight = worldHeight * maxRelativeHeight;
 
-        SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
-        if (sr == null || sr.sprite == null) return;
-
-        float spriteHeight = sr.sprite.bounds.size.y;
-        float spriteWidth = sr.sprite.bounds.size.x;
+        // Sprites size
+        float spriteHeight = 1f;
+        float spriteWidth = 1f;
 
         // Maximum scale by height and width
         float maxScaleByHeight = targetMaxHeight / spriteHeight;

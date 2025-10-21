@@ -2816,7 +2816,7 @@ PrefabInstance:
     - target: {fileID: 7410649602393196951, guid: 08460defe02da5242b0b1e4aee491395, type: 3}
       propertyPath: bossPrefab
       value: 
-      objectReference: {fileID: 7344775788272068017, guid: 304bbcfd417c3fc4cb07749232704be1, type: 3}
+      objectReference: {fileID: 4670665396207379468, guid: dfe7c70aa057633498824623daec36ad, type: 3}
     - target: {fileID: 7410649602393196951, guid: 08460defe02da5242b0b1e4aee491395, type: 3}
       propertyPath: bushPrefab
       value: 

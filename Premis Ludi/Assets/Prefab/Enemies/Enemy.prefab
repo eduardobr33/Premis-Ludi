@@ -282,6 +282,7 @@ MonoBehaviour:
   attackSpeed: 1
   health: 1
   nextOperationDelay: 0.5
+  growDuration: 4
   textOp: {fileID: 8292785090428661393}
   spriteRenderer: {fileID: 7175731774493723231}
   startPos: {x: 0, y: 0, z: 0}
