@@ -1,0 +1,897 @@
+fileFormatVersion: 2
+guid: 0d29f017176b7fc42a19cb915d3a3023
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 163356308391617145
+    second: Level_Environment_Assets_0
+  - first:
+      213: 7716795009448471801
+    second: Level_Environment_Assets_1
+  - first:
+      213: -2812980909911799098
+    second: Level_Environment_Assets_2
+  - first:
+      213: 5209023304166430938
+    second: Level_Environment_Assets_3
+  - first:
+      213: -2892529047873804232
+    second: Level_Environment_Assets_4
+  - first:
+      213: -2228745011280021977
+    second: Level_Environment_Assets_5
+  - first:
+      213: 8892494158870373836
+    second: Level_Environment_Assets_6
+  - first:
+      213: 3749308370882118816
+    second: Level_Environment_Assets_7
+  - first:
+      213: 2155681236677795826
+    second: Level_Environment_Assets_8
+  - first:
+      213: 4129636398142177136
+    second: Level_Environment_Assets_9
+  - first:
+      213: -4587471713630038633
+    second: Level_Environment_Assets_10
+  - first:
+      213: 15435325253980483
+    second: Level_Environment_Assets_11
+  - first:
+      213: 2004386262488825502
+    second: Level_Environment_Assets_12
+  - first:
+      213: -3575246003922408380
+    second: Level_Environment_Assets_13
+  - first:
+      213: -623481142284997834
+    second: Level_Environment_Assets_14
+  - first:
+      213: 8836087262776970647
+    second: Level_Environment_Assets_15
+  - first:
+      213: -8367016405933320648
+    second: Level_Environment_Assets_16
+  - first:
+      213: -1985918933785635073
+    second: Level_Environment_Assets_17
+  - first:
+      213: -2839410605396975211
+    second: Level_Environment_Assets_18
+  - first:
+      213: -7055556131181403166
+    second: Level_Environment_Assets_19
+  - first:
+      213: -6475090313271388096
+    second: Level_Environment_Assets_20
+  - first:
+      213: -6159538343076160019
+    second: Level_Environment_Assets_21
+  - first:
+      213: -8286681625228871724
+    second: Level_Environment_Assets_22
+  - first:
+      213: -1163823588919432608
+    second: Level_Environment_Assets_23
+  - first:
+      213: 1919251950546137570
+    second: Level_Environment_Assets_24
+  - first:
+      213: -5351074506324822691
+    second: Level_Environment_Assets_25
+  - first:
+      213: 7004222016198991186
+    second: Level_Environment_Assets_26
+  - first:
+      213: 127828920913167013
+    second: Level_Environment_Assets_27
+  - first:
+      213: 8221242588499297906
+    second: Level_Environment_Assets_28
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Level_Environment_Assets_0
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 0
+        width: 1129
+        height: 2000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 972608d62bb544200800000000000000
+      internalID: 163356308391617145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_1
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 1598
+        width: 196
+        height: 325
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fceeaefc20971b60800000000000000
+      internalID: 7716795009448471801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_2
+      rect:
+        serializedVersion: 2
+        x: 1483
+        y: 1595
+        width: 170
+        height: 279
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ca80c824c846f8d0800000000000000
+      internalID: -2812980909911799098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_3
+      rect:
+        serializedVersion: 2
+        x: 1723
+        y: 1591
+        width: 127
+        height: 206
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad85297b81b2a4840800000000000000
+      internalID: 5209023304166430938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_4
+      rect:
+        serializedVersion: 2
+        x: 2142
+        y: 1753
+        width: 97
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 838abfef72cabd7d0800000000000000
+      internalID: -2892529047873804232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_5
+      rect:
+        serializedVersion: 2
+        x: 2665
+        y: 1549
+        width: 1127
+        height: 334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 726fabb7838e111e0800000000000000
+      internalID: -2228745011280021977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_6
+      rect:
+        serializedVersion: 2
+        x: 1983
+        y: 1607
+        width: 438
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc564b2b25c786b70800000000000000
+      internalID: 8892494158870373836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_7
+      rect:
+        serializedVersion: 2
+        x: 1283
+        y: 1398
+        width: 58
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a4c3df3918380430800000000000000
+      internalID: 3749308370882118816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_8
+      rect:
+        serializedVersion: 2
+        x: 1353
+        y: 1398
+        width: 58
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ff9729d9a48aed10800000000000000
+      internalID: 2155681236677795826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_9
+      rect:
+        serializedVersion: 2
+        x: 1531
+        y: 1396
+        width: 54
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07fb9c2ac6a6f4930800000000000000
+      internalID: 4129636398142177136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_10
+      rect:
+        serializedVersion: 2
+        x: 1601
+        y: 1419
+        width: 45
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 795ddeb28c60650c0800000000000000
+      internalID: -4587471713630038633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_11
+      rect:
+        serializedVersion: 2
+        x: 1748
+        y: 1424
+        width: 49
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34191c6b856d63000800000000000000
+      internalID: 15435325253980483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_12
+      rect:
+        serializedVersion: 2
+        x: 1831
+        y: 1400
+        width: 49
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9eb150afa201db10800000000000000
+      internalID: 2004386262488825502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_13
+      rect:
+        serializedVersion: 2
+        x: 1887
+        y: 1422
+        width: 43
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44ce19fa3bc226ec0800000000000000
+      internalID: -3575246003922408380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_14
+      rect:
+        serializedVersion: 2
+        x: 1983
+        y: 1366
+        width: 78
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63ba2f55433f857f0800000000000000
+      internalID: -623481142284997834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_15
+      rect:
+        serializedVersion: 2
+        x: 2131
+        y: 1367
+        width: 65
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79dcc26cc8610aa70800000000000000
+      internalID: 8836087262776970647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_16
+      rect:
+        serializedVersion: 2
+        x: 2231
+        y: 1369
+        width: 65
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8369a7eb8e262eb80800000000000000
+      internalID: -8367016405933320648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_17
+      rect:
+        serializedVersion: 2
+        x: 2421
+        y: 749
+        width: 1671
+        height: 700
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff61cf660499074e0800000000000000
+      internalID: -1985918933785635073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_18
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 1358
+        width: 80
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59126d529136898d0800000000000000
+      internalID: -2839410605396975211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_19
+      rect:
+        serializedVersion: 2
+        x: 1773
+        y: 1356
+        width: 49
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e36a14a411a51e90800000000000000
+      internalID: -7055556131181403166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_20
+      rect:
+        serializedVersion: 2
+        x: 1901
+        y: 1350
+        width: 70
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 048d2e4aaabd326a0800000000000000
+      internalID: -6475090313271388096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_21
+      rect:
+        serializedVersion: 2
+        x: 1246
+        y: 796
+        width: 179
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ded1c88f28ce48aa0800000000000000
+      internalID: -6159538343076160019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_22
+      rect:
+        serializedVersion: 2
+        x: 1460
+        y: 792
+        width: 363
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d7f97177facffc80800000000000000
+      internalID: -8286681625228871724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_23
+      rect:
+        serializedVersion: 2
+        x: 1915
+        y: 669
+        width: 125
+        height: 495
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06aac31bc9449dfe0800000000000000
+      internalID: -1163823588919432608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_24
+      rect:
+        serializedVersion: 2
+        x: 2162
+        y: 625
+        width: 194
+        height: 614
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e137cafa7d82aa10800000000000000
+      internalID: 1919251950546137570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_25
+      rect:
+        serializedVersion: 2
+        x: 1202
+        y: 418
+        width: 410
+        height: 267
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d553cd3761a2db5b0800000000000000
+      internalID: -5351074506324822691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_26
+      rect:
+        serializedVersion: 2
+        x: 2417
+        y: 48
+        width: 1671
+        height: 700
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25dd28350def33160800000000000000
+      internalID: 7004222016198991186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_27
+      rect:
+        serializedVersion: 2
+        x: 1221
+        y: 93
+        width: 319
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a20d0fe9b326c100800000000000000
+      internalID: 127828920913167013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Level_Environment_Assets_28
+      rect:
+        serializedVersion: 2
+        x: 1593
+        y: 93
+        width: 319
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27640d38398b71270800000000000000
+      internalID: 8221242588499297906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Level_Environment_Assets_0: 163356308391617145
+      Level_Environment_Assets_1: 7716795009448471801
+      Level_Environment_Assets_10: -4587471713630038633
+      Level_Environment_Assets_11: 15435325253980483
+      Level_Environment_Assets_12: 2004386262488825502
+      Level_Environment_Assets_13: -3575246003922408380
+      Level_Environment_Assets_14: -623481142284997834
+      Level_Environment_Assets_15: 8836087262776970647
+      Level_Environment_Assets_16: -8367016405933320648
+      Level_Environment_Assets_17: -1985918933785635073
+      Level_Environment_Assets_18: -2839410605396975211
+      Level_Environment_Assets_19: -7055556131181403166
+      Level_Environment_Assets_2: -2812980909911799098
+      Level_Environment_Assets_20: -6475090313271388096
+      Level_Environment_Assets_21: -6159538343076160019
+      Level_Environment_Assets_22: -8286681625228871724
+      Level_Environment_Assets_23: -1163823588919432608
+      Level_Environment_Assets_24: 1919251950546137570
+      Level_Environment_Assets_25: -5351074506324822691
+      Level_Environment_Assets_26: 7004222016198991186
+      Level_Environment_Assets_27: 127828920913167013
+      Level_Environment_Assets_28: 8221242588499297906
+      Level_Environment_Assets_3: 5209023304166430938
+      Level_Environment_Assets_4: -2892529047873804232
+      Level_Environment_Assets_5: -2228745011280021977
+      Level_Environment_Assets_6: 8892494158870373836
+      Level_Environment_Assets_7: 3749308370882118816
+      Level_Environment_Assets_8: 2155681236677795826
+      Level_Environment_Assets_9: 4129636398142177136
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

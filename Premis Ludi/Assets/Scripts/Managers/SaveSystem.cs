@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class GameSaveData
 {
-    public LevelProgress[] levels = new LevelProgress[10];
+    public LevelProgress[] levels = new LevelProgress[20];
     public List<int> unlockedPowerups = new List<int>();
     
     public GameSaveData()
@@ -107,10 +107,9 @@ public class SaveSystem : MonoBehaviour
         if (levelNumber == 0) return true;
         if (saveData == null) return false;
         
-        int index = levelNumber - 1;
-        if (index >= 0 && index < saveData.levels.Length)
+        if (levelNumber >= 0 && levelNumber < saveData.levels.Length)
         {
-            return saveData.levels[index].unlocked;
+            return saveData.levels[levelNumber].unlocked;
         }
         return false;
     }
@@ -119,23 +118,21 @@ public class SaveSystem : MonoBehaviour
     {
         if (saveData == null) return;
         
-        int index = levelNumber - 1;
-        if (index >= 0 && index < saveData.levels.Length)
+        if (levelNumber >= 0 && levelNumber < saveData.levels.Length)
         {
-            saveData.levels[index].unlocked = true;
+            saveData.levels[levelNumber].unlocked = true;
             SaveGame();
+            Debug.Log($"Nivel {levelNumber} desbloqueado");
         }
     }
 
     public bool HasLevelBeenPlayed(int levelNumber)
     {
-        if (levelNumber == 0) return false;
         if (saveData == null) return false;
         
-        int index = levelNumber - 1;
-        if (index >= 0 && index < saveData.levels.Length)
+        if (levelNumber >= 0 && levelNumber < saveData.levels.Length)
         {
-            return saveData.levels[index].played;
+            return saveData.levels[levelNumber].played;
         }
         return false;
     }
@@ -144,23 +141,20 @@ public class SaveSystem : MonoBehaviour
     {
         if (saveData == null) return;
         
-        int index = levelNumber - 1;
-        if (index >= 0 && index < saveData.levels.Length)
+        if (levelNumber >= 0 && levelNumber < saveData.levels.Length)
         {
-            saveData.levels[index].played = true;
+            saveData.levels[levelNumber].played = true;
             SaveGame();
         }
     }
 
     public int GetLevelStars(int levelNumber)
     {
-        if (levelNumber == 0) return 0;
         if (saveData == null) return 0;
         
-        int index = levelNumber - 1;
-        if (index >= 0 && index < saveData.levels.Length)
+        if (levelNumber >= 0 && levelNumber < saveData.levels.Length)
         {
-            return saveData.levels[index].stars;
+            return saveData.levels[levelNumber].stars;
         }
         return 0;
     }
@@ -169,12 +163,11 @@ public class SaveSystem : MonoBehaviour
     {
         if (saveData == null) return;
         
-        int index = levelNumber - 1;
-        if (index >= 0 && index < saveData.levels.Length)
+        if (levelNumber >= 0 && levelNumber < saveData.levels.Length)
         {
-            if (stars > saveData.levels[index].stars)
+            if (stars > saveData.levels[levelNumber].stars)
             {
-                saveData.levels[index].stars = stars;
+                saveData.levels[levelNumber].stars = stars;
                 SaveGame();
             }
         }

@@ -10,20 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6066f741f4d41e47aa626d37bc16fc7, type: 3}
-  m_Name: Level_2
+  m_Name: Level_14
   m_EditorClassIdentifier: 
-  levelName: 'Level 2: Sumas II'
-  levelNumber: 2
-  difficulty: 2
+  levelName: 'Level 2: Sumas y Restas II'
+  levelNumber: 14
+  difficulty: 14
   allowedOperations:
   - add
+  - sub
   numberRange: {x: 1, y: 10}
   maxSteps: 1
-  enemyHealth: 1
+  enemyHealth: 2
   levelTime: 30
   pointsMultiplier: 1
   hasBoss: 0
   isTutorial: 0
   tutorialAnswers: 
-  levelsToUnlock: 030000000f000000
-  powerupReward: 0
+  levelsToUnlock: 
+  powerupReward: 1

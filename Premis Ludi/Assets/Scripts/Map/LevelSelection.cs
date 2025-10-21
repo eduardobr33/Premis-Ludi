@@ -10,7 +10,9 @@ public class LevelSelection : MonoBehaviour
     [SerializeField] private int levelNumber;
     [SerializeField] private LevelData levelData;
     
-    public Image unlockImage;
+    public Image buttonImage;
+    public Sprite unlockedSprite;
+    public Sprite lockedSprite;
     public GameObject[] stars;
     public Sprite starSprite;
     public Sprite emptyStarSprite;
@@ -20,22 +22,14 @@ public class LevelSelection : MonoBehaviour
 
     private void Start()
     {
-        // SaveSystem.Instance.ResetAllProgress(); // Para resetear progreso
-        
         if (SaveSystem.Instance == null)
         {
             Debug.LogError("SaveSystem.Instance es null en LevelSelection!");
             return;
         }
-        
-        if (levelNumber == 1)
-        {
-            unlocked = true;
-        }
-        else
-        {
-            unlocked = SaveSystem.Instance.IsLevelUnlocked(levelNumber);
-        }
+
+        unlocked = SaveSystem.Instance.IsLevelUnlocked(levelNumber);
+        // Debug.Log($"Nivel {levelNumber} desbloqueado: {unlocked}");
 
         currentStars = SaveSystem.Instance.GetLevelStars(levelNumber);
         hasBeenPlayed = SaveSystem.Instance.HasLevelBeenPlayed(levelNumber);
@@ -45,52 +39,41 @@ public class LevelSelection : MonoBehaviour
 
     private void UpdateLevelUI()
     {
+        if (buttonImage != null)
+        {
+            buttonImage.sprite = unlocked ? unlockedSprite : lockedSprite;
+        }
+
         if (!unlocked)
         {
-            if (unlockImage != null)
-                unlockImage.gameObject.SetActive(true);
-            
             for (int i = 0; i < stars.Length; i++)
             {
                 if (stars[i] != null)
                     stars[i].gameObject.SetActive(false);
             }
         }
-        else
+        else if (hasBeenPlayed)
         {
-            if (unlockImage != null)
-                unlockImage.gameObject.SetActive(false);
-            
-            if (hasBeenPlayed)
+            for (int i = 0; i < stars.Length; i++)
             {
-                for (int i = 0; i < stars.Length; i++)
+                if (stars[i] != null)
                 {
-                    if (stars[i] != null)
+                    stars[i].gameObject.SetActive(true);
+                    Image starImage = stars[i].GetComponent<Image>();
+                    
+                    if (starImage != null)
                     {
-                        stars[i].gameObject.SetActive(true);
-                        Image starImage = stars[i].GetComponent<Image>();
-                        
-                        if (starImage != null)
-                        {
-                            if (i < currentStars && starSprite != null)
-                            {
-                                starImage.sprite = starSprite;
-                            }
-                            else if (emptyStarSprite != null)
-                            {
-                                starImage.sprite = emptyStarSprite;
-                            }
-                        }
+                        starImage.sprite = (i < currentStars && starSprite != null) ? starSprite : emptyStarSprite;
                     }
                 }
             }
-            else
+        }
+        else
+        {
+            for (int i = 0; i < stars.Length; i++)
             {
-                for (int i = 0; i < stars.Length; i++)
-                {
-                    if (stars[i] != null)
-                        stars[i].gameObject.SetActive(false);
-                }
+                if (stars[i] != null)
+                    stars[i].gameObject.SetActive(false);
             }
         }
     }

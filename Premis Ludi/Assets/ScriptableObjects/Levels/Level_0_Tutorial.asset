@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6066f741f4d41e47aa626d37bc16fc7, type: 3}
   m_Name: Level_0_Tutorial
   m_EditorClassIdentifier: 
-  levelName: 'Level 1: Tutorial'
+  levelName: 'Level 0: Tutorial'
   levelNumber: 0
   difficulty: 0
   allowedOperations:
@@ -22,6 +22,7 @@ MonoBehaviour:
   enemyHealth: 1
   levelTime: 30
   pointsMultiplier: 1
+  hasBoss: 0
   isTutorial: 1
   tutorialAnswers: 020000000500000004000000
   levelsToUnlock: 01000000
