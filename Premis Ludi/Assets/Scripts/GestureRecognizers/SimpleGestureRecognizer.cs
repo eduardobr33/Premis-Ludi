@@ -28,6 +28,10 @@ public class SimpleGestureRecognizer : MonoBehaviour
     private int vertexCount = 0;
     
     private Coroutine recognitionCoroutine;
+    
+    private bool wasTutorialActive = false;
+    private float timeSinceTutorialEnded = 0f;
+    private const float TUTORIAL_COOLDOWN = 0.2f;
 
     void Start()
     {
@@ -76,7 +80,23 @@ public class SimpleGestureRecognizer : MonoBehaviour
 
     void Update()
     {
-        if (!canDraw) return;
+        bool tutorialActive = GameManager.Instance != null && GameManager.Instance.tutorialActive;
+        
+        // Detectar cuando el tutorial termina
+        if (wasTutorialActive && !tutorialActive)
+        {
+            timeSinceTutorialEnded = 0f;
+        }
+        wasTutorialActive = tutorialActive;
+        
+        // Si el tutorial acaba de terminar, esperar el cooldown
+        if (timeSinceTutorialEnded < TUTORIAL_COOLDOWN)
+        {
+            timeSinceTutorialEnded += Time.deltaTime;
+            return;
+        }
+        
+        if (!canDraw || tutorialActive) return;
 
         HandleInput();
         
@@ -86,7 +106,10 @@ public class SimpleGestureRecognizer : MonoBehaviour
             
             if (timeSinceLastDraw >= recognitionDelay)
             {
-                RecognizeGesture();
+                if (points.Count >= 10)
+                    RecognizeGesture();
+                else
+                    ClearGesture(); // Limpia si no hay suficientes puntos
             }
         }
     }
@@ -166,40 +189,65 @@ public class SimpleGestureRecognizer : MonoBehaviour
 
     void RecognizeGesture()
     {
-        if (points.Count == 0) return;
+        if (points.Count < 10 || trainingSet.Count == 0) 
+        {
+            ClearGesture();
+            return;
+        }
         
         canDraw = false;
         
-        Gesture candidate = new Gesture(points.ToArray());
-        Result gestureResult = PointCloudRecognizer.Classify(candidate, trainingSet.ToArray());
-        
-        Debug.Log($"GESTO RECONOCIDO: {gestureResult.GestureClass} (Confianza: {gestureResult.Score:F2})");
-
-        int recognizedNumber;
-        if (int.TryParse(gestureResult.GestureClass, out recognizedNumber))
+        try
         {
-            if (GameManager.Instance != null && GameManager.Instance.currentEnemy != null)
+            Point[] pointArray = points.ToArray();
+            if (pointArray == null || pointArray.Length < 10)
             {
-                if (recognizedNumber == GameManager.Instance.currentEnemy.correctAnswer)
+                ClearGesture();
+                return;
+            }
+            
+            Gesture candidate = new Gesture(pointArray);
+            if (candidate.Points == null || candidate.Points.Length < 10)
+            {
+                ClearGesture();
+                return;
+            }
+            
+            Result gestureResult = PointCloudRecognizer.Classify(candidate, trainingSet.ToArray());
+            
+            Debug.Log($"GESTO RECONOCIDO: {gestureResult.GestureClass} (Confianza: {gestureResult.Score:F2})");
+
+            int recognizedNumber;
+            if (int.TryParse(gestureResult.GestureClass, out recognizedNumber))
+            {
+                if (GameManager.Instance != null && GameManager.Instance.currentEnemy != null)
                 {
-                    Debug.Log("¡Número correcto! El enemigo recibe daño.");
-                    GameManager.Instance.currentEnemy.TakeDamage(false);
-                    
-                    StartCoroutine(CleanupAfterCorrectAnswer());
-                    return;
-                }
-                else
-                {
-                    Debug.Log($"Número incorrecto. Dibujaste {recognizedNumber}, se esperaba {GameManager.Instance.currentEnemy.correctAnswer}");
+                    if (recognizedNumber == GameManager.Instance.currentEnemy.correctAnswer)
+                    {
+                        Debug.Log("¡Número correcto! El enemigo recibe daño.");
+                        GameManager.Instance.currentEnemy.TakeDamage(false);
+                        
+                        StartCoroutine(CleanupAfterCorrectAnswer());
+                        return;
+                    }
+                    else
+                    {
+                        Debug.Log($"Número incorrecto. Dibujaste {recognizedNumber}, se esperaba {GameManager.Instance.currentEnemy.correctAnswer}");
+                    }
                 }
             }
+            else
+            {
+                Debug.LogWarning($"El gesto reconocido ({gestureResult.GestureClass}) no es un número válido");
+            }
+            
+            StartCoroutine(CleanupAfterIncorrectAnswer());
         }
-        else
+        catch (System.Exception ex)
         {
-            Debug.LogWarning($"El gesto reconocido ({gestureResult.GestureClass}) no es un número válido");
+            Debug.LogError($"Error al reconocer gesto: {ex.Message}");
+            ClearGesture();
         }
-        
-        StartCoroutine(CleanupAfterIncorrectAnswer());
     }
 
     IEnumerator CleanupAfterIncorrectAnswer()
@@ -228,6 +276,20 @@ public class SimpleGestureRecognizer : MonoBehaviour
         strokeId = -1;
         isDrawing = false;
         canDraw = true;
+        vertexCount = 0;
+        timeSinceLastDraw = 0f;
+    }
+
+    void ClearGesture()
+    {
+        foreach (LineRenderer line in gestureLines)
+        {
+            Destroy(line.gameObject);
+        }
+        gestureLines.Clear();
+        points.Clear();
+        strokeId = -1;
+        isDrawing = false;
         vertexCount = 0;
         timeSinceLastDraw = 0f;
     }

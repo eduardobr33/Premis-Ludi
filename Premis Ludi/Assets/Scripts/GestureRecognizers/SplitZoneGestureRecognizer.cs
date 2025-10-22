@@ -35,6 +35,10 @@ public class SplitZoneGestureRecognizer : MonoBehaviour
     
     private Coroutine recognitionTimer;
     private float screenMidpoint;
+    
+    private bool wasTutorialActive = false;
+    private float timeSinceTutorialEnded = 0f;
+    private const float TUTORIAL_COOLDOWN = 0.2f;
 
     private class DigitZone
     {
@@ -186,7 +190,23 @@ public class SplitZoneGestureRecognizer : MonoBehaviour
 
     void Update()
     {
-        if (!canDraw) return;
+        bool tutorialActive = GameManager.Instance != null && GameManager.Instance.tutorialActive;
+        
+        // Detectar cuando el tutorial termina
+        if (wasTutorialActive && !tutorialActive)
+        {
+            timeSinceTutorialEnded = 0f;
+        }
+        wasTutorialActive = tutorialActive;
+        
+        // Si el tutorial acaba de terminar, esperar el cooldown
+        if (timeSinceTutorialEnded < TUTORIAL_COOLDOWN)
+        {
+            timeSinceTutorialEnded += Time.deltaTime;
+            return;
+        }
+        
+        if (!canDraw || tutorialActive) return;
 
         HandleInput();
         
@@ -327,58 +347,88 @@ public class SplitZoneGestureRecognizer : MonoBehaviour
     {
         canDraw = false;
         
-        StringBuilder result = new StringBuilder();
-        
-        if (leftZone.strokes.Count > 0)
+        // Validar que hay suficientes puntos
+        if ((leftZone.strokes.Count == 0 || leftZone.GetAllPoints().Count < 10) &&
+            (rightZone.strokes.Count == 0 || rightZone.GetAllPoints().Count < 10))
         {
-            List<Point> leftPoints = leftZone.GetAllPoints();
-            Gesture leftGesture = new Gesture(leftPoints.ToArray());
-            Result leftResult = PointCloudRecognizer.Classify(leftGesture, trainingSet.ToArray());
-            
-            result.Append(leftResult.GestureClass);
+            ResetSystem();
+            return;
         }
         
-        if (rightZone.strokes.Count > 0)
+        try
         {
-            List<Point> rightPoints = rightZone.GetAllPoints();
-            Gesture rightGesture = new Gesture(rightPoints.ToArray());
-            Result rightResult = PointCloudRecognizer.Classify(rightGesture, trainingSet.ToArray());
+            StringBuilder result = new StringBuilder();
             
-            result.Append(rightResult.GestureClass);
-        }
-        
-        string finalNumber = result.ToString();
-        
-        if (finalNumber.Length > 0)
-        {
-            Debug.Log($"NÚMERO RECONOCIDO: {finalNumber}");
-            
-            int recognizedNumber;
-            if (int.TryParse(finalNumber, out recognizedNumber))
+            if (leftZone.strokes.Count > 0 && leftZone.GetAllPoints().Count >= 10)
             {
-                if (GameManager.Instance != null && GameManager.Instance.currentEnemy != null)
+                List<Point> leftPoints = leftZone.GetAllPoints();
+                Point[] leftArray = leftPoints.ToArray();
+                
+                if (leftArray != null && leftArray.Length >= 10)
                 {
-                    if (recognizedNumber == GameManager.Instance.currentEnemy.correctAnswer)
+                    Gesture leftGesture = new Gesture(leftArray);
+                    if (leftGesture.Points != null && leftGesture.Points.Length >= 10)
                     {
-                        Debug.Log("¡Número correcto! El enemigo recibe daño.");
-                        GameManager.Instance.currentEnemy.TakeDamage(false);
-                        
-                        StartCoroutine(CleanupAfterCorrectAnswer());
-                        return;
-                    }
-                    else
-                    {
-                        Debug.Log($"Número incorrecto. Dibujaste {recognizedNumber}, se esperaba {GameManager.Instance.currentEnemy.correctAnswer}");
+                        Result leftResult = PointCloudRecognizer.Classify(leftGesture, trainingSet.ToArray());
+                        result.Append(leftResult.GestureClass);
                     }
                 }
             }
-            else
+            
+            if (rightZone.strokes.Count > 0 && rightZone.GetAllPoints().Count >= 10)
             {
-                Debug.LogWarning($"El número reconocido ({finalNumber}) no es válido");
+                List<Point> rightPoints = rightZone.GetAllPoints();
+                Point[] rightArray = rightPoints.ToArray();
+                
+                if (rightArray != null && rightArray.Length >= 10)
+                {
+                    Gesture rightGesture = new Gesture(rightArray);
+                    if (rightGesture.Points != null && rightGesture.Points.Length >= 10)
+                    {
+                        Result rightResult = PointCloudRecognizer.Classify(rightGesture, trainingSet.ToArray());
+                        result.Append(rightResult.GestureClass);
+                    }
+                }
             }
+            
+            string finalNumber = result.ToString();
+            
+            if (finalNumber.Length > 0)
+            {
+                Debug.Log($"NÚMERO RECONOCIDO: {finalNumber}");
+                
+                int recognizedNumber;
+                if (int.TryParse(finalNumber, out recognizedNumber))
+                {
+                    if (GameManager.Instance != null && GameManager.Instance.currentEnemy != null)
+                    {
+                        if (recognizedNumber == GameManager.Instance.currentEnemy.correctAnswer)
+                        {
+                            Debug.Log("¡Número correcto! El enemigo recibe daño.");
+                            GameManager.Instance.currentEnemy.TakeDamage(false);
+                            
+                            StartCoroutine(CleanupAfterCorrectAnswer());
+                            return;
+                        }
+                        else
+                        {
+                            Debug.Log($"Número incorrecto. Dibujaste {recognizedNumber}, se esperaba {GameManager.Instance.currentEnemy.correctAnswer}");
+                        }
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning($"El número reconocido ({finalNumber}) no es válido");
+                }
+            }
+            
+            StartCoroutine(CleanupAfterDelay());
         }
-        
-        StartCoroutine(CleanupAfterDelay());
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"Error al reconocer gesto en split zone: {ex.Message}");
+            ResetSystem();
+        }
     }
 
     IEnumerator CleanupAfterCorrectAnswer()
