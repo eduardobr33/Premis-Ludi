@@ -803,7 +803,6 @@ MonoBehaviour:
   attackSpeed: 1
   health: 1
   nextOperationDelay: 0.5
-  growDuration: 4
   textOp: {fileID: 8268319613425919720}
   spriteRenderer: {fileID: 7175731774493723231, guid: 8ee3148f9da611b46aa0f57583cb5843, type: 3}
   startPos: {x: 0, y: 0, z: 0}
@@ -811,6 +810,8 @@ MonoBehaviour:
   enemyType: 2
   attackAnimaDuration: 6
   idleAnimDuration: 2
+  damageAnimDuration: 1
+  flashDamageAnim: 0.16
 --- !u!1 &5699942914075756330
 GameObject:
   m_ObjectHideFlags: 0

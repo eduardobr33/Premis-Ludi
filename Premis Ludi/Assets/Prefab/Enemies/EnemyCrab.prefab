@@ -58,6 +58,8 @@ MonoBehaviour:
   enemyType: 1
   attackAnimaDuration: 2.5
   idleAnimDuration: 1
+  damageAnimDuration: 1
+  flashDamageAnim: 0.16
 --- !u!1 &391018172109612892
 GameObject:
   m_ObjectHideFlags: 0
