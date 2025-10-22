@@ -2580,3 +2580,5 @@ MonoBehaviour:
   enemyType: 1
   attackAnimaDuration: 0.66
   idleAnimDuration: 1
+  damageAnimDuration: 1
+  flashDamageAnim: 0.16

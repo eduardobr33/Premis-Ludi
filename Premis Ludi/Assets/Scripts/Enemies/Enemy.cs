@@ -15,7 +15,6 @@ public class Enemy : MonoBehaviour
     public float attackSpeed = 1f;
     public int health = 1;
     public float nextOperationDelay = 0.5f;
-    public float growDuration = 16f;
 
     [Header("Referecnes")]
     public TextMeshPro textOp;
@@ -37,10 +36,13 @@ public class Enemy : MonoBehaviour
     private Animator animator;
     private float startTime;
     private bool facingRight = true;
+    private float growDuration = 12f;
 
     [Header("Animation")]
-    public float attackAnimaDuration = 2;
-    public float idleAnimDuration = 1;
+    public float attackAnimaDuration = 2f;
+    public float idleAnimDuration = 1f;
+    public float damageAnimDuration = 1f;
+    public float flashDamageAnim = 0.1f;
 
     private void Start()
     {
@@ -48,6 +50,8 @@ public class Enemy : MonoBehaviour
         startTime = Time.time;
 
         AdjustScale();
+
+        transform.localScale = minScale;
     }
 
     private void Update()
@@ -95,7 +99,6 @@ public class Enemy : MonoBehaviour
         Debug.Log("Operation: " + textOp.text);
         correctAnswer = answer;
         Debug.Log("Answer: " + correctAnswer);
-        if (newEnemy) transform.localScale = minScale;
     }
 
     private void GenerateNewOperation()
@@ -133,17 +136,21 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator FlashDamage()
     {
-        if (spriteRenderer == null) yield break;
+        animator.SetTrigger("Damage");
 
-        Color originalColor = spriteRenderer.color;
-        spriteRenderer.color = Color.red;
+        SpriteRenderer[] renderers = GetComponentsInChildren<SpriteRenderer>();
+        if (renderers.Length == 0) yield break;
 
-        transform.localScale = new Vector3(transform.localScale.x - 0.3f, transform.localScale.y - 0.3f, transform.localScale.z - 0.3f);
-        isAproaching = true;
+        Color[] originalColors = new Color[renderers.Length];
+        for (int i = 0; i < renderers.Length; i++) originalColors[i] = renderers[i].color;
 
-        yield return new WaitForSeconds(0.2f);
+        foreach (var sr in renderers) sr.color = Color.red;
 
-        spriteRenderer.color = originalColor;
+        yield return new WaitForSeconds(flashDamageAnim);
+
+        for (int i = 0; i < renderers.Length; i++) renderers[i].color = originalColors[i];
+
+        yield return new WaitForSeconds(damageAnimDuration - flashDamageAnim);
     }
 
     private void Kill(bool instaKill)

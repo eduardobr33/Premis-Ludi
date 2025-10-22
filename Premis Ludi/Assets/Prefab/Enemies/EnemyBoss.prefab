@@ -809,8 +809,8 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   correctAnswer: 0
   enemyType: 2
-  attackAnimaDuration: 2
-  idleAnimDuration: 1
+  attackAnimaDuration: 6
+  idleAnimDuration: 2
 --- !u!1 &5699942914075756330
 GameObject:
   m_ObjectHideFlags: 0

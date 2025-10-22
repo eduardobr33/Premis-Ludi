@@ -19,7 +19,7 @@ MonoBehaviour:
   - sub
   numberRange: {x: 1, y: 5}
   maxSteps: 1
-  enemyHealth: 1
+  enemyHealth: 2
   levelTime: 30
   pointsMultiplier: 1
   hasBoss: 1
