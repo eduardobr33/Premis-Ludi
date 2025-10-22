@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour
     public int correctAnswer; // For the abilities
     private bool isActive = true;
     private bool isAproaching = true;
+    private bool isAttacking = false;
+    private bool isTakingDamage = false;
     private Vector3 minScale = new Vector3(0.3f, 0.3f, 0.3f);
     private Coroutine damageCoroutine;
 
@@ -113,13 +115,25 @@ public class Enemy : MonoBehaviour
     {
         while (isActive)
         {
-            animator.ResetTrigger("Idle");
-            animator.SetTrigger("Attack");
-            yield return new WaitForSeconds(attackAnimaDuration);
+            if (!isAttacking && !isTakingDamage)
+            {
+                isAttacking = true;
+                animator.ResetTrigger("Idle");
+                animator.ResetTrigger("Attack");
+                animator.SetTrigger("Attack");
 
-            animator.ResetTrigger("Attack");
-            animator.SetTrigger("Idle");
-            yield return new WaitForSeconds(idleAnimDuration);
+                yield return new WaitForSeconds(attackAnimaDuration);
+
+                animator.ResetTrigger("Attack");
+                animator.SetTrigger("Idle");
+
+                yield return new WaitForSeconds(idleAnimDuration * 4);
+                isAttacking = false;
+            }
+            else
+            {
+                yield return null; // Security check
+            }
         }
     }
 
