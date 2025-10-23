@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class Player : MonoBehaviour
 
     [Header("UI")]
     public GameObject multiplicationTablesPanel;
+    public Image hurtFlash;
+    
+    [Header("Hurt Effect")]
+    [SerializeField] private float flashDuration = 0.3f;
     
     [Header("Powerup Buttons")]
     public Button skipButton;
@@ -68,10 +73,30 @@ public class Player : MonoBehaviour
         GameManager.Instance.multiplier = 1;
 
         Debug.Log("Player health: " + currentHealth);
+        
+        // Efectos de daño
+        PlayHurtEffects();
 
         if (currentHealth <= 0)
         {
             GameManager.Instance.LoseGame();
+        }
+    }
+
+    private void PlayHurtEffects()
+    {
+        // Flash de daño
+        if (hurtFlash != null)
+        {
+            Color startColor = new Color(1, 1, 1, 0);
+            Color endColor = new Color(1, 1, 1, 1);
+            
+            hurtFlash.color = startColor;
+            hurtFlash.DOColor(endColor, flashDuration * 0.3f)
+                .OnComplete(() => 
+                {
+                    hurtFlash.DOColor(startColor, flashDuration * 0.7f);
+                });
         }
     }
 

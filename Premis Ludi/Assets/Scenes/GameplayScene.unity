@@ -387,7 +387,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0000
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 417e3d89350b9764399d5b704343cafa, type: 2}
   m_sharedMaterial: {fileID: 3412153028727419309, guid: 417e3d89350b9764399d5b704343cafa, type: 2}
@@ -1310,6 +1310,8 @@ MonoBehaviour:
   slowMotionUsed: 0
   slowMotionTime: 5
   multiplicationTablesPanel: {fileID: 1134178363}
+  hurtFlash: {fileID: 896161682}
+  flashDuration: 0.3
   skipButton: {fileID: 846167159}
   doublePointsButton: {fileID: 1633441996}
   slowMotionButton: {fileID: 3943877257508042645}
@@ -1791,6 +1793,81 @@ MonoBehaviour:
   moveDuration: 10
   floatAmount: 20
   floatSpeed: 2
+--- !u!1 &896161680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 896161681}
+  - component: {fileID: 896161683}
+  - component: {fileID: 896161682}
+  m_Layer: 5
+  m_Name: HurtFlashImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &896161681
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896161680}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1550698549}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &896161682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896161680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 4677954602571143976, guid: a82019811a523f647b461630d9079dde, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &896161683
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896161680}
+  m_CullTransparentMesh: 1
 --- !u!1 &907419100
 GameObject:
   m_ObjectHideFlags: 0
@@ -2039,9 +2116,9 @@ MonoBehaviour:
   drawingPanel: {fileID: 1928471135}
   gestureOnScreenPrefab: {fileID: 400000, guid: a86a052e52d27dd439d927d810ed6a53, type: 3}
   recognitionDelay: 2
-  showZoneDivider: 1
-  leftZoneColor: {r: 1, g: 0, b: 0, a: 1}
-  rightZoneColor: {r: 0, g: 0, b: 1, a: 1}
+  showZoneDivider: 0
+  leftZoneColor: {r: 1, g: 1, b: 1, a: 1}
+  rightZoneColor: {r: 1, g: 1, b: 1, a: 1}
   dividerColor: {r: 1, g: 1, b: 1, a: 0.3}
   lineWidth: 0.1
 --- !u!4 &1159888236
@@ -2684,6 +2761,7 @@ RectTransform:
   - {fileID: 1633441995}
   - {fileID: 3224796251469137010}
   - {fileID: 3943877257508042644}
+  - {fileID: 896161681}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3613,7 +3691,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6532489832133991126, guid: 08460defe02da5242b0b1e4aee491395, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6532489832133991126, guid: 08460defe02da5242b0b1e4aee491395, type: 3}
       propertyPath: m_LocalPosition.z
