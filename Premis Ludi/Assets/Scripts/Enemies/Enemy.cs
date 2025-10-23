@@ -46,45 +46,83 @@ public class Enemy : MonoBehaviour
     public float damageAnimDuration = 1f;
     public float flashDamageAnim = 0.1f;
 
+    private enum State { Approaching, Idle, Attacking, Damaged }
+    private State currentState = State.Approaching;
+    private float attackTimer;
+    private float attackInterval = 4f;
+
+    private Coroutine stateCoroutine;
+
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
         startTime = Time.time;
 
         AdjustScale();
-
         transform.localScale = minScale;
+
+        currentState = State.Approaching;
+        animator.SetTrigger("Walking");
     }
 
     private void Update()
     {
-        if (!isActive) return;
+        if (!isActive || isPaused) return;
 
-        if (isAproaching && !isPaused)
+        switch (currentState)
         {
-            float t = Mathf.Clamp01((Time.time - startTime) / growDuration);
-            float smoothT = 1f - Mathf.Exp(-1f * t);
-            transform.localScale = Vector3.Lerp(minScale, maxScale, Mathf.Clamp01(smoothT));
-
-            if (enemyType == EnemyType.Crab)
-            {
-                //float elapsed = Time.time - startTime;
-                //float horizontalOffset = Mathf.Sin(elapsed * 2f * Mathf.PI / 1f) * 0.5f;
-
-                //transform.position = new Vector3(startPos.x + horizontalOffset, transform.position.y, transform.position.z);
-
-                // if (horizontalOffset > 0 && !facingRight) Flip(true);
-                // else if (horizontalOffset < 0 && facingRight) Flip(false);
-            }
-
-            //animator.SetTrigger("Walking");
-
-            if (t >= 1f && damageCoroutine == null)
-            {
-                isAproaching = false;
-                damageCoroutine = StartCoroutine(DamageOverTime());
-            }
+            case State.Approaching:
+                HandleApproaching();
+                break;
+            case State.Idle:
+                HandleIdle();
+                break;
         }
+    }
+
+    private void HandleApproaching()
+    {
+        float t = Mathf.Clamp01((Time.time - startTime) / growDuration);
+        float smoothT = 1f - Mathf.Exp(-t);
+        transform.localScale = Vector3.Lerp(minScale, maxScale, smoothT);
+
+        if(t >= 1f)
+        {
+            currentState = State.Idle;
+            animator.ResetTrigger("Walking");
+            animator.SetTrigger("Idle");
+            attackTimer = attackInterval;
+        }
+    }
+
+    private void HandleIdle()
+    {
+        attackTimer -= Time.deltaTime;
+        if (attackTimer <= 0f)
+        {
+            Attack();
+        }
+    }
+
+    private void Attack()
+    {
+        if (currentState == State.Damaged) return;
+
+        currentState = State.Attacking;
+        animator.ResetTrigger("Idle");
+        animator.SetTrigger("Attack");
+
+        if (stateCoroutine != null) StopCoroutine(stateCoroutine);
+        stateCoroutine = StartCoroutine(AttackRoutine());
+    }
+    
+    private IEnumerator AttackRoutine()
+    {
+        yield return new WaitForSeconds(attackAnimaDuration);
+        animator.ResetTrigger("Attack");
+        animator.SetTrigger("Idle");
+        attackTimer = attackInterval;
+        currentState = State.Idle;
     }
     
     private void Flip(bool toRight)
@@ -139,32 +177,38 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(bool instaKill)
     {
+        if (!isActive) return;
+
+        if (stateCoroutine != null) StopCoroutine(stateCoroutine);
         StartCoroutine(FlashDamage());
 
-        if (instaKill) health -= 99;
-        else health -= 1;
+        health -= instaKill ? 99 : 1;
 
         if (health > 0) Invoke(nameof(GenerateNewOperation), nextOperationDelay);
         else Kill(instaKill);
+
+        attackTimer = attackInterval;
+        currentState = State.Idle;
     }
 
     private IEnumerator FlashDamage()
     {
+        currentState = State.Damaged;
         animator.SetTrigger("Damage");
 
         SpriteRenderer[] renderers = GetComponentsInChildren<SpriteRenderer>();
-        if (renderers.Length == 0) yield break;
-
         Color[] originalColors = new Color[renderers.Length];
         for (int i = 0; i < renderers.Length; i++) originalColors[i] = renderers[i].color;
-
         foreach (var sr in renderers) sr.color = Color.red;
 
         yield return new WaitForSeconds(flashDamageAnim);
-
         for (int i = 0; i < renderers.Length; i++) renderers[i].color = originalColors[i];
 
         yield return new WaitForSeconds(damageAnimDuration - flashDamageAnim);
+
+        animator.ResetTrigger("Damage");
+        animator.SetTrigger("Idle");
+        currentState = State.Idle;
     }
 
     private void Kill(bool instaKill)
