@@ -424,10 +424,8 @@ public class GameManager : MonoBehaviour
 
     private int CalculateStars()
     {
-        float healthPercentage = (float)playerHealth / 5f;
-
-        if (healthPercentage >= 0.8f) return 3;
-        if (healthPercentage >= 0.4f) return 2;
+        if (score >= 250) return 3;
+        if (score >= 100) return 2;
         return 1;
     }
 

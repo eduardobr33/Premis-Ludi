@@ -47,45 +47,57 @@ public class SaveSystem : MonoBehaviour
 
     public void LoadGame()
     {
-        if (PlayerPrefs.HasKey("GameSaveData"))
+        saveData = new GameSaveData();
+        
+        // Cargar nivel 0 siempre desbloqueado
+        saveData.levels[0].unlocked = true;
+        
+        // Cargar datos individuales de cada nivel
+        for (int i = 1; i < 20; i++)
         {
-            try
-            {
-                string json = PlayerPrefs.GetString("GameSaveData");
-                saveData = JsonUtility.FromJson<GameSaveData>(json);
-                
-                if (saveData == null)
-                {
-                    Debug.LogWarning("saveData es null después de deserializar, creando nueva instancia");
-                    saveData = new GameSaveData();
-                    saveData.levels[0].unlocked = true;
-                }
-                
-                Debug.Log("Partida cargada desde PlayerPrefs");
-            }
-            catch (Exception e)
-            {
-                Debug.LogError("Error al cargar partida: " + e.Message);
-                saveData = new GameSaveData();
-                saveData.levels[0].unlocked = true;
-            }
+            string unlockedKey = $"Level_{i}_Unlocked";
+            string playedKey = $"Level_{i}_Played";
+            string starsKey = $"Level_{i}_Stars";
+            
+            saveData.levels[i].unlocked = PlayerPrefs.GetInt(unlockedKey, 0) == 1;
+            saveData.levels[i].played = PlayerPrefs.GetInt(playedKey, 0) == 1;
+            saveData.levels[i].stars = PlayerPrefs.GetInt(starsKey, 0);
         }
-        else
+        
+        // Cargar power-ups desbloqueados
+        saveData.unlockedPowerups.Clear();
+        int powerupCount = PlayerPrefs.GetInt("PowerupCount", 0);
+        for (int i = 0; i < powerupCount; i++)
         {
-            Debug.Log("No existe guardado, creando nuevo");
-            saveData = new GameSaveData();
-            saveData.levels[0].unlocked = true;
-            SaveGame();
+            int powerupId = PlayerPrefs.GetInt($"Powerup_{i}", -1);
+            if (powerupId >= 0)
+                saveData.unlockedPowerups.Add(powerupId);
         }
+        
+        Debug.Log("Partida cargada desde PlayerPrefs");
     }
 
     public void SaveGame()
     {
         try
         {
-            string json = JsonUtility.ToJson(saveData, true);
-            PlayerPrefs.SetString("GameSaveData", json);
+            // Guardar niveles individuales
+            for (int i = 1; i < 20; i++)
+            {
+                PlayerPrefs.SetInt($"Level_{i}_Unlocked", saveData.levels[i].unlocked ? 1 : 0);
+                PlayerPrefs.SetInt($"Level_{i}_Played", saveData.levels[i].played ? 1 : 0);
+                PlayerPrefs.SetInt($"Level_{i}_Stars", saveData.levels[i].stars);
+            }
+            
+            // Guardar power-ups
+            PlayerPrefs.SetInt("PowerupCount", saveData.unlockedPowerups.Count);
+            for (int i = 0; i < saveData.unlockedPowerups.Count; i++)
+            {
+                PlayerPrefs.SetInt($"Powerup_{i}", saveData.unlockedPowerups[i]);
+            }
+            
             PlayerPrefs.Save();
+            Debug.Log("Partida guardada en PlayerPrefs");
         }
         catch (Exception e)
         {
