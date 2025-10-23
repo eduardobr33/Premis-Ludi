@@ -467,6 +467,42 @@ public class SplitZoneGestureRecognizer : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Limpia el lienzo de dibujo y reinicia todos los timers.
+    /// Ideal para llamar desde un botón cuando el usuario se equivoca.
+    /// </summary>
+    public void ClearCanvasButton()
+    {
+        // Cancelar corrutinas pendientes
+        if (recognitionTimer != null)
+        {
+            StopCoroutine(recognitionTimer);
+            recognitionTimer = null;
+        }
+        
+        // Limpiar zonas
+        leftZone.Clear();
+        rightZone.Clear();
+        
+        // Limpiar línea actual
+        if (currentLine != null)
+            Destroy(currentLine.gameObject);
+        currentLine = null;
+        
+        // Reiniciar puntos y estado de dibujo
+        currentStrokePoints.Clear();
+        currentZone = null;
+        isDrawing = false;
+        currentVertexCount = 0;
+        canDraw = true;
+        
+        // Reiniciar timers
+        timeSinceLastDraw = 0f;
+        timeSinceTutorialEnded = TUTORIAL_COOLDOWN; // Permite dibujo inmediato después de limpiar
+        
+        Debug.Log("Lienzo limpiado. Listo para dibujar nuevamente.");
+    }
+
     void OnDestroy()
     {
         if (dividerLine != null)

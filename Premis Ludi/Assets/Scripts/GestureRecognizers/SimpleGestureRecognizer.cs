@@ -296,6 +296,42 @@ public class SimpleGestureRecognizer : MonoBehaviour
         timeSinceLastDraw = 0f;
     }
 
+    /// <summary>
+    /// Limpia el lienzo de dibujo y reinicia todos los timers.
+    /// Ideal para llamar desde un botón cuando el usuario se equivoca.
+    /// </summary>
+    public void ClearCanvasButton()
+    {
+        // Cancelar corrutinas pendientes
+        if (recognitionCoroutine != null)
+        {
+            StopCoroutine(recognitionCoroutine);
+            recognitionCoroutine = null;
+        }
+        
+        // Limpiar todas las líneas dibujadas
+        foreach (LineRenderer line in gestureLines)
+        {
+            if (line != null)
+                Destroy(line.gameObject);
+        }
+        gestureLines.Clear();
+        
+        // Reiniciar estado de dibujo
+        points.Clear();
+        strokeId = -1;
+        isDrawing = false;
+        currentLineRenderer = null;
+        vertexCount = 0;
+        canDraw = true;
+        
+        // Reiniciar timers
+        timeSinceLastDraw = 0f;
+        timeSinceTutorialEnded = TUTORIAL_COOLDOWN; // Permite dibujo inmediato después de limpiar
+        
+        Debug.Log("Lienzo limpiado. Listo para dibujar nuevamente.");
+    }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;

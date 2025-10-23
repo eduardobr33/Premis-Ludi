@@ -424,8 +424,8 @@ public class GameManager : MonoBehaviour
 
     private int CalculateStars()
     {
-        if (score >= 250) return 3;
-        if (score >= 100) return 2;
+        if (score >= 150) return 3;
+        if (score >= 80) return 2;
         return 1;
     }
 
