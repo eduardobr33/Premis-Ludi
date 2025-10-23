@@ -55,11 +55,12 @@ MonoBehaviour:
   spriteRenderer: {fileID: 7175731774493723231, guid: 8ee3148f9da611b46aa0f57583cb5843, type: 3}
   startPos: {x: 0, y: 0, z: 0}
   correctAnswer: 0
-  enemyType: 1
+  enemyType: 0
   attackAnimaDuration: 2.5
   idleAnimDuration: 1
   damageAnimDuration: 1
   flashDamageAnim: 0.16
+  maxHealth: 0
 --- !u!1 &391018172109612892
 GameObject:
   m_ObjectHideFlags: 0

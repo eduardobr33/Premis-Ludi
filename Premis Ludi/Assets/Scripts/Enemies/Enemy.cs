@@ -57,9 +57,9 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
-
         animator = GetComponentInChildren<Animator>();
         startTime = Time.time;
+        startPos = transform.localPosition;
 
         AdjustScale();
         transform.localScale = minScale;
@@ -220,9 +220,40 @@ public class Enemy : MonoBehaviour
     private void Kill(bool instaKill)
     {
         isActive = false;
-        GameManager.Instance.EnemyDefeated(instaKill); // --> Esto se tendrá q cambiar según el lvl :p
+        GameManager.Instance.EnemyDefeated(instaKill);
 
         //Here goes the death animation
+        StopAllCoroutines();
+        StartCoroutine(FadeAndDestroy());
+    }
+
+    private IEnumerator FadeAndDestroy()
+    {
+        SpriteRenderer[] renderers = GetComponentsInChildren<SpriteRenderer>();
+
+        float fadeDuration = 0.16f;
+        float elapsed = 0f;
+
+        // Fade
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, elapsed / fadeDuration);
+
+            foreach (var sr in renderers)
+            {
+                if (sr != null)
+                {
+                    Color c = sr.color;
+                    c.a = alpha;
+                    sr.color = c;
+                }
+            }
+
+            yield return null;
+        }
+
+        // Destroy enemy
         Destroy(gameObject);
     }
 
@@ -247,8 +278,8 @@ public class Enemy : MonoBehaviour
         float worldWidth = worldHeight * Camera.main.aspect;
 
         // Percentage of screen
-        float maxRelativeHeight = 0.2f;     // 10% high
-        float maxRelativeWidth = 0.1f;     // 8% width
+        float maxRelativeHeight = 0.2f;                         // 40% high
+        float maxRelativeWidth = IsEnemyCrab() ? 0.1f : 0.2f;   // 20% width || 10% if crab enemy
 
         float targetMaxHeight = worldHeight * maxRelativeHeight;
 
@@ -271,5 +302,11 @@ public class Enemy : MonoBehaviour
         minScale = Vector3.one * minScaleFactor;
 
         Debug.Log($"Enemy Scale: max={maxScale}, min={minScale}");
+    }
+
+    private bool IsEnemyCrab()
+    {
+        if (enemyType == EnemyType.Crab) return true;
+        else return false;
     }
 }
