@@ -50,11 +50,14 @@ public class Enemy : MonoBehaviour
     private State currentState = State.Approaching;
     private float attackTimer;
     private float attackInterval = 4f;
+    public int maxHealth;
 
     private Coroutine stateCoroutine;
 
     private void Start()
     {
+        health = maxHealth;
+
         animator = GetComponentInChildren<Animator>();
         startTime = Time.time;
 
@@ -185,6 +188,7 @@ public class Enemy : MonoBehaviour
         StartCoroutine(FlashDamage());
 
         health -= instaKill ? 99 : 1;
+        if (enemyType == EnemyType.Boss) UIManager.Instance.UpdateBossHealth(health, maxHealth);
 
         if (health > 0) Invoke(nameof(GenerateNewOperation), nextOperationDelay);
         else Kill(instaKill);

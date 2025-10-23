@@ -255,7 +255,7 @@ public class GameManager : MonoBehaviour
 
         if (currentLevelData != null)
         {
-            currentEnemy.health = currentLevelData.enemyHealth;
+            currentEnemy.maxHealth = currentLevelData.enemyHealth;
         }
 
         currentEnemy.Setup(operation, result, true);
@@ -288,14 +288,14 @@ public class GameManager : MonoBehaviour
             int result;
             (operation, result) = MathGenerator.GenerateOperation(currentLevelData);
 
-            currentEnemy.health = currentLevelData.enemyHealth * 3;
+            currentEnemy.maxHealth = currentLevelData.enemyHealth * 3;
             currentEnemy.Setup(operation, result, true);
 
             SetupGestureRecognizer(operation, result);
 
             if (UIManager.Instance != null)
             {
-                //UIManager.Instance.BossUI();
+                UIManager.Instance.ShowBossHealthBar(true);
             }
         }
         else

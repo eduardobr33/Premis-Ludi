@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -17,9 +18,15 @@ public class UIManager : MonoBehaviour
     [Header("Panels")]
     public GameObject multiplicationTablesPanel;
 
+    [Header("Boss Health")]
+    public GameObject bossHealthBar;
+    public Image bossHealthFill;
+
     private void Awake()
     {
         Instance = this;
+
+        bossHealthBar.SetActive(false);
     }
 
     public void UpdateTimer(float time)
@@ -83,5 +90,18 @@ public class UIManager : MonoBehaviour
         }
 
         scoreText.rectTransform.localScale = originalScale;
+    }
+
+    public void ShowBossHealthBar(bool show)
+    {
+        if (bossHealthBar != null) bossHealthBar.SetActive(show);
+    }
+
+    public void UpdateBossHealth(float current, float max)
+    {
+        if (bossHealthFill == null) return;
+
+        float fillAmount = Mathf.Clamp01(current / max);
+        bossHealthFill.fillAmount = fillAmount;
     }
 }
