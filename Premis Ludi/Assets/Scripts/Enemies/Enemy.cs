@@ -85,6 +85,8 @@ public class Enemy : MonoBehaviour
         float t = Mathf.Clamp01((Time.time - startTime) / growDuration);
         float smoothT = 1f - Mathf.Exp(-t);
         transform.localScale = Vector3.Lerp(minScale, maxScale, smoothT);
+        Vector3 targetPos = new Vector3(startPos.x, startPos.y - 2f, startPos.z);
+        transform.localPosition = Vector3.Lerp(startPos, targetPos, smoothT);
 
         if(t >= 1f)
         {
