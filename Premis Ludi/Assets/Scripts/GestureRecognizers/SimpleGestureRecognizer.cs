@@ -46,6 +46,7 @@ public class SimpleGestureRecognizer : MonoBehaviour
             trainingSet.Add(GestureIO.ReadGestureFromXML(numeroXml.text));
         }
         
+        #if !UNITY_WEBGL || UNITY_EDITOR
         if (System.IO.Directory.Exists(Application.persistentDataPath))
         {
             string[] filePaths = System.IO.Directory.GetFiles(Application.persistentDataPath, "*.xml");
@@ -54,6 +55,7 @@ public class SimpleGestureRecognizer : MonoBehaviour
                 trainingSet.Add(GestureIO.ReadGestureFromFile(filePath));
             }
         }
+        #endif
     }
 
     bool IsPositionInDrawingArea(Vector3 screenPos)

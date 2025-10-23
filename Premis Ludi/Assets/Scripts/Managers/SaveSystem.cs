@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,7 +30,6 @@ public class SaveSystem : MonoBehaviour
     public static SaveSystem Instance { get; private set; }
     
     private GameSaveData saveData;
-    private string saveFilePath;
 
     private void Awake()
     {
@@ -39,7 +37,7 @@ public class SaveSystem : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            Initialize();
+            LoadGame();
         }
         else
         {
@@ -47,22 +45,15 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
-    private void Initialize()
-    {
-        saveFilePath = Path.Combine(Application.persistentDataPath, "gamesave.json");
-        LoadGame();
-    }
-
     public void LoadGame()
     {
-        if (File.Exists(saveFilePath))
+        if (PlayerPrefs.HasKey("GameSaveData"))
         {
             try
             {
-                string json = File.ReadAllText(saveFilePath);
+                string json = PlayerPrefs.GetString("GameSaveData");
                 saveData = JsonUtility.FromJson<GameSaveData>(json);
                 
-                // Validar que saveData no sea null después de deserializar
                 if (saveData == null)
                 {
                     Debug.LogWarning("saveData es null después de deserializar, creando nueva instancia");
@@ -70,7 +61,7 @@ public class SaveSystem : MonoBehaviour
                     saveData.levels[0].unlocked = true;
                 }
                 
-                Debug.Log("Partida cargada desde: " + saveFilePath);
+                Debug.Log("Partida cargada desde PlayerPrefs");
             }
             catch (Exception e)
             {
@@ -81,7 +72,7 @@ public class SaveSystem : MonoBehaviour
         }
         else
         {
-            Debug.Log("No existe archivo de guardado, creando nuevo");
+            Debug.Log("No existe guardado, creando nuevo");
             saveData = new GameSaveData();
             saveData.levels[0].unlocked = true;
             SaveGame();
@@ -93,8 +84,8 @@ public class SaveSystem : MonoBehaviour
         try
         {
             string json = JsonUtility.ToJson(saveData, true);
-            File.WriteAllText(saveFilePath, json);
-            // Debug.Log("Partida guardada en: " + saveFilePath);
+            PlayerPrefs.SetString("GameSaveData", json);
+            PlayerPrefs.Save();
         }
         catch (Exception e)
         {
