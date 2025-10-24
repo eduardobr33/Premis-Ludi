@@ -473,4 +473,9 @@ public class GameManager : MonoBehaviour
     {
         timeScale = scale;
     }
+
+    public void ReturnToMap()
+    {
+        SceneManager.LoadScene("MapScene");
+    }
 }

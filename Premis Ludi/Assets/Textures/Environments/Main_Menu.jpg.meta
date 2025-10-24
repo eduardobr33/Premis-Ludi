@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 63c135a9b6d76f84390f5e470aa8d575
+guid: ef40ad6f93b4c8244b12cee9cd186a9d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4888122976536034414
-    second: Abilities 1_0
+      213: -2873893313121424162
+    second: Main_Menu_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,133 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Abilities_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 224
-        width: 200
-        height: 224
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 611516e1f6731064e8109efe1975d7fd
-      internalID: 90563590
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Abilities_1
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 224
-        width: 200
-        height: 224
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1460debee3e42fd489cab38c28bc1730
-      internalID: -2140239615
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Abilities_2
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 224
-        width: 200
-        height: 224
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 38f064de1e784694a95869ade1f43867
-      internalID: -1456938598
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Abilities_3
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 224
-        width: 200
-        height: 224
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 244a6c2c82b17164d98cd7cb2b69ba0d
-      internalID: 1167065433
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Abilities_4
+      name: Main_Menu_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 200
-        height: 224
+        width: 720
+        height: 1280
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 9fe20031bda9f3e4780511c8434b1de5
-      internalID: 1624021337
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Abilities_5
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 0
-        width: 200
-        height: 224
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e048d3abb50aebf4da33cf54ec88dac5
-      internalID: 1732659738
+      spriteID: edce60d1241ed18d0800000000000000
+      internalID: -2873893313121424162
       vertices: []
       indices: 
       edges: []
@@ -248,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 37af7578ddf271c468292f8062710e38
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -258,12 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Abilities_0: 90563590
-      Abilities_1: -2140239615
-      Abilities_2: -1456938598
-      Abilities_3: 1167065433
-      Abilities_4: 1624021337
-      Abilities_5: 1732659738
+      Main_Menu_0: -2873893313121424162
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
