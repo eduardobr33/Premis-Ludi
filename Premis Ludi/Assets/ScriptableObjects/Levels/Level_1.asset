@@ -20,8 +20,9 @@ MonoBehaviour:
   numberRange: {x: 1, y: 5}
   maxSteps: 1
   enemyHealth: 1
-  levelTime: 30
+  levelTime: 60
   pointsMultiplier: 1
+  hasBoss: 0
   isTutorial: 0
   tutorialAnswers: 
   levelsToUnlock: 02000000

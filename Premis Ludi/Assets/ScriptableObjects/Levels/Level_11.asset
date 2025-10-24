@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6066f741f4d41e47aa626d37bc16fc7, type: 3}
   m_Name: Level_11
   m_EditorClassIdentifier: 
-  levelName: 'Level 2: Sumas y Restas II'
+  levelName: 'Level 11: Sumas y Restas III'
   levelNumber: 11
-  difficulty: 11
+  difficulty: 3
   allowedOperations:
   - add
   - sub
-  numberRange: {x: 1, y: 10}
-  maxSteps: 1
-  enemyHealth: 2
-  levelTime: 30
+  numberRange: {x: 1, y: 9}
+  maxSteps: 2
+  enemyHealth: 3
+  levelTime: 60
   pointsMultiplier: 1
-  hasBoss: 0
+  hasBoss: 1
   isTutorial: 0
   tutorialAnswers: 
   levelsToUnlock: 0c00000012000000

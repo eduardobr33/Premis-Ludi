@@ -12,16 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6066f741f4d41e47aa626d37bc16fc7, type: 3}
   m_Name: Level_5
   m_EditorClassIdentifier: 
-  levelName: 'Level 2: Sumas y Restas I'
+  levelName: 'Level 5: Restas I'
   levelNumber: 5
-  difficulty: 5
+  difficulty: 1
   allowedOperations:
-  - add
   - sub
   numberRange: {x: 1, y: 5}
   maxSteps: 1
   enemyHealth: 2
-  levelTime: 30
+  levelTime: 60
   pointsMultiplier: 1
   hasBoss: 0
   isTutorial: 0

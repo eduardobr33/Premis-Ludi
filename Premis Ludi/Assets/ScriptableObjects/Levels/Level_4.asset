@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6066f741f4d41e47aa626d37bc16fc7, type: 3}
   m_Name: Level_4
   m_EditorClassIdentifier: 
-  levelName: 'Level 2: Restas II'
+  levelName: 'Level 4: Sumas IV'
   levelNumber: 4
   difficulty: 4
   allowedOperations:
-  - sub
-  numberRange: {x: 1, y: 10}
-  maxSteps: 1
+  - add
+  numberRange: {x: 1, y: 9}
+  maxSteps: 3
   enemyHealth: 1
-  levelTime: 30
+  levelTime: 60
   pointsMultiplier: 1
-  hasBoss: 0
+  hasBoss: 1
   isTutorial: 0
   tutorialAnswers: 
   levelsToUnlock: 05000000
