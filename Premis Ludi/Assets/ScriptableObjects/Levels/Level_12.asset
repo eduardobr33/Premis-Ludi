@@ -12,18 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6066f741f4d41e47aa626d37bc16fc7, type: 3}
   m_Name: Level_12
   m_EditorClassIdentifier: 
-  levelName: 'Level 12: Sumas y Restas IV'
+  levelName: 'Level 12: Multiplicaciones I'
   levelNumber: 12
   difficulty: 4
   allowedOperations:
-  - add
-  - sub
-  numberRange: {x: 1, y: 10}
-  maxSteps: 3
-  enemyHealth: 3
+  - mul
+  numberRange: {x: 2, y: 4}
+  maxSteps: 2
+  enemyHealth: 1
   levelTime: 60
   pointsMultiplier: 1
-  hasBoss: 1
+  hasBoss: 0
   isTutorial: 0
   tutorialAnswers: 
   levelsToUnlock: 0d000000

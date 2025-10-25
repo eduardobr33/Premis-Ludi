@@ -18,7 +18,7 @@ MonoBehaviour:
   allowedOperations:
   - add
   numberRange: {x: 1, y: 9}
-  maxSteps: 3
+  maxSteps: 2
   enemyHealth: 1
   levelTime: 60
   pointsMultiplier: 1
