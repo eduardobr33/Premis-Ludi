@@ -97,7 +97,7 @@ public class LevelSelection : MonoBehaviour
             Debug.LogWarning("LevelManager.Instance es null!");
         }
         
-        SceneManager.LoadScene("GameplayScene");
+        ChangeSceneManager.Instance.GoToGameplayScene();
     }
 
     public void PressSelection(string _LevelName)

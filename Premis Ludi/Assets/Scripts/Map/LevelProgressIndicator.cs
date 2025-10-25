@@ -23,7 +23,7 @@ public class LevelProgressIndicator : MonoBehaviour
         }
 
         objectTransform.localPosition = position0;
-        Invoke(nameof(PlayAnimation), 1f);
+        Invoke(nameof(PlayAnimation), 2f);
     }
 
     private void PlayAnimation()

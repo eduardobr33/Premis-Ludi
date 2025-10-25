@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                SpawnEnemy();
+                Invoke(nameof(SpawnEnemy), 1f);
             }
         }
         else
@@ -413,13 +413,13 @@ public class GameManager : MonoBehaviour
             {
                 PowerupUnlockScreen.Instance.ShowPowerupUnlock(currentLevelData.powerupReward, () =>
                 {
-                    SceneManager.LoadScene("WinScene");
+                    ChangeSceneManager.Instance.GoToWinScene();
                 });
                 return;
             }
         }
 
-        SceneManager.LoadScene("WinScene");
+        ChangeSceneManager.Instance.GoToWinScene();
     }
 
     private int CalculateStars()
@@ -466,7 +466,7 @@ public class GameManager : MonoBehaviour
 
     public void LoseGame()
     {
-        SceneManager.LoadScene("LoseScene");
+        ChangeSceneManager.Instance.GoToLoseScene();
     }
 
     public void SetTimeScale(float scale)
@@ -476,6 +476,6 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToMap()
     {
-        SceneManager.LoadScene("MapScene");
+        ChangeSceneManager.Instance.GoToMapScene();
     }
 }

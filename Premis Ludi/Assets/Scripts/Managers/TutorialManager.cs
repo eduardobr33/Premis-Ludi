@@ -77,6 +77,12 @@ public class TutorialManager : MonoBehaviour
     public void StartTutorial()
     {
         tutorialStep = 0;
+        // Delay 1s para que se dispersen las nubes de transición
+        Invoke(nameof(ShowWelcome), 1f);
+    }
+
+    private void ShowWelcome()
+    {
         ShowCharacterWithMessage(welcomeMessage);
     }
 
