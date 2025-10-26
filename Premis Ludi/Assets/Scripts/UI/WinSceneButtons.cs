@@ -19,6 +19,7 @@ public class WinSceneButtons : MonoBehaviour
 
     private void OnMapClicked()
     {
+        AudioManager.Instance?.PlayButtonClickSound();
         ChangeSceneManager.Instance.GoToMapScene();
     }
 

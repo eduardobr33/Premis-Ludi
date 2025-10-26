@@ -26,6 +26,8 @@ public class TutorialManager : MonoBehaviour
     [TextArea] public string firstEnemyMessage = "Dibuja el número que ves en el enemigo para eliminarlo.";
     [TextArea] public string congratsMessage = "¡Muy bien! Ayúdame a liberar los enemigos de la región.";
     
+    public float tutorialDuration = 15f;
+    
     private bool isShowingDialogue = false;
     private bool dialogueComplete = false;
     private Coroutine typewriterCoroutine;
@@ -33,6 +35,7 @@ public class TutorialManager : MonoBehaviour
     private GameObject currentNumberHelper;
     private string currentMessage = "";
     private System.Action currentOnComplete;
+    private float tutorialTimer = 0f;
 
     private void Awake()
     {
@@ -61,15 +64,25 @@ public class TutorialManager : MonoBehaviour
 
     private void Update()
     {
-        if (isShowingDialogue && (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)))
+        if (isShowingDialogue)
         {
-            if (!dialogueComplete)
+            tutorialTimer += Time.deltaTime;
+            if (tutorialTimer >= tutorialDuration)
             {
-                CompleteDialogue();
+                EndTutorial();
+                return;
             }
-            else
+
+            if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
             {
-                HideCharacter();
+                if (!dialogueComplete)
+                {
+                    CompleteDialogue();
+                }
+                else
+                {
+                    HideCharacter();
+                }
             }
         }
     }
@@ -77,7 +90,7 @@ public class TutorialManager : MonoBehaviour
     public void StartTutorial()
     {
         tutorialStep = 0;
-        // Delay 1s para que se dispersen las nubes de transición
+        tutorialTimer = 0f;
         Invoke(nameof(ShowWelcome), 1f);
     }
 
@@ -248,6 +261,7 @@ public class TutorialManager : MonoBehaviour
 
     private void EndTutorial()
     {
+        isShowingDialogue = false;
         HideCharacter();
         HideNumberHelper();
     }

@@ -23,6 +23,8 @@ public class LoseSceneButtons : MonoBehaviour
 
     private void OnRetryClicked()
     {
+        AudioManager.Instance?.PlayButtonClickSound();
+
         if (LevelManager.Instance?.currentLevelData != null)
             ChangeSceneManager.Instance.GoToGameplayScene();
         else
@@ -31,6 +33,7 @@ public class LoseSceneButtons : MonoBehaviour
 
     private void OnMapClicked()
     {
+        AudioManager.Instance?.PlayButtonClickSound();
         ChangeSceneManager.Instance.GoToMapScene();
     }
 

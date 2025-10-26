@@ -184,6 +184,8 @@ public class Enemy : MonoBehaviour
     {
         if (!isActive) return;
 
+        AudioManager.Instance?.PlayEnemyDamageSound();
+
         if (stateCoroutine != null) StopCoroutine(stateCoroutine);
         StartCoroutine(FlashDamage());
 

@@ -68,6 +68,8 @@ public class Player : MonoBehaviour
 
     public void TakeDamage()
     {
+        AudioManager.Instance?.PlayPlayerDamageSound();
+
         currentHealth--;
         GameManager.Instance.playerHealth = currentHealth;
         GameManager.Instance.multiplier = 1;
