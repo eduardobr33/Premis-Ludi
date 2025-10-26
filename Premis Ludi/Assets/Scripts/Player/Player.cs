@@ -73,6 +73,8 @@ public class Player : MonoBehaviour
         GameManager.Instance.multiplier = 1;
 
         Debug.Log("Player health: " + currentHealth);
+
+        UIManager.Instance.UpdatePlayerHealth(currentHealth, maxHealth);
         
         // Efectos de daño
         PlayHurtEffects();

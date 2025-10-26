@@ -22,6 +22,10 @@ public class UIManager : MonoBehaviour
     public GameObject bossHealthBar;
     public Image bossHealthFill;
 
+    [Header("Player Health")]
+    public GameObject playerHealthBar;
+    public Image playerHealthFill;
+
     private void Awake()
     {
         Instance = this;
@@ -103,5 +107,13 @@ public class UIManager : MonoBehaviour
 
         float fillAmount = Mathf.Clamp01(current / max);
         bossHealthFill.fillAmount = fillAmount;
+    }
+
+    public void UpdatePlayerHealth(float current, float max)
+    {
+        if (playerHealthFill == null) return;
+
+        float fillAmount = Mathf.Clamp01(current / max);
+        playerHealthFill.fillAmount = fillAmount;
     }
 }
