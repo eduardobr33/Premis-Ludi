@@ -413,19 +413,21 @@ public class GameManager : MonoBehaviour
             {
                 PowerupUnlockScreen.Instance.ShowPowerupUnlock(currentLevelData.powerupReward, () =>
                 {
+                    PlayerPrefs.SetInt("CurrentLevelScore", score);
                     ChangeSceneManager.Instance.GoToWinScene();
                 });
                 return;
             }
         }
 
+        PlayerPrefs.SetInt("CurrentLevelScore", score);
         ChangeSceneManager.Instance.GoToWinScene();
     }
 
     private int CalculateStars()
     {
-        if (score >= 150) return 3;
-        if (score >= 80) return 2;
+        if (score >= 60) return 3;
+        if (score >= 40) return 2;
         return 1;
     }
 

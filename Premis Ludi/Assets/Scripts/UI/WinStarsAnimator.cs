@@ -31,6 +31,10 @@ public class WinStarsAnimator : MonoBehaviour
 
     private int earnedStars = 0;
     private AudioSource[] audioSources;
+    
+    public bool star1Triggered { get; private set; } = false;
+    public bool star2Triggered { get; private set; } = false;
+    public bool star3Triggered { get; private set; } = false;
 
     private void Start()
     {
@@ -41,7 +45,6 @@ public class WinStarsAnimator : MonoBehaviour
         
         earnedStars = SaveSystem.Instance != null ? SaveSystem.Instance.GetLevelStars(levelNum) : 0;
         
-        // En debug mode, usar las estrellas configuradas
         if (debugMode)
         {
             earnedStars = debugStarsToTest;
@@ -50,11 +53,9 @@ public class WinStarsAnimator : MonoBehaviour
         
         Debug.Log($"[WinStarsAnimator] Estrellas ganadas: {earnedStars}");
         
-        // Crear AudioSources si no existen
         CreateAudioSourcesIfNeeded();
         
-        // Animar estrellas después de la transición de nubes (0.5s)
-        Invoke(nameof(PlayStarsAnimation), 0.5f);
+        // No animar automáticamente - esperar a que WinScoreAnimator dispare las estrellas
     }
 
     private void CreateAudioSourcesIfNeeded()
@@ -190,5 +191,24 @@ public class WinStarsAnimator : MonoBehaviour
         // Reproducir sonido con el AudioSource correspondiente
         audioSource.pitch = pitch;
         audioSource.PlayOneShot(starSound);
+    }
+
+    public void TriggerStar(int starIndex)
+    {
+        if (starIndex == 0 && !star1Triggered)
+        {
+            star1Triggered = true;
+            AnimateStar(0, 0f);
+        }
+        else if (starIndex == 1 && !star2Triggered)
+        {
+            star2Triggered = true;
+            AnimateStar(1, 0f);
+        }
+        else if (starIndex == 2 && !star3Triggered)
+        {
+            star3Triggered = true;
+            AnimateStar(2, 0f);
+        }
     }
 }
