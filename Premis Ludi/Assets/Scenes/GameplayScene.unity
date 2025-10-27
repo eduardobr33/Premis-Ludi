@@ -4609,6 +4609,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MultiplicationTablesPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 3133145327119627572, guid: 0ea610a6fcdeb1d4cb151a03e68766a0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5731804429330012043, guid: 0ea610a6fcdeb1d4cb151a03e68766a0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
