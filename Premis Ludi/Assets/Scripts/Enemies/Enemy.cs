@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour
     private float animationSpeed = 1f;
     private Animator animator;
     private float startTime;
+    private float elapsedTime = 0f;
     private bool facingRight = true;
     private float growDuration = 12f;
 
@@ -70,7 +71,14 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (!isActive || isPaused) return;
+        if (!isActive) return;
+
+        if (!isPaused)
+        {
+            elapsedTime += Time.deltaTime;
+        }
+
+        if (isPaused) return;
 
         switch (currentState)
         {
@@ -85,7 +93,7 @@ public class Enemy : MonoBehaviour
 
     private void HandleApproaching()
     {
-        float t = Mathf.Clamp01((Time.time - startTime) / growDuration);
+        float t = Mathf.Clamp01(elapsedTime / growDuration);
         float smoothT = 1f - Mathf.Exp(-t);
         transform.localScale = Vector3.Lerp(minScale, maxScale, smoothT);
         Vector3 targetPos = new Vector3(startPos.x, startPos.y - 2f, startPos.z);
