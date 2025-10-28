@@ -76,7 +76,7 @@ public class WinScoreAnimator : MonoBehaviour
     {
         if (scoreSlider != null)
         {
-            scoreSlider.maxValue = 100f;
+            scoreSlider.maxValue = 60f;
             scoreSlider.value = 0f;
         }
 
@@ -122,7 +122,7 @@ public class WinScoreAnimator : MonoBehaviour
 
             if (scoreSlider != null)
             {
-                float sliderValue = Mathf.Min(finalScore * progress, 100f);
+                float sliderValue = Mathf.Min(finalScore * progress, 60f);
                 scoreSlider.value = sliderValue;
             }
 
@@ -143,7 +143,7 @@ public class WinScoreAnimator : MonoBehaviour
         }
 
         if (scoreSlider != null)
-            scoreSlider.value = Mathf.Min(finalScore, 100f);
+            scoreSlider.value = Mathf.Min(finalScore, 60f);
 
         if (scoreAudioSource != null)
             scoreAudioSource.Stop();
@@ -154,13 +154,15 @@ public class WinScoreAnimator : MonoBehaviour
         if (starsAnimator == null)
             return;
 
-        if (earnedStars >= 1 && progress >= 0.33f && !starsAnimator.star1Triggered)
+        float sliderProgress = Mathf.Min(finalScore * progress, 60f) / 60f;
+
+        if (earnedStars >= 1 && sliderProgress >= 0.33f && !starsAnimator.star1Triggered)
             starsAnimator.TriggerStar(0);
 
-        if (earnedStars >= 2 && progress >= 0.66f && !starsAnimator.star2Triggered)
+        if (earnedStars >= 2 && sliderProgress >= 0.66f && !starsAnimator.star2Triggered)
             starsAnimator.TriggerStar(1);
 
-        if (earnedStars >= 3 && progress >= 1f && !starsAnimator.star3Triggered)
+        if (earnedStars >= 3 && sliderProgress >= 1f && !starsAnimator.star3Triggered)
             starsAnimator.TriggerStar(2);
     }
 }
