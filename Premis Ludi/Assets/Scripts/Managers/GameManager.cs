@@ -87,6 +87,8 @@ public class GameManager : MonoBehaviour
         gameWon = false;
 
         LoadLevelConfiguration();
+
+        levelTime = currentLevelData.levelTime;
     }
 
     private void LoadLevelConfiguration()
