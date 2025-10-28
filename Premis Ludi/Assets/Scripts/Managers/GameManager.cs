@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Level Timer")]
     public float levelTime = 30f;
+    private float currentLevelTime;
 
     [Header("Chibi Timer")]
     public Transform chibiTimer;
@@ -94,14 +95,21 @@ public class GameManager : MonoBehaviour
         {
             currentLevelData = LevelManager.Instance.currentLevelData;
 
+            currentLevelTime = currentLevelData.levelTime > 0 ? currentLevelData.levelTime : levelTime;
+
             Debug.Log($"Nivel cargado: {currentLevelData.levelName}");
             Debug.Log($"Dificultad: {currentLevelData.difficulty}");
+            Debug.Log($"Tiempo del nivel: {currentLevelTime}s");
+        }
+        else
+        {
+            currentLevelTime = levelTime;
         }
     }
 
     private void Start()
     {
-        timer = levelTime;
+        timer = currentLevelTime;
         
         if (chibiTimer != null)
         {
@@ -189,7 +197,7 @@ public class GameManager : MonoBehaviour
 
         timer -= Time.deltaTime * timeScale;
 
-        float progressRatio = 1f - (timer / levelTime);
+        float progressRatio = 1f - (timer / currentLevelTime);
         progressRatio = Mathf.Clamp01(progressRatio);
 
         Vector3 startPos = timerStartPosition.localPosition;
