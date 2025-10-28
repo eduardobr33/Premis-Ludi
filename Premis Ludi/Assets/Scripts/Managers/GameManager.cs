@@ -362,6 +362,15 @@ public class GameManager : MonoBehaviour
             tutorialEnemyIndex++;
         }
 
+        // Refuerzo positivo con 1/3 probabilidad
+        if (!instaKill && Random.value < 0.33f)
+        {
+            if (PositiveReinforcementManager.Instance != null)
+            {
+                PositiveReinforcementManager.Instance.ShowRandomReinforcement();
+            }
+        }
+
         // Level with boss
         if (currentLevelData != null && currentLevelData.hasBoss && currentEnemy.enemyType == Enemy.EnemyType.Boss)
         {
@@ -436,8 +445,8 @@ public class GameManager : MonoBehaviour
 
     private int CalculateStars()
     {
-        if (score >= 60) return 3;
-        if (score >= 40) return 2;
+        if (score >= 100) return 3;
+        if (score >= 50) return 2;
         return 1;
     }
 

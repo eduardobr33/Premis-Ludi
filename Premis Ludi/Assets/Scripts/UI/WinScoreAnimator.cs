@@ -64,9 +64,9 @@ public class WinScoreAnimator : MonoBehaviour
 
     private void CalculateEarnedStars()
     {
-        if (finalScore >= 60)
+        if (finalScore >= 100)
             earnedStars = 3;
-        else if (finalScore >= 40)
+        else if (finalScore >= 50)
             earnedStars = 2;
         else
             earnedStars = 1;
@@ -76,7 +76,7 @@ public class WinScoreAnimator : MonoBehaviour
     {
         if (scoreSlider != null)
         {
-            scoreSlider.maxValue = 60f;
+            scoreSlider.maxValue = 100f;
             scoreSlider.value = 0f;
         }
 
@@ -122,7 +122,7 @@ public class WinScoreAnimator : MonoBehaviour
 
             if (scoreSlider != null)
             {
-                float sliderValue = Mathf.Min(finalScore * progress, 60f);
+                float sliderValue = Mathf.Min(finalScore * progress, 100f);
                 scoreSlider.value = sliderValue;
             }
 
@@ -143,7 +143,7 @@ public class WinScoreAnimator : MonoBehaviour
         }
 
         if (scoreSlider != null)
-            scoreSlider.value = Mathf.Min(finalScore, 60f);
+            scoreSlider.value = Mathf.Min(finalScore, 100f);
 
         if (scoreAudioSource != null)
             scoreAudioSource.Stop();
