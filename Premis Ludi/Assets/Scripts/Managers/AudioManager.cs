@@ -20,7 +20,7 @@ public class AudioManager : MonoBehaviour
     public float playerDamagePitch = 1f;
     public float buttonClickPitch = 1f;
 
-    private bool isMuted = false;
+    [HideInInspector] public bool isMuted = false;
     private const string MUTE_PREF_KEY = "Muted";
 
     private void Awake()

@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 3150592808461154763}
   - component: {fileID: 8357675685717320715}
   - component: {fileID: 4177566394681925653}
+  - component: {fileID: 8330664270105450484}
   m_Layer: 5
   m_Name: AudioButton
   m_TagString: Untagged
@@ -203,7 +204,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -266786862, guid: 63c135a9b6d76f84390f5e470aa8d575, type: 3}
+  m_Sprite: {fileID: -1449556342, guid: 63c135a9b6d76f84390f5e470aa8d575, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -257,15 +258,29 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: ToggleMute
+      - m_Target: {fileID: 8330664270105450484}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8330664270105450484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3884985242362642324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 992daf729af9a4e439ea3ed5f2bf22ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioOnSprite: {fileID: -1449556342, guid: 63c135a9b6d76f84390f5e470aa8d575, type: 3}
+  audioOffSprite: {fileID: 142896052, guid: 63c135a9b6d76f84390f5e470aa8d575, type: 3}
