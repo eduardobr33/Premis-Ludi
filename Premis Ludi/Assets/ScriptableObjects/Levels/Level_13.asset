@@ -18,8 +18,8 @@ MonoBehaviour:
   allowedOperations:
   - mul
   numberRange: {x: 2, y: 6}
-  maxSteps: 2
-  enemyHealth: 1
+  maxSteps: 1
+  enemyHealth: 2
   levelTime: 60
   pointsMultiplier: 1
   hasBoss: 0
