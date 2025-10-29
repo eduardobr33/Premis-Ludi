@@ -13,6 +13,8 @@ public class LevelSelection : MonoBehaviour
     public Image buttonImage;
     public Sprite unlockedSprite;
     public Sprite lockedSprite;
+    public Sprite bossUnlockedSprite;
+    public Sprite bossLockedSprite;
     public GameObject[] stars;
     public Sprite starSprite;
     public Sprite emptyStarSprite;
@@ -41,7 +43,16 @@ public class LevelSelection : MonoBehaviour
     {
         if (buttonImage != null)
         {
-            buttonImage.sprite = unlocked ? unlockedSprite : lockedSprite;
+            bool hasBoss = levelData != null && levelData.hasBoss;
+            
+            if (hasBoss)
+            {
+                buttonImage.sprite = unlocked ? bossUnlockedSprite : bossLockedSprite;
+            }
+            else
+            {
+                buttonImage.sprite = unlocked ? unlockedSprite : lockedSprite;
+            }
         }
 
         if (!unlocked)

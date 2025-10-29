@@ -197,11 +197,13 @@ public class Enemy : MonoBehaviour
         if (stateCoroutine != null) StopCoroutine(stateCoroutine);
         StartCoroutine(FlashDamage());
 
-        health -= instaKill ? 99 : 1;
+        bool effectiveInstaKill = instaKill && enemyType != EnemyType.Boss;
+        health -= effectiveInstaKill ? 99 : 1;
+        
         if (enemyType == EnemyType.Boss) UIManager.Instance.UpdateBossHealth(health, maxHealth);
 
         if (health > 0) Invoke(nameof(GenerateNewOperation), nextOperationDelay);
-        else Kill(instaKill);
+        else Kill(effectiveInstaKill);
 
         attackTimer = attackInterval;
         currentState = State.Idle;

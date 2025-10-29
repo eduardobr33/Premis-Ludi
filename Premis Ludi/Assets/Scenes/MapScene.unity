@@ -2311,6 +2311,8 @@ MonoBehaviour:
   buttonImage: {fileID: 328375453}
   unlockedSprite: {fileID: -5867855682683827467, guid: 3589c56269eada645adc0afed53f3494, type: 3}
   lockedSprite: {fileID: 2444620171713852681, guid: e4633d2ba3efe9e4880b32246b5d3662, type: 3}
+  bossUnlockedSprite: {fileID: 214559371867731914, guid: 17757e621416e6144951254c12579352, type: 3}
+  bossLockedSprite: {fileID: -602525410613608768, guid: 17757e621416e6144951254c12579352, type: 3}
   stars:
   - {fileID: 113334990}
   - {fileID: 1934352133}
@@ -4877,6 +4879,8 @@ MonoBehaviour:
   buttonImage: {fileID: 538923505}
   unlockedSprite: {fileID: -5867855682683827467, guid: 3589c56269eada645adc0afed53f3494, type: 3}
   lockedSprite: {fileID: 2444620171713852681, guid: e4633d2ba3efe9e4880b32246b5d3662, type: 3}
+  bossUnlockedSprite: {fileID: 214559371867731914, guid: 17757e621416e6144951254c12579352, type: 3}
+  bossLockedSprite: {fileID: -602525410613608768, guid: 17757e621416e6144951254c12579352, type: 3}
   stars:
   - {fileID: 544497568}
   - {fileID: 193889877}
@@ -6472,6 +6476,8 @@ MonoBehaviour:
   buttonImage: {fileID: 686287303}
   unlockedSprite: {fileID: -5867855682683827467, guid: 3589c56269eada645adc0afed53f3494, type: 3}
   lockedSprite: {fileID: 2444620171713852681, guid: e4633d2ba3efe9e4880b32246b5d3662, type: 3}
+  bossUnlockedSprite: {fileID: 214559371867731914, guid: 17757e621416e6144951254c12579352, type: 3}
+  bossLockedSprite: {fileID: -602525410613608768, guid: 17757e621416e6144951254c12579352, type: 3}
   stars:
   - {fileID: 1710013961}
   - {fileID: 1732184497}
@@ -6799,6 +6805,8 @@ MonoBehaviour:
   buttonImage: {fileID: 693278079}
   unlockedSprite: {fileID: -5867855682683827467, guid: 3589c56269eada645adc0afed53f3494, type: 3}
   lockedSprite: {fileID: 2444620171713852681, guid: e4633d2ba3efe9e4880b32246b5d3662, type: 3}
+  bossUnlockedSprite: {fileID: 214559371867731914, guid: 17757e621416e6144951254c12579352, type: 3}
+  bossLockedSprite: {fileID: -602525410613608768, guid: 17757e621416e6144951254c12579352, type: 3}
   stars:
   - {fileID: 27517911}
   - {fileID: 1448163272}
@@ -7351,6 +7359,8 @@ MonoBehaviour:
   buttonImage: {fileID: 753342023}
   unlockedSprite: {fileID: -5867855682683827467, guid: 3589c56269eada645adc0afed53f3494, type: 3}
   lockedSprite: {fileID: 2444620171713852681, guid: e4633d2ba3efe9e4880b32246b5d3662, type: 3}
+  bossUnlockedSprite: {fileID: 214559371867731914, guid: 17757e621416e6144951254c12579352, type: 3}
+  bossLockedSprite: {fileID: -602525410613608768, guid: 17757e621416e6144951254c12579352, type: 3}
   stars:
   - {fileID: 445183539}
   - {fileID: 586473899}
@@ -7528,6 +7538,8 @@ MonoBehaviour:
   buttonImage: {fileID: 754755322}
   unlockedSprite: {fileID: -5867855682683827467, guid: 3589c56269eada645adc0afed53f3494, type: 3}
   lockedSprite: {fileID: 2444620171713852681, guid: e4633d2ba3efe9e4880b32246b5d3662, type: 3}
+  bossUnlockedSprite: {fileID: 214559371867731914, guid: 17757e621416e6144951254c12579352, type: 3}
+  bossLockedSprite: {fileID: -602525410613608768, guid: 17757e621416e6144951254c12579352, type: 3}
   stars:
   - {fileID: 1705068993}
   - {fileID: 1660693530}
@@ -8309,6 +8321,8 @@ MonoBehaviour:
   buttonImage: {fileID: 812670436}
   unlockedSprite: {fileID: -5867855682683827467, guid: 3589c56269eada645adc0afed53f3494, type: 3}
   lockedSprite: {fileID: -8364187750461084868, guid: 3589c56269eada645adc0afed53f3494, type: 3}
+  bossUnlockedSprite: {fileID: 214559371867731914, guid: 17757e621416e6144951254c12579352, type: 3}
+  bossLockedSprite: {fileID: -602525410613608768, guid: 17757e621416e6144951254c12579352, type: 3}
   stars:
   - {fileID: 984920697}
   - {fileID: 995581458}
@@ -9311,6 +9325,8 @@ MonoBehaviour:
   buttonImage: {fileID: 926321263}
   unlockedSprite: {fileID: -5867855682683827467, guid: 3589c56269eada645adc0afed53f3494, type: 3}
   lockedSprite: {fileID: -8364187750461084868, guid: 3589c56269eada645adc0afed53f3494, type: 3}
+  bossUnlockedSprite: {fileID: 214559371867731914, guid: 17757e621416e6144951254c12579352, type: 3}
+  bossLockedSprite: {fileID: -602525410613608768, guid: 17757e621416e6144951254c12579352, type: 3}
   stars:
   - {fileID: 897867756}
   - {fileID: 1270373524}
@@ -9788,6 +9804,8 @@ MonoBehaviour:
   buttonImage: {fileID: 970572123}
   unlockedSprite: {fileID: -5867855682683827467, guid: 3589c56269eada645adc0afed53f3494, type: 3}
   lockedSprite: {fileID: 2444620171713852681, guid: e4633d2ba3efe9e4880b32246b5d3662, type: 3}
+  bossUnlockedSprite: {fileID: 214559371867731914, guid: 17757e621416e6144951254c12579352, type: 3}
+  bossLockedSprite: {fileID: -602525410613608768, guid: 17757e621416e6144951254c12579352, type: 3}
   stars:
   - {fileID: 1671370665}
   - {fileID: 1560009704}
@@ -11248,6 +11266,8 @@ MonoBehaviour:
   buttonImage: {fileID: 1092253689}
   unlockedSprite: {fileID: -5867855682683827467, guid: 3589c56269eada645adc0afed53f3494, type: 3}
   lockedSprite: {fileID: -8364187750461084868, guid: 3589c56269eada645adc0afed53f3494, type: 3}
+  bossUnlockedSprite: {fileID: 214559371867731914, guid: 17757e621416e6144951254c12579352, type: 3}
+  bossLockedSprite: {fileID: -602525410613608768, guid: 17757e621416e6144951254c12579352, type: 3}
   stars:
   - {fileID: 1655471427}
   - {fileID: 1010658137}
@@ -13483,6 +13503,8 @@ MonoBehaviour:
   buttonImage: {fileID: 1322264180}
   unlockedSprite: {fileID: -5867855682683827467, guid: 3589c56269eada645adc0afed53f3494, type: 3}
   lockedSprite: {fileID: 2444620171713852681, guid: e4633d2ba3efe9e4880b32246b5d3662, type: 3}
+  bossUnlockedSprite: {fileID: 214559371867731914, guid: 17757e621416e6144951254c12579352, type: 3}
+  bossLockedSprite: {fileID: -602525410613608768, guid: 17757e621416e6144951254c12579352, type: 3}
   stars:
   - {fileID: 418804859}
   - {fileID: 1389268372}
@@ -14335,6 +14357,8 @@ MonoBehaviour:
   buttonImage: {fileID: 1426336449}
   unlockedSprite: {fileID: -5867855682683827467, guid: 3589c56269eada645adc0afed53f3494, type: 3}
   lockedSprite: {fileID: 2444620171713852681, guid: e4633d2ba3efe9e4880b32246b5d3662, type: 3}
+  bossUnlockedSprite: {fileID: 214559371867731914, guid: 17757e621416e6144951254c12579352, type: 3}
+  bossLockedSprite: {fileID: -602525410613608768, guid: 17757e621416e6144951254c12579352, type: 3}
   stars:
   - {fileID: 1095068120}
   - {fileID: 480328977}
@@ -17424,6 +17448,8 @@ MonoBehaviour:
   buttonImage: {fileID: 1750407661}
   unlockedSprite: {fileID: -5867855682683827467, guid: 3589c56269eada645adc0afed53f3494, type: 3}
   lockedSprite: {fileID: 2444620171713852681, guid: e4633d2ba3efe9e4880b32246b5d3662, type: 3}
+  bossUnlockedSprite: {fileID: 214559371867731914, guid: 17757e621416e6144951254c12579352, type: 3}
+  bossLockedSprite: {fileID: -602525410613608768, guid: 17757e621416e6144951254c12579352, type: 3}
   stars:
   - {fileID: 1636877530}
   - {fileID: 1235725413}
@@ -17732,6 +17758,8 @@ MonoBehaviour:
   buttonImage: {fileID: 1774058679}
   unlockedSprite: {fileID: -5867855682683827467, guid: 3589c56269eada645adc0afed53f3494, type: 3}
   lockedSprite: {fileID: 2444620171713852681, guid: e4633d2ba3efe9e4880b32246b5d3662, type: 3}
+  bossUnlockedSprite: {fileID: 214559371867731914, guid: 17757e621416e6144951254c12579352, type: 3}
+  bossLockedSprite: {fileID: -602525410613608768, guid: 17757e621416e6144951254c12579352, type: 3}
   stars:
   - {fileID: 1386124784}
   - {fileID: 800374030}
@@ -18866,6 +18894,8 @@ MonoBehaviour:
   buttonImage: {fileID: 1900672571}
   unlockedSprite: {fileID: -5867855682683827467, guid: 3589c56269eada645adc0afed53f3494, type: 3}
   lockedSprite: {fileID: 2444620171713852681, guid: e4633d2ba3efe9e4880b32246b5d3662, type: 3}
+  bossUnlockedSprite: {fileID: 214559371867731914, guid: 17757e621416e6144951254c12579352, type: 3}
+  bossLockedSprite: {fileID: -602525410613608768, guid: 17757e621416e6144951254c12579352, type: 3}
   stars:
   - {fileID: 2037592169}
   - {fileID: 325498556}
@@ -19043,6 +19073,8 @@ MonoBehaviour:
   buttonImage: {fileID: 1906571717}
   unlockedSprite: {fileID: -5867855682683827467, guid: 3589c56269eada645adc0afed53f3494, type: 3}
   lockedSprite: {fileID: 2444620171713852681, guid: e4633d2ba3efe9e4880b32246b5d3662, type: 3}
+  bossUnlockedSprite: {fileID: 214559371867731914, guid: 17757e621416e6144951254c12579352, type: 3}
+  bossLockedSprite: {fileID: -602525410613608768, guid: 17757e621416e6144951254c12579352, type: 3}
   stars:
   - {fileID: 372126319}
   - {fileID: 1141990645}
@@ -19839,6 +19871,8 @@ MonoBehaviour:
   buttonImage: {fileID: 1951869725}
   unlockedSprite: {fileID: -5867855682683827467, guid: 3589c56269eada645adc0afed53f3494, type: 3}
   lockedSprite: {fileID: -8364187750461084868, guid: 3589c56269eada645adc0afed53f3494, type: 3}
+  bossUnlockedSprite: {fileID: 214559371867731914, guid: 17757e621416e6144951254c12579352, type: 3}
+  bossLockedSprite: {fileID: -602525410613608768, guid: 17757e621416e6144951254c12579352, type: 3}
   stars:
   - {fileID: 959769283}
   - {fileID: 467251560}
@@ -21141,6 +21175,8 @@ MonoBehaviour:
   buttonImage: {fileID: 2047010584}
   unlockedSprite: {fileID: -5867855682683827467, guid: 3589c56269eada645adc0afed53f3494, type: 3}
   lockedSprite: {fileID: 2444620171713852681, guid: e4633d2ba3efe9e4880b32246b5d3662, type: 3}
+  bossUnlockedSprite: {fileID: 214559371867731914, guid: 17757e621416e6144951254c12579352, type: 3}
+  bossLockedSprite: {fileID: -602525410613608768, guid: 17757e621416e6144951254c12579352, type: 3}
   stars:
   - {fileID: 1204177882}
   - {fileID: 1508222570}
@@ -21618,6 +21654,8 @@ MonoBehaviour:
   buttonImage: {fileID: 2101965327}
   unlockedSprite: {fileID: -5867855682683827467, guid: 3589c56269eada645adc0afed53f3494, type: 3}
   lockedSprite: {fileID: 2444620171713852681, guid: e4633d2ba3efe9e4880b32246b5d3662, type: 3}
+  bossUnlockedSprite: {fileID: 214559371867731914, guid: 17757e621416e6144951254c12579352, type: 3}
+  bossLockedSprite: {fileID: -602525410613608768, guid: 17757e621416e6144951254c12579352, type: 3}
   stars:
   - {fileID: 2050510721}
   - {fileID: 1990425777}
