@@ -1495,7 +1495,7 @@ MonoBehaviour:
   doublePointsActive: 0
   slowMotionUsed: 0
   slowMotionTime: 5
-  multiplicationTablesPanel: {fileID: 0}
+  multiplicationTablesPanel: {fileID: 784731760}
   hurtFlash: {fileID: 896161682}
   flashDuration: 0.3
   skipButton: {fileID: 846167159}

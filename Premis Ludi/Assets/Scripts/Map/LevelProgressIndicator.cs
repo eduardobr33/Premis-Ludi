@@ -67,4 +67,9 @@ public class LevelProgressIndicator : MonoBehaviour
         if (objectTransform != null)
             objectTransform.DOKill();
     }
+
+    public void RefreshUI()
+    {
+        PlayAnimation();
+    }
 }

@@ -58,7 +58,6 @@ public class GameManager : MonoBehaviour
     public LevelData currentLevelData;
 
     private float timer;
-    private float timeScale = 1f;
     private bool gameWon = false;
     private bool bossSpawned = false;
     private int lastDisplayedSecond = -1;
@@ -197,7 +196,7 @@ public class GameManager : MonoBehaviour
     {
         if (playerHealth <= 0) return;
 
-        timer -= Time.deltaTime * timeScale;
+        timer -= Time.deltaTime;
 
         float progressRatio = 1f - (timer / currentLevelTime);
         progressRatio = Mathf.Clamp01(progressRatio);
@@ -492,7 +491,7 @@ public class GameManager : MonoBehaviour
 
     public void SetTimeScale(float scale)
     {
-        timeScale = scale;
+        Time.timeScale = scale;
     }
 
     public void ReturnToMap()

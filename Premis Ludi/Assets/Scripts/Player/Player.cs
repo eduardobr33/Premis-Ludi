@@ -164,22 +164,10 @@ public class Player : MonoBehaviour
     {
         GameManager.Instance.SetTimeScale(0.5f);
 
-        if (GameManager.Instance.currentEnemy != null)
-        {
-            GameManager.Instance.currentEnemy.enemySpeed *= 0.2f;
-            GameManager.Instance.currentEnemy.attackSpeed *= 0.2f;
-        }
-
         yield return new WaitForSeconds(slowMotionTime);
 
         GameManager.Instance.SetTimeScale(1f);
-
-        if (GameManager.Instance.currentEnemy != null)
-        {
-            GameManager.Instance.currentEnemy.enemySpeed *= 5f;
-            GameManager.Instance.currentEnemy.attackSpeed *= 5f;
-        }
-
+        
         Debug.Log("Slow Motion finalizado. Velocidades restauradas.");
     }
 }

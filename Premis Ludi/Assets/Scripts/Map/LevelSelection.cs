@@ -104,4 +104,12 @@ public class LevelSelection : MonoBehaviour
     {
         OnLevelPressed();
     }
+
+    public void RefreshUI()
+    {
+        unlocked = SaveSystem.Instance.IsLevelUnlocked(levelNumber);
+        currentStars = SaveSystem.Instance.GetLevelStars(levelNumber);
+        hasBeenPlayed = SaveSystem.Instance.HasLevelBeenPlayed(levelNumber);
+        UpdateLevelUI();
+    }
 }
