@@ -73,8 +73,6 @@ public class SaveSystem : MonoBehaviour
             if (powerupId >= 0)
                 saveData.unlockedPowerups.Add(powerupId);
         }
-        
-        Debug.Log("Partida cargada desde PlayerPrefs");
     }
 
     public void SaveGame()
@@ -97,11 +95,10 @@ public class SaveSystem : MonoBehaviour
             }
             
             PlayerPrefs.Save();
-            Debug.Log("Partida guardada en PlayerPrefs");
         }
         catch (Exception e)
         {
-            Debug.LogError("Error al guardar partida: " + e.Message);
+            
         }
     }
 
@@ -125,7 +122,6 @@ public class SaveSystem : MonoBehaviour
         {
             saveData.levels[levelNumber].unlocked = true;
             SaveGame();
-            Debug.Log($"Nivel {levelNumber} desbloqueado");
         }
     }
 
@@ -181,7 +177,6 @@ public class SaveSystem : MonoBehaviour
         saveData = new GameSaveData();
         saveData.levels[0].unlocked = true;
         SaveGame();
-        Debug.Log("Progreso reseteado");
     }
     
     public void UnlockPowerup(PowerupType powerupType)
@@ -191,7 +186,6 @@ public class SaveSystem : MonoBehaviour
         {
             saveData.unlockedPowerups.Add(powerupId);
             SaveGame();
-            Debug.Log($"Powerup desbloqueado: {powerupType}");
         }
     }
     

@@ -26,12 +26,10 @@ public class LevelSelection : MonoBehaviour
     {
         if (SaveSystem.Instance == null)
         {
-            Debug.LogError("SaveSystem.Instance es null en LevelSelection!");
             return;
         }
 
         unlocked = SaveSystem.Instance.IsLevelUnlocked(levelNumber);
-        // Debug.Log($"Nivel {levelNumber} desbloqueado: {unlocked}");
 
         currentStars = SaveSystem.Instance.GetLevelStars(levelNumber);
         hasBeenPlayed = SaveSystem.Instance.HasLevelBeenPlayed(levelNumber);
@@ -95,17 +93,12 @@ public class LevelSelection : MonoBehaviour
         
         if (levelData == null)
         {
-            Debug.LogWarning($"No hay LevelData asignado para el nivel {levelNumber}");
             return;
         }
         
         if (LevelManager.Instance != null)
         {
             LevelManager.Instance.LoadLevel(levelData);
-        }
-        else
-        {
-            Debug.LogWarning("LevelManager.Instance es null!");
         }
         
         ChangeSceneManager.Instance.GoToGameplayScene();

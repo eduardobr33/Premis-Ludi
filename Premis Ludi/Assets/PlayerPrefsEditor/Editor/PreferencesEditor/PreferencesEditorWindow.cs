@@ -593,8 +593,6 @@ namespace CCG.PlayerPrefsEditor
         {
             string[] keys = entryAccessor.GetKeys(reloadKeys);
 
-            //keys.ToList().ForEach( e => { Debug.Log(e); } );
-
             // Seperate keys int unity defined and user defined
             Dictionary<bool, List<string>> groups = keys
                 .GroupBy( (key) => key.StartsWith("unity.") || key.StartsWith("UnityGraphicsQuality") )

@@ -149,9 +149,7 @@ public class Enemy : MonoBehaviour
     public void Setup(string operation, int answer, bool newEnemy)
     {
         textOp.text = operation;
-        Debug.Log("Operation: " + textOp.text);
         correctAnswer = answer;
-        Debug.Log("Answer: " + correctAnswer);
     }
 
     private void GenerateNewOperation()
@@ -312,8 +310,6 @@ public class Enemy : MonoBehaviour
 
         maxScale = Vector3.one * maxScaleFactor;
         minScale = Vector3.one * minScaleFactor;
-
-        Debug.Log($"Enemy Scale: max={maxScale}, min={minScale}");
     }
 
     private bool IsEnemyCrab()

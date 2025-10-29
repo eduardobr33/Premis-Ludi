@@ -216,8 +216,6 @@ public class SimpleGestureRecognizer : MonoBehaviour
             }
             
             Result gestureResult = PointCloudRecognizer.Classify(candidate, trainingSet.ToArray());
-            
-            Debug.Log($"GESTO RECONOCIDO: {gestureResult.GestureClass} (Confianza: {gestureResult.Score:F2})");
 
             int recognizedNumber;
             if (int.TryParse(gestureResult.GestureClass, out recognizedNumber))
@@ -226,28 +224,18 @@ public class SimpleGestureRecognizer : MonoBehaviour
                 {
                     if (recognizedNumber == GameManager.Instance.currentEnemy.correctAnswer)
                     {
-                        Debug.Log("¡Número correcto! El enemigo recibe daño.");
                         GameManager.Instance.currentEnemy.TakeDamage(false);
                         
                         StartCoroutine(CleanupAfterCorrectAnswer());
                         return;
                     }
-                    else
-                    {
-                        Debug.Log($"Número incorrecto. Dibujaste {recognizedNumber}, se esperaba {GameManager.Instance.currentEnemy.correctAnswer}");
-                    }
                 }
-            }
-            else
-            {
-                Debug.LogWarning($"El gesto reconocido ({gestureResult.GestureClass}) no es un número válido");
             }
             
             StartCoroutine(CleanupAfterIncorrectAnswer());
         }
         catch (System.Exception ex)
         {
-            Debug.LogError($"Error al reconocer gesto: {ex.Message}");
             ClearGesture();
         }
     }
@@ -328,8 +316,6 @@ public class SimpleGestureRecognizer : MonoBehaviour
         // Reiniciar timers
         timeSinceLastDraw = 0f;
         timeSinceTutorialEnded = TUTORIAL_COOLDOWN; // Permite dibujo inmediato después de limpiar
-        
-        Debug.Log("Lienzo limpiado. Listo para dibujar nuevamente.");
     }
 
     void OnDrawGizmosSelected()

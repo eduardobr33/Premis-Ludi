@@ -74,8 +74,6 @@ public class Player : MonoBehaviour
         GameManager.Instance.playerHealth = currentHealth;
         GameManager.Instance.multiplier = 1;
 
-        Debug.Log("Player health: " + currentHealth);
-
         UIManager.Instance.UpdatePlayerHealth(currentHealth, maxHealth);
         
         // Efectos de daño
@@ -109,7 +107,6 @@ public class Player : MonoBehaviour
         if (skipUsed) return;
 
         skipUsed = true;
-        Debug.Log("Skip usado: enemigo eliminado sin puntos.");
         GameManager.Instance.currentEnemy.TakeDamage(true);
     }
 
@@ -119,7 +116,6 @@ public class Player : MonoBehaviour
 
         doublePointsUsed = true;
         doublePointsActive = true;
-        Debug.Log("Doble puntos activado para el siguiente enemigo.");
     }
 
     public void SlowMotion()
@@ -127,7 +123,6 @@ public class Player : MonoBehaviour
         if (slowMotionUsed) return;
 
         slowMotionUsed = true;
-        Debug.Log("Slow Motion activado: tiempo reducido a la mitad durante 5s.");
 
         StartCoroutine(SlowMotionCoroutine());
     }
@@ -136,7 +131,6 @@ public class Player : MonoBehaviour
     {
         bool newState = !multiplicationTablesPanel.activeSelf;
         multiplicationTablesPanel.SetActive(newState);
-        Debug.Log($"Panel de tablas {(newState ? "mostrado" : "oculto")}.");
     }
     
     // Métodos para verificar disponibilidad de powerups (para UI)
@@ -177,7 +171,5 @@ public class Player : MonoBehaviour
         {
             SlowMotionFeedback.Instance.StopSlowMotionFeedback();
         }
-        
-        Debug.Log("Slow Motion finalizado. Velocidades restauradas.");
     }
 }

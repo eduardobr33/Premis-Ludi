@@ -18,7 +18,6 @@ public class LevelProgressIndicator : MonoBehaviour
         objectTransform = GetComponent<Transform>();
         if (objectTransform == null)
         {
-            Debug.LogError("LevelProgressIndicator requiere un componente Transform");
             return;
         }
 
@@ -49,8 +48,7 @@ public class LevelProgressIndicator : MonoBehaviour
             if (SaveSystem.Instance.IsLevelUnlocked(i))
                 unlockedCount++;
         }
-
-        // Debug.Log("Total niveles desbloqueados: " + unlockedCount);
+        
         return unlockedCount;
     }
 

@@ -396,9 +396,7 @@ public class SplitZoneGestureRecognizer : MonoBehaviour
             string finalNumber = result.ToString();
             
             if (finalNumber.Length > 0)
-            {
-                Debug.Log($"NÚMERO RECONOCIDO: {finalNumber}");
-                
+            { 
                 int recognizedNumber;
                 if (int.TryParse(finalNumber, out recognizedNumber))
                 {
@@ -406,21 +404,12 @@ public class SplitZoneGestureRecognizer : MonoBehaviour
                     {
                         if (recognizedNumber == GameManager.Instance.currentEnemy.correctAnswer)
                         {
-                            Debug.Log("¡Número correcto! El enemigo recibe daño.");
                             GameManager.Instance.currentEnemy.TakeDamage(false);
                             
                             StartCoroutine(CleanupAfterCorrectAnswer());
                             return;
                         }
-                        else
-                        {
-                            Debug.Log($"Número incorrecto. Dibujaste {recognizedNumber}, se esperaba {GameManager.Instance.currentEnemy.correctAnswer}");
-                        }
                     }
-                }
-                else
-                {
-                    Debug.LogWarning($"El número reconocido ({finalNumber}) no es válido");
                 }
             }
             
@@ -428,7 +417,6 @@ public class SplitZoneGestureRecognizer : MonoBehaviour
         }
         catch (System.Exception ex)
         {
-            Debug.LogError($"Error al reconocer gesto en split zone: {ex.Message}");
             ResetSystem();
         }
     }
@@ -499,8 +487,6 @@ public class SplitZoneGestureRecognizer : MonoBehaviour
         // Reiniciar timers
         timeSinceLastDraw = 0f;
         timeSinceTutorialEnded = TUTORIAL_COOLDOWN; // Permite dibujo inmediato después de limpiar
-        
-        Debug.Log("Lienzo limpiado. Listo para dibujar nuevamente.");
     }
 
     void OnDestroy()

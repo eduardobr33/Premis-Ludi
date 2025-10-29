@@ -19,7 +19,6 @@ public class MapDebugButtons : MonoBehaviour
     {
         if (SaveSystem.Instance == null)
         {
-            Debug.LogError("[MapDebugButtons] SaveSystem no encontrado");
             return;
         }
 
@@ -37,15 +36,12 @@ public class MapDebugButtons : MonoBehaviour
 
         // Actualizar UI
         RefreshLevelUI();
-
-        Debug.Log("[MapDebugButtons] ¡Todos los niveles y powerups desbloqueados!");
     }
 
     private void OnResetProgressClicked()
     {
         if (SaveSystem.Instance == null)
         {
-            Debug.LogError("[MapDebugButtons] SaveSystem no encontrado");
             return;
         }
 
@@ -53,8 +49,6 @@ public class MapDebugButtons : MonoBehaviour
         
         // Actualizar UI
         RefreshLevelUI();
-        
-        Debug.Log("[MapDebugButtons] Progreso reseteado");
     }
 
     private void RefreshLevelUI()
@@ -72,8 +66,6 @@ public class MapDebugButtons : MonoBehaviour
         {
             levelSelection.RefreshUI();
         }
-
-        Debug.Log("[MapDebugButtons] UI actualizada - " + levelSelections.Length + " botones actualizados");
     }
 
     private void OnDestroy()

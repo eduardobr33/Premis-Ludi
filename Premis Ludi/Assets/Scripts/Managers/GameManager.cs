@@ -97,10 +97,6 @@ public class GameManager : MonoBehaviour
             currentLevelData = LevelManager.Instance.currentLevelData;
 
             currentLevelTime = currentLevelData.levelTime > 0 ? currentLevelData.levelTime : levelTime;
-
-            Debug.Log($"Nivel cargado: {currentLevelData.levelName}");
-            Debug.Log($"Dificultad: {currentLevelData.difficulty}");
-            Debug.Log($"Tiempo del nivel: {currentLevelTime}s");
         }
         else
         {
@@ -306,10 +302,6 @@ public class GameManager : MonoBehaviour
             {
                 UIManager.Instance.ShowBossHealthBar(true);
             }
-        }
-        else
-        {
-            Debug.Log("El nivel tiene hasBoss = true, pero no se ha asignado nada al bossPrefab");
         }
     }
     

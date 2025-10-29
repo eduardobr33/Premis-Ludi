@@ -48,10 +48,7 @@ public class WinStarsAnimator : MonoBehaviour
         if (debugMode)
         {
             earnedStars = debugStarsToTest;
-            Debug.Log($"[WinStarsAnimator DEBUG] Probando {earnedStars} estrellas");
         }
-        
-        Debug.Log($"[WinStarsAnimator] Estrellas ganadas: {earnedStars}");
         
         CreateAudioSourcesIfNeeded();
         
@@ -83,11 +80,8 @@ public class WinStarsAnimator : MonoBehaviour
     {
         if (earnedStars == 0)
         {
-            Debug.LogWarning("[WinStarsAnimator] No hay estrellas para animar");
             return;
         }
-        
-        Debug.Log($"[WinStarsAnimator] Iniciando animación de {earnedStars} estrellas");
         
         for (int i = 0; i < earnedStars; i++)
         {
@@ -100,7 +94,6 @@ public class WinStarsAnimator : MonoBehaviour
     {
         if (index >= emptyStarImages.Count)
         {
-            Debug.LogWarning($"[WinStarsAnimator] Index {index} fuera de rango. Empty star images: {emptyStarImages.Count}");
             return;
         }
 
@@ -109,7 +102,6 @@ public class WinStarsAnimator : MonoBehaviour
         
         if (targetRect == null)
         {
-            Debug.LogError($"[WinStarsAnimator] No se encontró RectTransform para estrella {index}");
             return;
         }
         
@@ -119,7 +111,6 @@ public class WinStarsAnimator : MonoBehaviour
         // Crear estrella animada
         if (starPrefab == null)
         {
-            Debug.LogError("[WinStarsAnimator] Star prefab no asignado");
             return;
         }
         
@@ -140,8 +131,6 @@ public class WinStarsAnimator : MonoBehaviour
         
         // Asegurar que la estrella de fondo esté visible (ya ganada)
         targetStar.color = new Color(targetStar.color.r, targetStar.color.g, targetStar.color.b, 1f);
-
-        Debug.Log($"[WinStarsAnimator] Animando estrella {index}: pos({targetPos.x}, {targetPos.y}) size({targetSize.x}, {targetSize.y}) delay {delay}s");
 
         // Secuencia de animación
         Sequence seq = DOTween.Sequence();
@@ -172,21 +161,17 @@ public class WinStarsAnimator : MonoBehaviour
     {
         if (audioSources == null || starIndex >= audioSources.Length || starSound == null)
         {
-            Debug.LogWarning($"[WinStarsAnimator] AudioSource o Sound no configurados para estrella {starIndex}");
             return;
         }
         
         AudioSource audioSource = audioSources[starIndex];
         if (audioSource == null)
         {
-            Debug.LogWarning($"[WinStarsAnimator] AudioSource {starIndex} es null");
             return;
         }
         
         // Calcular pitch progresivo: primera estrella pitch bajo, tercera pitch alto
         float pitch = basePitch + (starIndex * pitchIncrement);
-        
-        Debug.Log($"[WinStarsAnimator] Reproduciendo sonido estrella {starIndex} con pitch {pitch}");
         
         // Reproducir sonido con el AudioSource correspondiente
         audioSource.pitch = pitch;

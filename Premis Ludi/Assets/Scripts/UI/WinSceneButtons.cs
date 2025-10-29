@@ -9,7 +9,6 @@ public class WinSceneButtons : MonoBehaviour
     {
         if (ChangeSceneManager.Instance == null)
         {
-            Debug.LogError("[WinSceneButtons] ChangeSceneManager.Instance no encontrado");
             return;
         }
 

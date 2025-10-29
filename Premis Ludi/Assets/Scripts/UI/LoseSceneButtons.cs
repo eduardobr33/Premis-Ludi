@@ -10,7 +10,6 @@ public class LoseSceneButtons : MonoBehaviour
     {
         if (ChangeSceneManager.Instance == null)
         {
-            Debug.LogError("[LoseSceneButtons] ChangeSceneManager.Instance no encontrado");
             return;
         }
 

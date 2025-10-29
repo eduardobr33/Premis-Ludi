@@ -27,7 +27,7 @@ public static class MathGenerator
                 case "sub":
                     // Avoid negative numbers
                     if (num > currentValue)
-                        num = UnityEngine.Random.Range(0, currentValue + 1);
+                        num = UnityEngine.Random.Range(1, currentValue + 1);
 
                     expression += " - " + num;
                     currentValue -= num;
