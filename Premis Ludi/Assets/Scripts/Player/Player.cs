@@ -164,9 +164,19 @@ public class Player : MonoBehaviour
     {
         GameManager.Instance.SetTimeScale(0.5f);
 
+        if (SlowMotionFeedback.Instance != null)
+        {
+            SlowMotionFeedback.Instance.StartSlowMotionFeedback(slowMotionTime);
+        }
+
         yield return new WaitForSeconds(slowMotionTime);
 
         GameManager.Instance.SetTimeScale(1f);
+
+        if (SlowMotionFeedback.Instance != null)
+        {
+            SlowMotionFeedback.Instance.StopSlowMotionFeedback();
+        }
         
         Debug.Log("Slow Motion finalizado. Velocidades restauradas.");
     }
